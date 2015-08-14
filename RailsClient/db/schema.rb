@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150814015320) do
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",    null: false
     t.string   "encrypted_password",     limit: 255, default: "",    null: false
-    t.string   "user_id",                limit: 255,                 null: false
+    t.string   "nr",                     limit: 255,                 null: false
     t.string   "user_name",              limit: 255
     t.integer  "role_id",                limit: 4,                   null: false
     t.string   "tel",                    limit: 255
@@ -45,7 +45,9 @@ ActiveRecord::Schema.define(version: 20150814015320) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["id"], name: "index_users_on_id", unique: true, using: :btree
+  add_index "users", ["nr"], name: "index_users_on_nr", unique: true, using: :btree
+  add_index "users", ["user_name"], name: "index_users_on_user_name", using: :btree
 
 end

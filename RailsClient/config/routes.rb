@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   get 'welcome/index'
 
-  devise_for :users
-
   resources :images
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -11,6 +9,24 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   root 'welcome#index'
+
+
+  devise_for :users, :controllers => {registrations: :user_registrations}
+
+  devise_scope :user do
+    get '/users/sign_out' => 'user_sessions#destroy'
+    post '/user_sessions/locale' => 'user_sessions#locale'
+    get '/user_sessions/new' => 'user_sessions#new'
+    post '/user_sessions/' => 'user_sessions#create'
+    get '/user_sessions/destroy' => 'user_sessions#destroy'
+    delete '/api/user_sessions/' => 'user_sessions#destroy'
+    post '/api/user_sessions/' => 'user_sessions#create'
+    get '/user_sessions/finish_guide' => 'user_sessions#finish_guide'
+  end
+
+
+  resources :users
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

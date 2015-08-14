@@ -4,7 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
-      t.string :user_id, null: false
+      t.string :nr, null: false
       t.string :user_name
       t.integer :role_id, null: false
       t.string :tel
@@ -41,8 +41,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :users, :user_id,                unique: true
-    add_index :users, :reset_password_token, unique: true
+    add_index :users, :nr, unique: true
+    add_index :users, :id, unique: true
+    add_index :users, :email
+    add_index :users, :user_name
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
   end
