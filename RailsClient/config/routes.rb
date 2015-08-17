@@ -11,9 +11,10 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
 
-  devise_for :users, :controllers => {registrations: :user_registrations}
+  devise_for :users, :controllers => {registrations: :user_registrations, sessions: 'users/sessions'}
 
   devise_scope :user do
+    get '/users/sign_in'=>'users/sessions#new'
     get '/users/sign_out' => 'user_sessions#destroy'
     post '/user_sessions/locale' => 'user_sessions#locale'
     get '/user_sessions/new' => 'user_sessions#new'

@@ -6,9 +6,28 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class="LoginBody">
 
-<%= yield %>
 
-</body>
+<frameset rows="7%,*" border="1">
+  <noframe>
+    <body class="LoginBody">
+
+    <%= yield %>
+    Sorry,您的浏览器不支持框架，请换浏览器。
+
+    </body>
+  </noframe>
+  <frame name="head" frameborder="1" scrolling="no" marginheight="0"
+         src="">
+  <frameset cols="10%,*">
+    <frame name="left" frameborder="1" src="">
+    <frame name="content" frameborder="1" src="">
+  </frameset>
+</frameset>
+<!--<body class="LoginBody">-->
+
+<!--<%= yield %>-->
+
+
+<!--</body>-->
 </html>
