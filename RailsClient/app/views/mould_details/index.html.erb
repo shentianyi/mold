@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Mould Details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mould</th>
+      <th>Mould type</th>
+      <th>Mould supplier</th>
+      <th>Position</th>
+      <th>Terminal leoni no</th>
+      <th>Terminal supplier</th>
+      <th>Stopwater</th>
+      <th>Use range</th>
+      <th>Wire type</th>
+      <th>Wire cross</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mould_details.each do |mould_detail| %>
+      <tr>
+        <td><%= mould_detail.mould_id %></td>
+        <td><%= mould_detail.mould_type %></td>
+        <td><%= mould_detail.mould_supplier %></td>
+        <td><%= mould_detail.position %></td>
+        <td><%= mould_detail.terminal_leoni_no %></td>
+        <td><%= mould_detail.terminal_supplier %></td>
+        <td><%= mould_detail.stopwater %></td>
+        <td><%= mould_detail.use_range %></td>
+        <td><%= mould_detail.wire_type %></td>
+        <td><%= mould_detail.wire_cross %></td>
+        <td><%= link_to 'Show', mould_detail %></td>
+        <td><%= link_to 'Edit', edit_mould_detail_path(mould_detail) %></td>
+        <td><%= link_to 'Destroy', mould_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mould detail', new_mould_detail_path %>

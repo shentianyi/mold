@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :mould_details
   get 'welcome/index'
 
   resources :images do
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   devise_for :users, :controllers => {registrations: :user_registrations, sessions: 'users/sessions'}
+
 
   devise_scope :user do
     get '/users/sign_in'=>'users/sessions#new'
