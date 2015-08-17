@@ -1,6 +1,7 @@
 <style type="text/css">
     .btn {
-        width: 200px;
+        width: 100px;
+        height: 40px;
     }
 
     hr {
@@ -11,7 +12,7 @@
 
 <div style="display: inline-flex;margin-top: 10px;">
   <%= link_to "返回", mould_details_path, :class => 'btn btn-primary', :style => 'color:#000; margin-left:5%;' %>
-  <h1 style="position: absolute;right: 20px;">模具明细增添界面</h1>
+  <h1 style="position: absolute;right: 20px;">模具明细<em>新增</em></h1>
 </div>
 <hr/>
 <%= render 'form' %>

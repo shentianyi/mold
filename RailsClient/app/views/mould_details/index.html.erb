@@ -10,9 +10,10 @@
     }
 
     .btn {
-        margin-left: 40%;
+        margin-left: 10%;
         color: #000;
         width: 100px;
+        height: 40px;
     }
 
     hr {
@@ -22,35 +23,37 @@
     th {
         text-align: center;
     }
+
+    td {
+        text-align: center;
+    }
 </style>
 
 <p id="notice"><%= notice %></p>
-<div style="display: inline-flex;width: 100%; ">
+<div style="display: inline-flex; ">
   <div>
     <b class="selectfont">库位：</b>
-    <input class="selectinput" type="button">
+    <input class="selectinput" type="text">
   </div>
-
-
   <div>
     <b class="selectfont">端子莱尼号：</b>
-    <input class="selectinput" type="button">
+    <input class="selectinput" type="text">
   </div>
 
   <div>
     <b class="selectfont">电线型号：</b>
-    <input class="selectinput" type="button">
+    <input class="selectinput" type="text">
   </div>
 
 
   <div>
     <b class="selectfont">电线截面QMM：</b>
-    <input class="selectinput" type="button">
+    <input class="selectinput" type="text">
   </div>
 
   <div>
     <b class="selectfont">下次批准日期：</b>
-    <input class="selectinput" type="button">
+    <input class="selectinput" type="text">
   </div>
 
   <div>
@@ -69,7 +72,8 @@
 <div style="display: inline-flex;">
   <button type="button" class="btn btn-primary">导入</button>
   <button type="button" class="btn btn-primary">导出</button>
-  <%= link_to "新增", new_mould_detail_path, :class => 'btn btn-primary' %>
+  <%= link_to "新增", new_mould_detail_path, :class => 'btn btn-primary',
+              :style => 'color:#000;padding-top:10px;' %>
 </div>
 
 <hr>
@@ -108,9 +112,9 @@
           <td><%= mould_detail.use_range %></td>
           <td><%= mould_detail.wire_type %></td>
 
-          <td><%= link_to 'Show', mould_detail %> </td>
-          <td><%= link_to 'Edit', edit_mould_detail_path(mould_detail) %></td>
-          <td><%= link_to 'Destroy', mould_detail, method: :delete, data: {confirm: 'Are you sure?' } %></td>
+          <td>[<%= link_to '详情', mould_detail %>] [<%= link_to '编辑', edit_mould_detail_path(mould_detail) %>]
+            [<%= link_to '删除', mould_detail, method: :delete, data: {confirm: '确认删除?'} %>]
+          </td>
         </tr>
     <% end %>
     </tbody>

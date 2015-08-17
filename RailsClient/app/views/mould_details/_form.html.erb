@@ -11,8 +11,12 @@
         cursor: pointer;
     }
 
-    input:hover {
+    input[type="submit"]:hover {
         background-color: #286090;
+    }
+
+    input {
+        width: 150px;
     }
 </style>
 
@@ -264,8 +268,7 @@
       </div>
     </div>
 
-    <hr/>
-
+    <hr style="border: 1px solid #000;opacity: 0.5;"/>
     <div class="actions">
       <%= f.submit '完成' %>
     </div>

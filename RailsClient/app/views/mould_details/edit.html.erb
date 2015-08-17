@@ -1,6 +1,10 @@
-<h1>Editing Mould Detail</h1>
+<div style="display: inline-flex; margin-top:10px;">
+  <%= link_to '返回', mould_details_path, :class => 'btn btn-primary',
+              :style => 'color:#000;' %>
 
+  <%= link_to '详情', @mould_detail, :class => 'btn btn-primary',
+              :style => 'color:#000;' %>
+  <h1 style="position: absolute;right: 20px;">模具明细<em>编辑</em></h1>
+</div>
+<hr style="border: 1px solid #000"/>
 <%= render 'form' %>
-
-<%= link_to 'Show', @mould_detail %> |
-<%= link_to 'Back', mould_details_path %>
