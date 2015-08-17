@@ -22,5 +22,11 @@ module RailsClient
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    #Load custom class
+    %w{models api workers services presenters}.each do |namespace|
+      config.paths.add File.join('app', namespace), glob: File.join('**', '*.rb')
+      config.autoload_paths += Dir[Rails.root.join('app', namespace, '**')]
+    end
   end
 end

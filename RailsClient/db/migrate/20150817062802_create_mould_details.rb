@@ -41,6 +41,7 @@ class CreateMouldDetails < ActiveRecord::Migration
       t.boolean :is_dirty, :default => true
       t.boolean :is_new, :default => true
       t.datetime :idle_time
+      t.string :note
 
       t.timestamps null: false
     end

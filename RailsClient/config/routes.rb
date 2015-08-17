@@ -1,14 +1,9 @@
 Rails.application.routes.draw do
-  resources :mould_details
   get 'welcome/index'
 
   resources :images do
-    member do
-      get 'mainhead'
-    end
-  end
 
-  resources :mould_details
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -17,11 +12,11 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root 'welcome#index'
 
-  devise_for :users, :controllers => {registrations: :user_registrations, sessions: 'users/sessions'}
+  devise_for :users, :controllers => {registrations: :user_registrations, sessions: 'users/'}
 
 
   devise_scope :user do
-    get '/users/sign_in'=>'users/sessions#new'
+    get '/users/sign_in' => 'users/sessions#new'
     get '/users/sign_out' => 'user_sessions#destroy'
     post '/user_sessions/locale' => 'user_sessions#locale'
     get '/user_sessions/new' => 'user_sessions#new'
@@ -34,6 +29,15 @@ Rails.application.routes.draw do
 
 
   resources :users
+
+  resources :mould_details do
+    collection do
+      get :search
+      match :import, to: :import, via: [:get, :post]
+    end
+  end
+
+  resources :files
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
