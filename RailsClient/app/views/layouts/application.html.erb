@@ -7,26 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 
-<frameset rows="7%,*" border="1">
-  <noframe>
-    <body class="LoginBody">
 
+<body style="overflow: auto;">
+<div style="overflow: hidden;">
+  <%= render 'shares/head' %>
+</div>
+
+
+<div style="display: inline-flex; width: 100%;height: 900px;">
+  <div style="float: left;width: 10%;background-color: #424A5D">
+    <%= render 'shares/left' %>
+  </div>
+  <div style="float:right; width: 100%;background-color: #F2F2F2;">
     <%= yield %>
-    Sorry,您的浏览器不支持框架，请换浏览器。
+  </div>
+</div>
 
-    </body>
-  </noframe>
-  <frame name="head" frameborder="1" scrolling="no" marginheight="0"
-         src="">
-  <frameset cols="10%,*">
-    <frame name="left" frameborder="1" src="">
-    <frame name="content" frameborder="1" src="">
-  </frameset>
-</frameset>
-<!--<body class="LoginBody">-->
-
-<!--<%= yield %>-->
-
-
-<!--</body>-->
+</body>
 </html>
