@@ -1,45 +1,118 @@
+<style type="text/css">
+    .selectfont {
+        font-size: 1.5em;
+        margin-left: 5px;
+    }
+
+    .selectinput {
+        margin-left: 5px;
+        width: 120px;
+    }
+
+    .btn {
+        margin-left: 40%;
+        color: #000;
+        width: 100px;
+    }
+
+    hr {
+        border: 1px solid #999;
+    }
+
+    th {
+        text-align: center;
+    }
+</style>
+
 <p id="notice"><%= notice %></p>
+<div style="display: inline-flex;width: 100%; ">
+  <div>
+    <b class="selectfont">库位：</b>
+    <input class="selectinput" type="button">
+  </div>
 
-<h1>Listing Mould Details</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Mould</th>
-      <th>Mould type</th>
-      <th>Mould supplier</th>
-      <th>Position</th>
-      <th>Terminal leoni no</th>
-      <th>Terminal supplier</th>
-      <th>Stopwater</th>
-      <th>Use range</th>
-      <th>Wire type</th>
-      <th>Wire cross</th>
-      <th colspan="3"></th>
+  <div>
+    <b class="selectfont">端子莱尼号：</b>
+    <input class="selectinput" type="button">
+  </div>
+
+  <div>
+    <b class="selectfont">电线型号：</b>
+    <input class="selectinput" type="button">
+  </div>
+
+
+  <div>
+    <b class="selectfont">电线截面QMM：</b>
+    <input class="selectinput" type="button">
+  </div>
+
+  <div>
+    <b class="selectfont">下次批准日期：</b>
+    <input class="selectinput" type="button">
+  </div>
+
+  <div>
+    <b class="selectfont">状态：</b>
+    <select>
+      <option value="未过期">未过期</option>
+      <option value="即将过期">即将过期</option>
+      <option value="已过期">已过期</option>
+    </select>
+  </div>
+
+  <div>
+    <button type="button" class="btn btn-primary">查询</button>
+  </div>
+</div>
+<div style="display: inline-flex;">
+  <button type="button" class="btn btn-primary">导入</button>
+  <button type="button" class="btn btn-primary">导出</button>
+  <%= link_to "新增", new_mould_detail_path, :class => 'btn btn-primary' %>
+</div>
+
+<hr>
+
+<div class="trapezoid">
+  <p style="margin-top: 25%;">模具明细表</p>
+</div>
+
+<div style="margin-left: 5%;margin-right: 5%;">
+  <table class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr style="background-color: #ccc">
+      <th style="width: 110px;">库位号</th>
+      <th>莱尼端子号</th>
+      <th>端子供应商号</th>
+      <th>电线型号</th>
+      <th>电线截面QMM</th>
+      <th>下次批准日期</th>
+      <th>状态</th>
+      <th>模具型号</th>
+      <th>模具供应商</th>
+      <th>操作</th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @mould_details.each do |mould_detail| %>
-      <tr>
-        <td><%= mould_detail.mould_id %></td>
-        <td><%= mould_detail.mould_type %></td>
-        <td><%= mould_detail.mould_supplier %></td>
-        <td><%= mould_detail.position %></td>
-        <td><%= mould_detail.terminal_leoni_no %></td>
-        <td><%= mould_detail.terminal_supplier %></td>
-        <td><%= mould_detail.stopwater %></td>
-        <td><%= mould_detail.use_range %></td>
-        <td><%= mould_detail.wire_type %></td>
-        <td><%= mould_detail.wire_cross %></td>
-        <td><%= link_to 'Show', mould_detail %></td>
-        <td><%= link_to 'Edit', edit_mould_detail_path(mould_detail) %></td>
-        <td><%= link_to 'Destroy', mould_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <tr>
+          <td><%= mould_detail.mould_id %></td>
+          <td><%= mould_detail.mould_type %></td>
+          <td><%= mould_detail.mould_supplier %></td>
+          <td><%= mould_detail.position %></td>
+          <td><%= mould_detail.terminal_leoni_no %></td>
+          <td><%= mould_detail.terminal_supplier %></td>
+          <td><%= mould_detail.stopwater %></td>
+          <td><%= mould_detail.use_range %></td>
+          <td><%= mould_detail.wire_type %></td>
+
+          <td><%= link_to 'Show', mould_detail %> </td>
+          <td><%= link_to 'Edit', edit_mould_detail_path(mould_detail) %></td>
+          <td><%= link_to 'Destroy', mould_detail, method: :delete, data: {confirm: 'Are you sure?' } %></td>
+        </tr>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Mould detail', new_mould_detail_path %>
+    </tbody>
+  </table>
+</div>

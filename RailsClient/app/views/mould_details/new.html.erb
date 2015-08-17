@@ -1,5 +1,18 @@
-<h1>New Mould Detail</h1>
+<style type="text/css">
+    .btn {
+        width: 200px;
+    }
 
+    hr {
+        border: 1px solid #000;
+    }
+
+</style>
+
+<div style="display: inline-flex;margin-top: 10px;">
+  <%= link_to "返回", mould_details_path, :class => 'btn btn-primary', :style => 'color:#000; margin-left:5%;' %>
+  <h1 style="position: absolute;right: 20px;">模具明细增添界面</h1>
+</div>
+<hr/>
 <%= render 'form' %>
 
-<%= link_to 'Back', mould_details_path %>
