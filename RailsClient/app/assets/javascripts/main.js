@@ -17,7 +17,7 @@ function ChgKnifeRec() {
     var ChgKnifeRec = document.getElementById("ChgKnifeRec");
     //鼠标移入
     ChgKnifeRec.onmouseover = function () {
-        ChgKnifeRec.style.backgroundColor = '#1D354D';
+        ChgKnifeRec.style.backgroundColor = '#4F94CD';
     }
     //鼠标移出
     ChgKnifeRec.onmouseout = function () {
@@ -30,7 +30,7 @@ function ChgKnifeSlice() {
     var ChgKnifeSlice = document.getElementById("ChgKnifeSlice");
     //鼠标移入
     ChgKnifeSlice.onmouseover = function () {
-        ChgKnifeSlice.style.backgroundColor = '#1D354D';
+        ChgKnifeSlice.style.backgroundColor = '#4F94CD';
     }
     //鼠标移出
     ChgKnifeSlice.onmouseout = function () {
@@ -42,7 +42,7 @@ function MouldMaint() {
     var MouldMaint = document.getElementById("MouldMaint");
     //鼠标移入
     MouldMaint.onmouseover = function () {
-        MouldMaint.style.backgroundColor = '#1D354D';
+        MouldMaint.style.backgroundColor = '#4F94CD';
     }
     //鼠标移出
     MouldMaint.onmouseout = function () {
@@ -55,7 +55,7 @@ function MouldRepair() {
     var MouldRepair = document.getElementById("MouldRepair");
     //鼠标移入
     MouldRepair.onmouseover = function () {
-        MouldRepair.style.backgroundColor = '#1D354D';
+        MouldRepair.style.backgroundColor = '#4F94CD';
     }
     //鼠标移出
     MouldRepair.onmouseout = function () {
@@ -68,7 +68,7 @@ function GNRTReport() {
     var GNRTReport = document.getElementById("GNRTReport");
     //鼠标移入
     GNRTReport.onmouseover = function () {
-        GNRTReport.style.backgroundColor = '#1D354D';
+        GNRTReport.style.backgroundColor = '#4F94CD';
     }
     //鼠标移出
     GNRTReport.onmouseout = function () {
