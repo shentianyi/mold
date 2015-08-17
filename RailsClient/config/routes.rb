@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
 
+
   devise_for :users, :controllers => {registrations: :user_registrations}
 
   devise_scope :user do
