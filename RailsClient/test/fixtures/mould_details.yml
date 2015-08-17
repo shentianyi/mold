@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mould_id: MyString
+  mould_type: MyString
+  mould_supplier: MyString
+  position: MyString
+  terminal_leoni_no: MyString
+  terminal_supplier: MyString
+  stopwater: MyString
+  use_range: MyString
+  wire_type: MyString
+  wire_cross: 1.5
+
+two:
+  mould_id: MyString
+  mould_type: MyString
+  mould_supplier: MyString
+  position: MyString
+  terminal_leoni_no: MyString
+  terminal_supplier: MyString
+  stopwater: MyString
+  use_range: MyString
+  wire_type: MyString
+  wire_cross: 1.5

@@ -1,0 +1,57 @@
+<%= form_for(@mould_detail) do |f| %>
+  <% if @mould_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mould_detail.errors.count, "error") %> prohibited this mould_detail from being saved:</h2>
+
+      <ul>
+      <% @mould_detail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :mould_id %><br>
+    <%= f.text_field :mould_id %>
+  </div>
+  <div class="field">
+    <%= f.label :mould_type %><br>
+    <%= f.text_field :mould_type %>
+  </div>
+  <div class="field">
+    <%= f.label :mould_supplier %><br>
+    <%= f.text_field :mould_supplier %>
+  </div>
+  <div class="field">
+    <%= f.label :position %><br>
+    <%= f.text_field :position %>
+  </div>
+  <div class="field">
+    <%= f.label :terminal_leoni_no %><br>
+    <%= f.text_field :terminal_leoni_no %>
+  </div>
+  <div class="field">
+    <%= f.label :terminal_supplier %><br>
+    <%= f.text_field :terminal_supplier %>
+  </div>
+  <div class="field">
+    <%= f.label :stopwater %><br>
+    <%= f.text_field :stopwater %>
+  </div>
+  <div class="field">
+    <%= f.label :use_range %><br>
+    <%= f.text_field :use_range %>
+  </div>
+  <div class="field">
+    <%= f.label :wire_type %><br>
+    <%= f.text_field :wire_type %>
+  </div>
+  <div class="field">
+    <%= f.label :wire_cross %><br>
+    <%= f.text_field :wire_cross %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814015320) do
+ActiveRecord::Schema.define(version: 20150817062802) do
 
   create_table "images", force: :cascade do |t|
     t.string   "filename",      limit: 255, default: "", null: false
@@ -22,6 +22,53 @@ ActiveRecord::Schema.define(version: 20150814015320) do
     t.integer  "author_id",     limit: 4,   default: 0,  null: false
     t.datetime "created_on"
   end
+
+  create_table "mould_details", force: :cascade do |t|
+    t.string   "mould_id",          limit: 255,                 null: false
+    t.string   "mould_type",        limit: 255, default: ""
+    t.string   "mould_state",       limit: 255, default: ""
+    t.string   "mould_supplier",    limit: 255, default: ""
+    t.string   "position",          limit: 255, default: ""
+    t.string   "terminal_leoni_no", limit: 255, default: ""
+    t.string   "terminal_supplier", limit: 255, default: ""
+    t.string   "stopwater",         limit: 255, default: ""
+    t.string   "use_range",         limit: 255, default: ""
+    t.string   "wire_type",         limit: 255, default: ""
+    t.float    "wire_cross",        limit: 24
+    t.string   "original_param_ch", limit: 255, default: "NO"
+    t.string   "original_param_cw", limit: 255, default: "NO"
+    t.string   "actual_param_ch",   limit: 255, default: "NO"
+    t.string   "actual_param_cw",   limit: 255, default: "NO"
+    t.string   "actual_param_ich",  limit: 255, default: "NO"
+    t.string   "actual_param_icw",  limit: 255, default: "NO"
+    t.string   "step_dch_id",       limit: 255, default: "/"
+    t.string   "step_ich_id",       limit: 255, default: "/"
+    t.datetime "next_time"
+    t.string   "c_up_knife",        limit: 255, default: ""
+    t.string   "i_up_knife",        limit: 255, default: ""
+    t.string   "c_down_knife",      limit: 255, default: ""
+    t.string   "i_down_knife",      limit: 255, default: ""
+    t.string   "upper_punch",       limit: 255, default: ""
+    t.string   "coc",               limit: 255, default: ""
+    t.string   "coh",               limit: 255, default: ""
+    t.string   "feeding_claw",      limit: 255, default: ""
+    t.string   "after_groove",      limit: 255, default: ""
+    t.string   "before_groove",     limit: 255, default: ""
+    t.string   "oil_cup",           limit: 255, default: ""
+    t.datetime "buy_time"
+    t.string   "release_report",    limit: 255
+    t.string   "fixed_asset_id",    limit: 255
+    t.boolean  "is_idle",           limit: 1,   default: false
+    t.boolean  "is_delete",         limit: 1,   default: false
+    t.boolean  "is_dirty",          limit: 1,   default: true
+    t.boolean  "is_new",            limit: 1,   default: true
+    t.datetime "idle_time"
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  add_index "mould_details", ["mould_id"], name: "index_mould_details_on_mould_id", using: :btree
+  add_index "mould_details", ["position"], name: "index_mould_details_on_position", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",    null: false
