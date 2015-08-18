@@ -36,7 +36,6 @@ class MouldDetailsController < ApplicationController
       end
       render json: msg
     end
-    puts "11111111111111111111111111111"
   end
 
   # POST /mould_details

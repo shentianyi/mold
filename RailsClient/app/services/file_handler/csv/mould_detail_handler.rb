@@ -15,8 +15,6 @@ module FileHandler
             MouldDetail.transaction do
               CSV.foreach(file.file_path, headers: file.headers, col_sep: file.col_sep, encoding: file.encoding) do |row|
                 #row.strip
-                puts "222222222222222222222222222222222222222"
-                puts row
 
                 params = {}
                 IMPORT_HEADERS.each { |header|

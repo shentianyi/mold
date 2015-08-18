@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  resources :knife_switch_records
-  resources :knife_switch_slices
-  resources :mould_maintain_times
-  resources :mould_maintain_records
 
   resources :images do
 
@@ -34,6 +30,17 @@ Rails.application.routes.draw do
   resources :users
 
   resources :mould_details do
+    collection do
+      get :search
+      match :import, to: :import, via: [:get, :post]
+    end
+  end
+
+  resources :knife_switch_records
+  resources :knife_switch_slices
+  resources :mould_maintain_times
+
+  resources :mould_maintain_records do
     collection do
       get :search
       match :import, to: :import, via: [:get, :post]
