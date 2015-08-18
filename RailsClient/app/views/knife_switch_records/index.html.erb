@@ -23,18 +23,13 @@
         text-align: left;
     }
 
-    .col-sm-2>label, .col-sm-2>input {
+    .col-sm-2 > label, .col-sm-2 > input {
         margin-top: 20px;
     }
 
-    .col-sm-3>label, .col-sm-3>input {
+    .col-sm-3 > label, .col-sm-3 > input {
         margin-top: 20px;
     }
-
-    .col-sm-2>button {
-        margin-top: 10px;
-    }
-
 </style>
 <div style="display: inline-flex;width: 100%;">
   <div class="col-sm-2">
@@ -70,23 +65,22 @@
     <button type="button" class="btn btn-primary">查询</button>
   </div>
 </div>
-
-<hr/>
+<div>
+  <hr/>
+</div>
 
 <div style="display: inline-flex;width: 100%;">
-  <div class="trapezoid">
+  <div class="trapezoid" style="height: 60px;">
     <p style="padding-top: 20px;">换刀记录表</p>
   </div>
-
-  <div style="display: inline-flex;margin-left: 100px;">
-    <%= link_to "新增", new_knife_switch_record_path, :class => 'btn btn-info',
+  <div style="display: inline-flex;margin-left: 20%;">
+    <%= link_to '新增', new_knife_switch_record_path, :class => 'btn btn-info',
                 :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
 
-    <%= link_to "导入数据", import_mould_details_path, :class => 'btn btn-primary',
+    <%= link_to '导入数据', import_mould_details_path, :class => 'btn btn-primary',
                 :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
-    <%= link_to "导出数据", import_mould_details_path, :class => 'btn btn-primary',
+    <%= link_to '导出数据', import_mould_details_path, :class => 'btn btn-primary',
                 :style => 'color:#000;padding-top:10px;' %>
-
   </div>
 </div>
 
@@ -121,9 +115,10 @@
           <td><%= knife_switch_record.press_num %></td>
           <td><%= knife_switch_record.sort %></td>
           <td><%= knife_switch_record.outbound_id %></td>
-          <td>[<%= link_to '详情', knife_switch_record %>
-            ][<%= link_to '编辑', edit_knife_switch_record_path(knife_switch_record) %>
-            ][<%= link_to '删除', knife_switch_record, method: :delete, data: {confirm: 'Are you sure?'} %>]
+          <td
+          [<%= link_to '[详情]', knife_switch_record %>
+          <%= link_to '[编辑]', edit_knife_switch_record_path(knife_switch_record) %>
+          <%= link_to '[删除]', knife_switch_record, method: :delete, data: {confirm: 'Are you sure?'} %>
           </td>
         </tr>
     <% end %>

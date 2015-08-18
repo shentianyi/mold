@@ -14,7 +14,7 @@
         margin: 0;
     }
 
-    .col-sm-2>b, .col-sm-3>b, .col-sm-2>input, .col-sm-3>input {
+    .col-sm-2 > b, .col-sm-3 > b, .col-sm-2 > input, .col-sm-3 > input {
         margin-top: 15px;
     }
 
@@ -60,18 +60,18 @@
     <p style="margin-top: 25%;">换刀切片表</p>
   </div>
   <div style="display: inline-flex;margin-left: 20%;">
-    <%= link_to "新增", new_knife_switch_slice_path, :class => 'btn btn-primary',
+    <%= link_to "新增", new_knife_switch_slice_path, :class => 'btn btn-info',
                 :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
 
-    <%= link_to '导入数据', import_mould_details_path, :class => 'btn btn-info',
+    <%= link_to '导入数据', import_mould_details_path, :class => 'btn btn-primary',
                 :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
 
-    <%= link_to '导出数据', import_mould_details_path, :class => 'btn btn-info',
+    <%= link_to '导出数据', import_mould_details_path, :class => 'btn btn-primary',
                 :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
 
   </div>
 </div>
-<div style="margin-left: 5%;margin-right: 5%;">
+<div style="margin-left: 100px;margin-right: 5%;">
   <table class="table table-bordered table-striped table-hover">
     <thead>
     <tr style="background-color: #ccc">

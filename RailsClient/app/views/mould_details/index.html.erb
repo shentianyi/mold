@@ -7,11 +7,12 @@
         text-align: center;
     }
 
-    .col-sm-4, .col-sm-2, .col-sm-3 {
+    .col-sm-4, .col-sm-2, .col-sm-3, .col-sm-5 {
         float: none;
         text-align: left;
         margin: 0;
     }
+
 
 </style>
 
@@ -59,7 +60,6 @@
 
 
   <div style="display: inline-flex;" class="col-sm-5">
-
     <%= link_to '查询', '', :class => 'btn btn-primary',
                 :style => 'color:#000;padding-top:10px;margin:0;' %>
   </div>
@@ -72,15 +72,14 @@
     <p style="padding-top: 20px;">模具明细表</p>
   </div>
   <div style="display: inline-flex;margin-left: 20%;">
-    <%= link_to "新增", new_mould_detail_path, :class => 'btn btn-info',
+    <%= link_to '新增', new_mould_detail_path, :class => 'btn btn-info',
                 :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
 
-    <%= link_to '导入数据', import_mould_details_path, :class => 'btn btn-info',
+    <%= link_to '导入数据', import_mould_details_path, :class => 'btn btn-primary',
                 :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
 
-    <%= link_to '导出数据', import_mould_details_path, :class => 'btn btn-info',
+    <%= link_to '导出数据', import_mould_details_path, :class => 'btn btn-primary',
                 :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
-
   </div>
 </div>
 
@@ -115,8 +114,8 @@
           <td><%= mould_detail.use_range %></td>
           <td><%= mould_detail.wire_type %></td>
 
-          <td>[<%= link_to '详情', mould_detail %>] [<%= link_to '编辑', edit_mould_detail_path(mould_detail) %>]
-            [<%= link_to '删除', mould_detail, method: :delete, data: {confirm: '确认删除?'} %>]
+          <td><%= link_to '[详情]', mould_detail %><%= link_to '[编辑]', edit_mould_detail_path(mould_detail) %>
+            <%= link_to '[删除]', mould_detail, method: :delete, data: {confirm: '确认删除?'} %>
           </td>
         </tr>
     <% end %>
