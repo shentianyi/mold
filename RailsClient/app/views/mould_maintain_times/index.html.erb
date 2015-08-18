@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<%= link_to '导入数据', import_mould_maintain_times_path, :class => 'btn btn-info' %>
 <h1>Listing Mould Maintain Times</h1>
 
 <table>
@@ -13,6 +13,9 @@
       <th>Solution method</th>
       <th>Code</th>
       <th>Feed code</th>
+      <th>开始时间</th>
+      <th>结束时间</th>
+      <th>维修时间</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -28,6 +31,9 @@
         <td><%= mould_maintain_time.solution_method %></td>
         <td><%= mould_maintain_time.code %></td>
         <td><%= mould_maintain_time.feed_code %></td>
+        <td><%= mould_maintain_time.start_time %></td>
+        <td><%= mould_maintain_time.end_time %></td>
+        <td><%= mould_maintain_time.downtime %></td>
         <td><%= link_to 'Show', mould_maintain_time %></td>
         <td><%= link_to 'Edit', edit_mould_maintain_time_path(mould_maintain_time) %></td>
         <td><%= link_to 'Destroy', mould_maintain_time, method: :delete, data: { confirm: 'Are you sure?' } %></td>

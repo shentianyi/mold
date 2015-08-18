@@ -10,9 +10,9 @@ class CreateMouldMaintainTimes < ActiveRecord::Migration
       t.string :solution_method, :default => ""
       t.string :code, :default => ""
       t.string :feed_code, :default => ""
-      t.datetime :start_time
-      t.datetime :end_time
-      t.datetime :downtime
+      t.string :start_time
+      t.string :end_time
+      t.integer :downtime
 
       t.timestamps null: false
     end
