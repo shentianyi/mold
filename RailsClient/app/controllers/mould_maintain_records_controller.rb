@@ -24,7 +24,15 @@ class MouldMaintainRecordsController < ApplicationController
   # POST /mould_maintain_records
   # POST /mould_maintain_records.json
   def create
-    @mould_maintain_record = MouldMaintainRecord.new(mould_maintain_record_params)
+    puts "-----------------------------"
+    args = {}
+    args[:mould_id] = mould_maintain_record_params[:mould_id]
+    args[:plan_date] = mould_maintain_record_params[:plan_date]
+    args[:real_date] = mould_maintain_record_params[:real_date]
+    record = MouldMaintainRecord.where(mould_id: args[:mould_id]).order(count: :desc).first
+    args[:count] = record.nil? ? 1 : (record.count.to_i + 1)
+
+    @mould_maintain_record = MouldMaintainRecord.new(args)
 
     respond_to do |format|
       if @mould_maintain_record.save
@@ -58,6 +66,23 @@ class MouldMaintainRecordsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to mould_maintain_records_url, notice: 'Mould maintain record was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def import
+    puts
+    if request.post?
+      puts "111111111111111111111111111111"
+      msg = Message.new
+      begin
+        file=params[:files][0]
+        fd = FileData.new(data: file, original_name: file.original_filename, path: $upload_data_file_path, path_name: "#{Time.now.strftime('%Y%m%d%H%M%S%L')}~#{file.original_filename}")
+        fd.save
+        msg = FileHandler::Excel::MouldMaintainRecordHandler.import(fd)
+      rescue => e
+        msg.content = e.message
+      end
+      render json: msg
     end
   end
 

@@ -1,5 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
+require 'csv'
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -27,7 +28,7 @@ module RailsClient
     config.autoload_paths += %W(#{config.root}/lib)
 
     #Load custom class
-    %w{models api workers services presenters}.each do |namespace|
+    %w{models api workers services presenters lib}.each do |namespace|
       config.paths.add File.join('app', namespace), glob: File.join('**', '*.rb')
       config.autoload_paths += Dir[Rails.root.join('app', namespace, '**')]
     end

@@ -33,7 +33,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 # for excelx
+gem 'roo'
 gem 'axlsx'
+gem "iconv", "~> 1.0.3"
 
 gem "paperclip", "~> 4.3"
 

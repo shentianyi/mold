@@ -61,6 +61,23 @@ class MouldMaintainTimesController < ApplicationController
     end
   end
 
+  def import
+    puts
+    if request.post?
+      puts "111111111111111111111111111111"
+      msg = Message.new
+      begin
+        file=params[:files][0]
+        fd = FileData.new(data: file, original_name: file.original_filename, path: $upload_data_file_path, path_name: "#{Time.now.strftime('%Y%m%d%H%M%S%L')}~#{file.original_filename}")
+        fd.save
+        msg = FileHandler::Excel::MouldMaintainRecordHandler.import(fd)
+      rescue => e
+        msg.content = e.message
+      end
+      render json: msg
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_mould_maintain_time
