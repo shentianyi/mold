@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mould:</strong>
+  <%= @mould_maintain_record.mould_id %>
+</p>
+
+<p>
+  <strong>Count:</strong>
+  <%= @mould_maintain_record.count %>
+</p>
+
+<p>
+  <strong>Plan date:</strong>
+  <%= @mould_maintain_record.plan_date %>
+</p>
+
+<p>
+  <strong>Real date:</strong>
+  <%= @mould_maintain_record.real_date %>
+</p>
+
+<%= link_to 'Edit', edit_mould_maintain_record_path(@mould_maintain_record) %> |
+<%= link_to 'Back', mould_maintain_records_path %>

@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mould:</strong>
+  <%= @mould_maintain_time.mould_id %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @mould_maintain_time.project_id %>
+</p>
+
+<p>
+  <strong>Device:</strong>
+  <%= @mould_maintain_time.device_id %>
+</p>
+
+<p>
+  <strong>Serviceman:</strong>
+  <%= @mould_maintain_time.serviceman %>
+</p>
+
+<p>
+  <strong>Err note:</strong>
+  <%= @mould_maintain_time.err_note %>
+</p>
+
+<p>
+  <strong>Solution method:</strong>
+  <%= @mould_maintain_time.solution_method %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @mould_maintain_time.code %>
+</p>
+
+<p>
+  <strong>Feed code:</strong>
+  <%= @mould_maintain_time.feed_code %>
+</p>
+
+<%= link_to 'Edit', edit_mould_maintain_time_path(@mould_maintain_time) %> |
+<%= link_to 'Back', mould_maintain_times_path %>

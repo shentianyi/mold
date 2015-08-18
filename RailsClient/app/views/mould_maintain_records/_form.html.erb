@@ -1,0 +1,33 @@
+<%= form_for(@mould_maintain_record) do |f| %>
+  <% if @mould_maintain_record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mould_maintain_record.errors.count, "error") %> prohibited this mould_maintain_record from being saved:</h2>
+
+      <ul>
+      <% @mould_maintain_record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :mould_id %><br>
+    <%= f.text_field :mould_id %>
+  </div>
+  <div class="field">
+    <%= f.label :count %><br>
+    <%= f.text_field :count %>
+  </div>
+  <div class="field">
+    <%= f.label :plan_date %><br>
+    <%= f.text_field :plan_date %>
+  </div>
+  <div class="field">
+    <%= f.label :real_date %><br>
+    <%= f.text_field :real_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

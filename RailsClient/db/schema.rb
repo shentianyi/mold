@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817062802) do
+ActiveRecord::Schema.define(version: 20150818034707) do
 
   create_table "images", force: :cascade do |t|
     t.string   "filename",      limit: 255, default: "", null: false
@@ -22,6 +22,53 @@ ActiveRecord::Schema.define(version: 20150817062802) do
     t.integer  "author_id",     limit: 4,   default: 0,  null: false
     t.datetime "created_on"
   end
+
+  create_table "knife_switch_records", force: :cascade do |t|
+    t.string   "mould_id",       limit: 255,                 null: false
+    t.string   "project_id",     limit: 255, default: ""
+    t.datetime "switch_date"
+    t.string   "knife_type",     limit: 255, default: ""
+    t.string   "knife_kind",     limit: 255, default: ""
+    t.string   "knife_supplier", limit: 255, default: ""
+    t.string   "state",          limit: 255, default: ""
+    t.string   "problem",        limit: 255, default: ""
+    t.string   "damage_define",  limit: 255, default: ""
+    t.string   "maintainman",    limit: 255, default: ""
+    t.integer  "m_qty",          limit: 4
+    t.string   "machine_id",     limit: 255, default: ""
+    t.integer  "press_num",      limit: 4
+    t.integer  "damage_life",    limit: 4
+    t.integer  "broken_life",    limit: 4
+    t.integer  "total_life",     limit: 4
+    t.string   "operater",       limit: 255, default: ""
+    t.boolean  "is_ok",          limit: 1,   default: false
+    t.string   "sort",           limit: 255, default: ""
+    t.string   "outbound_id",    limit: 255, default: ""
+    t.string   "image_id",       limit: 255, default: ""
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+  end
+
+  add_index "knife_switch_records", ["image_id"], name: "index_knife_switch_records_on_image_id", using: :btree
+  add_index "knife_switch_records", ["mould_id"], name: "index_knife_switch_records_on_mould_id", using: :btree
+
+  create_table "knife_switch_slices", force: :cascade do |t|
+    t.string   "mould_id",          limit: 255,                 null: false
+    t.string   "project_id",        limit: 255, default: ""
+    t.string   "terminal_leoni_id", limit: 255, default: ""
+    t.datetime "switch_date"
+    t.string   "knife_type1",       limit: 255, default: ""
+    t.string   "knife_type2",       limit: 255, default: ""
+    t.string   "wire_type",         limit: 255, default: ""
+    t.float    "wire_cross",        limit: 24
+    t.string   "image_after",       limit: 255, default: ""
+    t.string   "image_before",      limit: 255, default: ""
+    t.boolean  "is_ok",             limit: 1,   default: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  add_index "knife_switch_slices", ["mould_id"], name: "index_knife_switch_slices_on_mould_id", using: :btree
 
   create_table "mould_details", force: :cascade do |t|
     t.string   "mould_id",          limit: 255,                 null: false
@@ -70,6 +117,37 @@ ActiveRecord::Schema.define(version: 20150817062802) do
 
   add_index "mould_details", ["mould_id"], name: "index_mould_details_on_mould_id", using: :btree
   add_index "mould_details", ["position"], name: "index_mould_details_on_position", using: :btree
+
+  create_table "mould_maintain_records", force: :cascade do |t|
+    t.string   "mould_id",   limit: 255,             null: false
+    t.integer  "count",      limit: 4,   default: 0
+    t.datetime "plan_date"
+    t.datetime "real_date"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  add_index "mould_maintain_records", ["count"], name: "index_mould_maintain_records_on_count", using: :btree
+  add_index "mould_maintain_records", ["mould_id"], name: "index_mould_maintain_records_on_mould_id", using: :btree
+
+  create_table "mould_maintain_times", force: :cascade do |t|
+    t.string   "mould_id",        limit: 255,              null: false
+    t.string   "project_id",      limit: 255, default: ""
+    t.string   "device_id",       limit: 255, default: ""
+    t.string   "serviceman",      limit: 255, default: ""
+    t.datetime "maintain_date"
+    t.string   "err_note",        limit: 255, default: ""
+    t.string   "solution_method", limit: 255, default: ""
+    t.string   "code",            limit: 255, default: ""
+    t.string   "feed_code",       limit: 255, default: ""
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "downtime"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  add_index "mould_maintain_times", ["mould_id"], name: "index_mould_maintain_times_on_mould_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",    null: false

@@ -1,0 +1,1 @@
+json.extract! @knife_switch_record, :id, :mould_id, :project_id, :knife_type, :knife_kind, :knife_supplier, :state, :problem, :damage_define, :maintainman, :m_qty, :machine_id, :press_num, :damage_life, :broken_life, :total_life, :created_at, :updated_at

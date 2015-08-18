@@ -1,0 +1,49 @@
+<%= form_for(@knife_switch_slice) do |f| %>
+  <% if @knife_switch_slice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@knife_switch_slice.errors.count, "error") %> prohibited this knife_switch_slice from being saved:</h2>
+
+      <ul>
+      <% @knife_switch_slice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :mould_id %><br>
+    <%= f.text_field :mould_id %>
+  </div>
+  <div class="field">
+    <%= f.label :project_id %><br>
+    <%= f.text_field :project_id %>
+  </div>
+  <div class="field">
+    <%= f.label :terminal_leoni_id %><br>
+    <%= f.text_field :terminal_leoni_id %>
+  </div>
+  <div class="field">
+    <%= f.label :knife_type1 %><br>
+    <%= f.text_field :knife_type1 %>
+  </div>
+  <div class="field">
+    <%= f.label :knife_type2 %><br>
+    <%= f.text_field :knife_type2 %>
+  </div>
+  <div class="field">
+    <%= f.label :wire_type %><br>
+    <%= f.text_field :wire_type %>
+  </div>
+  <div class="field">
+    <%= f.label :image_after %><br>
+    <%= f.text_field :image_after %>
+  </div>
+  <div class="field">
+    <%= f.label :image_before %><br>
+    <%= f.text_field :image_before %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

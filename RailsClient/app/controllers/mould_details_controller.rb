@@ -22,20 +22,21 @@ class MouldDetailsController < ApplicationController
   end
 
   def import
-    puts "---------------------------"
     if request.post?
+      puts "---------------------------"
       msg = Message.new
       begin
         file=params[:files][0]
         fd = FileData.new(data: file, original_name: file.original_filename, path: $upload_data_file_path, path_name: "#{Time.now.strftime('%Y%m%d%H%M%S%L')}~#{file.original_filename}")
         fd.save
         file=FileHandler::Csv::File.new(user_agent: request.user_agent.downcase, file_path: fd.full_path, file_name: file.original_filename)
-        msg = FileHandler::Csv::PartHandler.import(file)
+        msg = FileHandler::Csv::MouldDetailHandler.import(file)
       rescue => e
         msg.content = e.message
       end
       render json: msg
     end
+    puts "11111111111111111111111111111"
   end
 
   # POST /mould_details

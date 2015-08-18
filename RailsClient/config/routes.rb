@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :knife_switch_records
+  resources :knife_switch_slices
+  resources :mould_maintain_times
+  resources :mould_maintain_records
   get 'welcome/index'
 
   resources :images do

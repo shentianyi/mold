@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Knife Switch Records</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mould</th>
+      <th>Project</th>
+      <th>Knife type</th>
+      <th>Knife kind</th>
+      <th>Knife supplier</th>
+      <th>State</th>
+      <th>Problem</th>
+      <th>Damage define</th>
+      <th>Maintainman</th>
+      <th>M qty</th>
+      <th>Machine</th>
+      <th>Press num</th>
+      <th>Damage life</th>
+      <th>Broken life</th>
+      <th>Total life</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @knife_switch_records.each do |knife_switch_record| %>
+      <tr>
+        <td><%= knife_switch_record.mould_id %></td>
+        <td><%= knife_switch_record.project_id %></td>
+        <td><%= knife_switch_record.knife_type %></td>
+        <td><%= knife_switch_record.knife_kind %></td>
+        <td><%= knife_switch_record.knife_supplier %></td>
+        <td><%= knife_switch_record.state %></td>
+        <td><%= knife_switch_record.problem %></td>
+        <td><%= knife_switch_record.damage_define %></td>
+        <td><%= knife_switch_record.maintainman %></td>
+        <td><%= knife_switch_record.m_qty %></td>
+        <td><%= knife_switch_record.machine_id %></td>
+        <td><%= knife_switch_record.press_num %></td>
+        <td><%= knife_switch_record.damage_life %></td>
+        <td><%= knife_switch_record.broken_life %></td>
+        <td><%= knife_switch_record.total_life %></td>
+        <td><%= link_to 'Show', knife_switch_record %></td>
+        <td><%= link_to 'Edit', edit_knife_switch_record_path(knife_switch_record) %></td>
+        <td><%= link_to 'Destroy', knife_switch_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Knife switch record', new_knife_switch_record_path %>

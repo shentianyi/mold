@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mould_id: MyString
+  project_id: MyString
+  terminal_leoni_id: MyString
+  knife_type1: MyString
+  knife_type2: MyString
+  wire_type: MyString
+  image_after: MyString
+  image_before: MyString
+
+two:
+  mould_id: MyString
+  project_id: MyString
+  terminal_leoni_id: MyString
+  knife_type1: MyString
+  knife_type2: MyString
+  wire_type: MyString
+  image_after: MyString
+  image_before: MyString

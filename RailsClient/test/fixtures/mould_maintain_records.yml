@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mould_id: MyString
+  count: MyString
+  plan_date: MyString
+  real_date: MyString
+
+two:
+  mould_id: MyString
+  count: MyString
+  plan_date: MyString
+  real_date: MyString

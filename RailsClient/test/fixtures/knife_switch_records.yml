@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mould_id: MyString
+  project_id: MyString
+  knife_type: MyString
+  knife_kind: MyString
+  knife_supplier: MyString
+  state: MyString
+  problem: MyString
+  damage_define: MyString
+  maintainman: MyString
+  m_qty: MyString
+  machine_id: MyString
+  press_num: MyString
+  damage_life: MyString
+  broken_life: MyString
+  total_life: MyString
+
+two:
+  mould_id: MyString
+  project_id: MyString
+  knife_type: MyString
+  knife_kind: MyString
+  knife_supplier: MyString
+  state: MyString
+  problem: MyString
+  damage_define: MyString
+  maintainman: MyString
+  m_qty: MyString
+  machine_id: MyString
+  press_num: MyString
+  damage_life: MyString
+  broken_life: MyString
+  total_life: MyString
