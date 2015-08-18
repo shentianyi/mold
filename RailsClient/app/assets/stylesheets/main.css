@@ -11,3 +11,15 @@ h3 {
     text-align: center;
     color: #A7B2B7;
 }
+
+/*画梯形*/
+.trapezoid {
+    height: 0;
+    text-align: center;
+    padding-top: 5px;
+    margin-left: 5%;
+    width: 110px;
+    border-top-left-radius: 10px;
+    border-bottom: 50px solid #ccc;
+    border-right: 40px solid transparent;
+}

@@ -51,6 +51,26 @@
     <input class="selectinput" type="text">
   </div>
 
+<<<<<<< HEAD
+<h1>Listing Mould Details</h1>
+
+<%= link_to '导入数据', import_mould_details_path, :class => 'btn btn-info' %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mould</th>
+      <th>Mould type</th>
+      <th>Mould supplier</th>
+      <th>Position</th>
+      <th>Terminal leoni no</th>
+      <th>Terminal supplier</th>
+      <th>Stopwater</th>
+      <th>Use range</th>
+      <th>Wire type</th>
+      <th>Wire cross</th>
+      <th colspan="3"></th>
+=======
   <div>
     <b class="selectfont">下次批准日期：</b>
     <input class="selectinput" type="text">
@@ -96,7 +116,7 @@
       <th>模具型号</th>
       <th>模具供应商</th>
       <th>操作</th>
-
+>>>>>>> caebe0f6f36769ecc640f6e8edadacd598488eeb
     </tr>
     </thead>
 

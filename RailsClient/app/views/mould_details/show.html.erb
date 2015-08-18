@@ -1,54 +1,236 @@
-<p id="notice"><%= notice %></p>
+<div style="display: inline-flex; width: 100%; margin-top: 2%;">
+  <div class="col-sm-4" style="display: inline-flex;">
+    <div class="field" style="display: inline-flex;">
+      <p>模具号： </p>
+      <%= @mould_detail.mould_id %>
+    </div>
+  </div>
 
-<p>
-  <strong>Mould:</strong>
-  <%= @mould_detail.mould_id %>
-</p>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>模具型号： </p>
+    <%= @mould_detail.mould_type %>
+  </div>
 
-<p>
-  <strong>Mould type:</strong>
-  <%= @mould_detail.mould_type %>
-</p>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>模具供应商： </p>
+    <%= @mould_detail.mould_supplier %>
+  </div>
+</div>
 
-<p>
-  <strong>Mould supplier:</strong>
-  <%= @mould_detail.mould_supplier %>
-</p>
+<div style="display: inline-flex; width: 100%;">
+  <div class="col-sm-4">
+    <div class="field">
+      <p>状态： </p>
+      <%= @mould_detail.mould_state %>
+    </div>
+  </div>
 
-<p>
-  <strong>Position:</strong>
-  <%= @mould_detail.position %>
-</p>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>库位号： </p>
+    <%= @mould_detail.position %>
+  </div>
 
-<p>
-  <strong>Terminal leoni no:</strong>
-  <%= @mould_detail.terminal_leoni_no %>
-</p>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>端子莱尼号： </p>
+    <%= @mould_detail.terminal_leoni_no %>
+  </div>
+</div>
 
-<p>
-  <strong>Terminal supplier:</strong>
-  <%= @mould_detail.terminal_supplier %>
-</p>
+<div style="display: inline-flex; width: 100%;">
+  <div class="col-sm-4">
+    <div class="field" style="display: inline-flex;">
+      <p>端子供应商号： </p>
+      <%= @mould_detail.terminal_supplier %>
+    </div>
+  </div>
 
-<p>
-  <strong>Stopwater:</strong>
-  <%= @mould_detail.stopwater %>
-</p>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>防水塞： </p>
+    <%= @mould_detail.stopwater %>
+  </div>
 
-<p>
-  <strong>Use range:</strong>
-  <%= @mould_detail.use_range %>
-</p>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>使用范围： </p>
+    <%= @mould_detail.use_range %>
+  </div>
+</div>
 
-<p>
-  <strong>Wire type:</strong>
-  <%= @mould_detail.wire_type %>
-</p>
 
-<p>
-  <strong>Wire cross:</strong>
-  <%= @mould_detail.wire_cross %>
-</p>
+<div style="display: inline-flex; width: 100%;">
+  <div class="col-sm-4">
+    <div class="field" style="display: inline-flex;">
+      <p>电线型号： </p>
+      <%= @mould_detail.wire_type %>
+    </div>
+  </div>
 
-<%= link_to 'Edit', edit_mould_detail_path(@mould_detail) %> |
-<%= link_to 'Back', mould_details_path %>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>电线截面qmm： </p>
+    <%= @mould_detail.wire_cross %>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>原始参数ch： </p>
+    <%= @mould_detail.original_param_ch %>
+  </div>
+</div>
+
+<div style="display: inline-flex; width: 100%;">
+  <div class="col-sm-4" style="display: inline-flex;">
+    <div class="field" style="display: inline-flex;">
+      <p>原始参数cw： </p>
+      <%= @mould_detail.original_param_cw %>
+    </div>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>实测参数ch： </p>
+    <%= @mould_detail.actual_param_ch %>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>实测参数cw： </p>
+    <%= @mould_detail.actual_param_cw %>
+  </div>
+</div>
+
+
+<div style="display: inline-flex; width: 100%;">
+  <div class="col-sm-4" style="display: inline-flex;">
+    <div class="field" style="display: inline-flex;">
+      <p>实测参数ich： </p>
+      <%= @mould_detail.actual_param_ich %>
+    </div>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>实测参数icw： </p>
+    <%= @mould_detail.actual_param_icw %>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>步骤dch： </p>
+    <%= @mould_detail.step_dch_id %>
+  </div>
+</div>
+
+<div style="display: inline-flex; width: 100%;">
+  <div class="col-sm-4" style="display: inline-flex;">
+    <div class="field" style="display: inline-flex;">
+      <p>步骤ich： </p>
+      <%= @mould_detail.step_ich_id %>
+    </div>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>下次批准日期： </p>
+    <%= @mould_detail.next_time %>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>芯线上刀： </p>
+    <%= @mould_detail.c_up_knife %>
+  </div>
+</div>
+
+<div style="display: inline-flex; width: 100%;">
+  <div class="col-sm-4" style="display: inline-flex;">
+    <div class="field" style="display: inline-flex;">
+      <p>绝缘上刀： </p>
+      <%= @mould_detail.i_up_knife %>
+    </div>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>芯线下刀： </p>
+    <%= @mould_detail.c_down_knife %>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>绝缘下刀： </p>
+    <%= @mould_detail.i_down_knife %>
+  </div>
+</div>
+
+
+<div style="display: inline-flex; width: 100%;">
+  <div class="col-sm-4" style="display: inline-flex;">
+    <div class="field" style="display: inline-flex;">
+      <p>上冲头： </p>
+      <%= @mould_detail.upper_punch %>
+    </div>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>切断刀： </p>
+    <%= @mould_detail.coc %>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>切断刀座： </p>
+    <%= @mould_detail.coh %>
+  </div>
+</div>
+
+
+<div style="display: inline-flex; width: 100%;">
+  <div class="col-sm-4" style="display: inline-flex;">
+    <div class="field" style="display: inline-flex;">
+      <p>送料爪： </p>
+      <%= @mould_detail.feeding_claw %>
+    </div>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>后凹模： </p>
+    <%= @mould_detail.after_groove %>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>前凹模： </p>
+    <%= @mould_detail.before_groove %>
+  </div>
+</div>
+
+
+<div style="display: inline-flex; width: 100%;" style="display: inline-flex;">
+  <div class="col-sm-4">
+    <div class="field" style="display: inline-flex;">
+      <p>油杯： </p>
+      <%= @mould_detail.oil_cup %>
+    </div>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>模具买到日期： </p>
+    <%= @mould_detail.buy_time %>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>放行报告： </p>
+    <%= @mould_detail.release_report %>
+  </div>
+</div>
+
+
+<div style="display: inline-flex; width: 100%;">
+  <div class="col-sm-4" style="display: inline-flex;">
+    <div class="field" style="display: inline-flex;">
+      <p>固定资产号： </p>
+      <%= @mould_detail.fixed_asset_id %>
+    </div>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>是否闲置： </p>
+    <%= @mould_detail.is_idle %>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>闲置日期： </p>
+    <%= @mould_detail.idle_time %>
+  </div>
+</div>
+<hr style="border: 1px solid #000">
+<%= link_to "编辑", edit_mould_detail_path(@mould_detail), :class => 'btn btn-primary', :style => 'color:#000; margin-left:2%;margin-top:1%;' %>
+<%= link_to "返回", mould_details_path, :class => 'btn btn-primary', :style => 'color:#000; margin-left:2%;margin-top:1%;' %>
