@@ -11,9 +11,10 @@
  * file per style scope.
  *
  *= require_tree .
+ *= normalize
  *= require_self
  *= bootstrap.min.css
  *= main
  *= login
- *= normalize
+ *= jquery-ui-min
  */
