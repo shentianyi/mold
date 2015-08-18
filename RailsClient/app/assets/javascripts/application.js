@@ -19,5 +19,5 @@
 //= require jquery-2.1.4.min.js
 //= require bootstrap.min.js
 //= require login
-//= require jquery_ujs
+//= require jquery-ui.min
 //= require_tree .
