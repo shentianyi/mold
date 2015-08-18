@@ -1,8 +1,8 @@
 module FileHandler
   module Excel
-    class MouldMaintainRecordHandler<Base
+    class MouldMaintainTimeHandler<Base
       HEADERS=[
-          'mould_id','plan_date','real_date'
+          'mould_id','project_id','device_id','serviceman','maintain_date','err_note', 'solution_method', 'code', 'feed_code', 'start_time', 'end_time'
       ]
 
       def self.import(file)
@@ -14,7 +14,7 @@ module FileHandler
         if validate_msg.result
           #validate file
           begin
-            MouldMaintainRecord.transaction do
+            MouldMaintainTime.transaction do
               2.upto(book.last_row) do |line|
                 row = {}
                 HEADERS.each_with_index do |k, i|
@@ -22,15 +22,15 @@ module FileHandler
                 end
 
                 mould_id = row['mould_id'].to_s
-                record = MouldMaintainRecord.where(mould_id: mould_id).order(count: :desc).first
-                count = record.nil? ? 1 : (record.count.to_i + 1)
-                puts "#############count=#{count}"
+                downtime = row['end_time'].to_s.to_time - row['start_time'].to_s.to_time
 
-                MouldMaintainRecord.create({mould_id: mould_id, count: count, plan_date: row['plan_date'], real_date: row['real_date']});
+                MouldMaintainTime.create({mould_id: mould_id, project_id: row['project_id'], device_id: row['device_id'], serviceman: row['serviceman'], maintain_date: row['maintain_date'],
+                                          err_note: row['err_note'], solution_method: row['solution_method'], code: row['code'], feed_code: row['feed_code'], start_time: row['start_time'],
+                                          end_time: row['end_time'], downtime: downtime})
               end
             end
             msg.result = true
-            msg.content = "导入模具维护记录成功！"
+            msg.content = "导入模具维修时间成功"
           rescue => e
             puts e.backtrace
             msg.result = false
@@ -79,9 +79,8 @@ module FileHandler
       def self.validate_row(row,line)
         msg = Message.new(contents: [])
 
-        real_date = row['real_date'].to_time
-        if real_date && real_date > Time.now
-          msg.contents << "实际时间:#{row['real_date']} 无效!"
+        if (row['end_time'].to_s.to_time - row['start_time'].to_s.to_time) <= 0
+          msg.contents << "维修时间不正确!"
         end
 
         unless msg.result=(msg.contents.size==0)

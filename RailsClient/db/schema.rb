@@ -140,9 +140,9 @@ ActiveRecord::Schema.define(version: 20150818034707) do
     t.string   "solution_method", limit: 255, default: ""
     t.string   "code",            limit: 255, default: ""
     t.string   "feed_code",       limit: 255, default: ""
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.datetime "downtime"
+    t.string   "start_time",      limit: 255
+    t.string   "end_time",        limit: 255
+    t.integer  "downtime",        limit: 4
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
   end

@@ -24,7 +24,22 @@ class MouldMaintainTimesController < ApplicationController
   # POST /mould_maintain_times
   # POST /mould_maintain_times.json
   def create
-    @mould_maintain_time = MouldMaintainTime.new(mould_maintain_time_params)
+    puts "-----------------------------"
+    args = {}
+    args[:mould_id] = mould_maintain_time_params[:mould_id]
+    args[:project_id] = mould_maintain_time_params[:project_id]
+    args[:device_id] = mould_maintain_time_params[:device_id]
+    args[:serviceman] = mould_maintain_time_params[:serviceman]
+    args[:maintain_date] = mould_maintain_time_params[:maintain_date]
+    args[:err_note] = mould_maintain_time_params[:err_note]
+    args[:solution_method] = mould_maintain_time_params[:solution_method]
+    args[:code] = mould_maintain_time_params[:code]
+    args[:feed_code] = mould_maintain_time_params[:feed_code]
+    args[:start_time] = mould_maintain_time_params[:start_time]
+    args[:end_time] = mould_maintain_time_params[:end_time]
+    args[:downtime] = args[:end_time].to_s.to_time - args[:start_time].to_s.to_time
+    puts args
+    @mould_maintain_time = MouldMaintainTime.new(args)
 
     respond_to do |format|
       if @mould_maintain_time.save
@@ -64,13 +79,13 @@ class MouldMaintainTimesController < ApplicationController
   def import
     puts
     if request.post?
-      puts "111111111111111111111111111111"
+      puts "-----------------------------------"
       msg = Message.new
       begin
         file=params[:files][0]
         fd = FileData.new(data: file, original_name: file.original_filename, path: $upload_data_file_path, path_name: "#{Time.now.strftime('%Y%m%d%H%M%S%L')}~#{file.original_filename}")
         fd.save
-        msg = FileHandler::Excel::MouldMaintainRecordHandler.import(fd)
+        msg = FileHandler::Excel::MouldMaintainTimeHandler.import(fd)
       rescue => e
         msg.content = e.message
       end
@@ -86,6 +101,6 @@ class MouldMaintainTimesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mould_maintain_time_params
-      params.require(:mould_maintain_time).permit(:mould_id, :project_id, :device_id, :serviceman, :err_note, :solution_method, :code, :feed_code)
+      params.require(:mould_maintain_time).permit(:mould_id, :project_id, :device_id, :serviceman, :err_note, :solution_method, :code, :feed_code, :start_time, :end_time, :downtime, :maintain_date)
     end
 end
