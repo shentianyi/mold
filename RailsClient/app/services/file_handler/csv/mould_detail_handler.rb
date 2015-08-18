@@ -14,7 +14,9 @@ module FileHandler
           if validate_msg.result
             MouldDetail.transaction do
               CSV.foreach(file.file_path, headers: file.headers, col_sep: file.col_sep, encoding: file.encoding) do |row|
-                row.strip
+                #row.strip
+                puts "222222222222222222222222222222222222222"
+                puts row
 
                 params = {}
                 IMPORT_HEADERS.each { |header|
@@ -123,7 +125,7 @@ module FileHandler
 
       def self.validate_row(row)
         msg=Message.new(contents: [])
-        unless MouldDetail.find_by_mould_id(row['模具号'].to_i)
+        if MouldDetail.find_by_mould_id(row['模具号'].to_i)
           msg.contents<<"该模具已存在！"
         end
 

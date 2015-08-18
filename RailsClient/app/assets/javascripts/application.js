@@ -16,7 +16,6 @@
 //= require jquery.ui/jquery.datetimepicker
 //= require jquery.file.upload/jquery.iframe-transport
 //= require jquery.file.upload/jquery.fileupload
-//= require jquery-2.1.4.min.js
 //= require bootstrap.min.js
 //= require login
 //= require jquery-ui.min

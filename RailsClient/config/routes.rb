@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :knife_switch_slices
   resources :mould_maintain_times
   resources :mould_maintain_records
-  get 'welcome/index'
 
   resources :images do
 
@@ -16,7 +15,7 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root 'welcome#index'
 
-  devise_for :users, :controllers => {registrations: :user_registrations, sessions: 'users/'}
+  devise_for :users, :controllers => {registrations: :user_registrations, sessions: 'users/sessions'}
 
 
   devise_scope :user do
