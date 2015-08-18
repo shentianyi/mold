@@ -1,41 +1,114 @@
 <p id="notice"><%= notice %></p>
+<style type="text/css">
+    th {
+        text-align: center;
+    }
 
-<h1>Listing Knife Switch Slices</h1>
+    td {
+        text-align: center;
+    }
 
-<table>
-  <thead>
-    <tr>
-      <th>Mould</th>
-      <th>Project</th>
-      <th>Terminal leoni</th>
-      <th>Knife type1</th>
-      <th>Knife type2</th>
-      <th>Wire type</th>
-      <th>Image after</th>
-      <th>Image before</th>
-      <th colspan="3"></th>
+    .col-sm-2, .col-sm-3 {
+        float: none;
+        text-align: left;
+        margin: 0;
+    }
+
+    .col-sm-2>b, .col-sm-3>b, .col-sm-2>input, .col-sm-3>input {
+        margin-top: 15px;
+    }
+
+    hr {
+        margin-top: 80px;
+        border: 1px solid #000;
+    }
+
+</style>
+
+<div style="display: inline-flex;" class="col-sm-12">
+  <div class="col-sm-2">
+    <b>日期：</b>
+    <input type="text">
+  </div>
+  <div class="col-sm-3">
+    <b>端子莱尼号：</b>
+    <input type="text">
+  </div>
+
+  <div class="col-sm-2">
+    <b>模具号：</b>
+    <input type="text">
+  </div>
+
+
+  <div class="col-sm-2">
+    <b>项目：</b>
+    <input type="text">
+  </div>
+
+  <div style="display: inline-flex;" class="col-sm-3">
+
+    <%= link_to '查询', '', :class => 'btn btn-primary',
+                :style => 'color:#000;padding-top:10px;margin:0;' %>
+  </div>
+</div>
+<hr/>
+
+
+<div style="display: inline-flex;width: 100%">
+  <div class="trapezoid">
+    <p style="margin-top: 25%;">换刀切片表</p>
+  </div>
+  <div style="display: inline-flex;margin-left: 20%;">
+    <%= link_to "新增", new_knife_switch_slice_path, :class => 'btn btn-primary',
+                :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
+
+    <%= link_to '导入数据', import_mould_details_path, :class => 'btn btn-info',
+                :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
+
+    <%= link_to '导出数据', import_mould_details_path, :class => 'btn btn-info',
+                :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
+
+  </div>
+</div>
+<div style="margin-left: 5%;margin-right: 5%;">
+  <table class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr style="background-color: #ccc">
+      <th style="width: 110px;">日期</th>
+      <th>端子莱尼号</th>
+      <th>模具号</th>
+      <th>项目</th>
+      <th>刀片型号1</th>
+      <th>刀片型号2</th>
+      <th>电线型号</th>
+      <th>截面mm</th>
+      <th>剖面</th>
+      <th>验收确认</th>
+      <th>剖面（换刀前）</th>
+      <th>操作</th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @knife_switch_slices.each do |knife_switch_slice| %>
-      <tr>
-        <td><%= knife_switch_slice.mould_id %></td>
-        <td><%= knife_switch_slice.project_id %></td>
-        <td><%= knife_switch_slice.terminal_leoni_id %></td>
-        <td><%= knife_switch_slice.knife_type1 %></td>
-        <td><%= knife_switch_slice.knife_type2 %></td>
-        <td><%= knife_switch_slice.wire_type %></td>
-        <td><%= knife_switch_slice.image_after %></td>
-        <td><%= knife_switch_slice.image_before %></td>
-        <td><%= link_to 'Show', knife_switch_slice %></td>
-        <td><%= link_to 'Edit', edit_knife_switch_slice_path(knife_switch_slice) %></td>
-        <td><%= link_to 'Destroy', knife_switch_slice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <tr>
+          <td><%= knife_switch_slice.switch_date %></td>
+          <td><%= knife_switch_slice.terminal_leoni_id %></td>
+          <td><%= knife_switch_slice.mould_id %></td>
+          <td><%= knife_switch_slice.project_id %></td>
+          <td><%= knife_switch_slice.knife_type1 %></td>
+          <td><%= knife_switch_slice.knife_type2 %></td>
+          <td><%= knife_switch_slice.wire_type %></td>
+          <td><%= knife_switch_slice.wire_cross %></td>
+          <td><%= knife_switch_slice.image_after %></td>
+          <td><%= knife_switch_slice.is_ok %></td>
+          <td><%= knife_switch_slice.image_before %></td>
+          <td><%= link_to '[详情]', knife_switch_slice %>
+            <%= link_to '[编辑]', edit_knife_switch_slice_path(knife_switch_slice) %>
+            <%= link_to '[删除]', knife_switch_slice, method: :delete, data: {confirm: '确定删除?'} %></td>
+        </tr>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Knife switch slice', new_knife_switch_slice_path %>
+    </tbody>
+  </table>
+</div>

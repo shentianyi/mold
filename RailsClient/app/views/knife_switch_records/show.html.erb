@@ -1,79 +1,149 @@
 <p id="notice"><%= notice %></p>
+<style type="text/css">
 
-<p>
-  <strong>Mould:</strong>
-  <%= @knife_switch_record.mould_id %>
-</p>
+    .col-sm-4 {
+        float: none;
+        margin-left: 20px;
+        text-align: left;
+        display: inline-flex;
+        width: 30%;
+        margin-top: 10px;
+    }
 
-<p>
-  <strong>Project:</strong>
-  <%= @knife_switch_record.project_id %>
-</p>
+    p {
+        width: 150px;
+    }
 
-<p>
-  <strong>Knife type:</strong>
-  <%= @knife_switch_record.knife_type %>
-</p>
+    hr {
+        border: 1px solid #ccc;
+        margin-bottom: 2px;
+        margin-top: 2px;
+    }
 
-<p>
-  <strong>Knife kind:</strong>
-  <%= @knife_switch_record.knife_kind %>
-</p>
+    h1 {
+        margin-left: 10px;
+    }
+</style>
 
-<p>
-  <strong>Knife supplier:</strong>
-  <%= @knife_switch_record.knife_supplier %>
-</p>
+<h1>换刀记录<em>详情</em></h1>
 
-<p>
-  <strong>State:</strong>
-  <%= @knife_switch_record.state %>
-</p>
+<hr/>
+<div style="display: inline-flex; width: 100%; ">
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>模具号： </p>
+    <%= @knife_switch_record.mould_id %>
+  </div>
 
-<p>
-  <strong>Problem:</strong>
-  <%= @knife_switch_record.problem %>
-</p>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>项目： </p>
+    <%= @knife_switch_record.project_id %>
+  </div>
 
-<p>
-  <strong>Damage define:</strong>
-  <%= @knife_switch_record.damage_define %>
-</p>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>刀片型号： </p>
+    <%= @knife_switch_record.knife_type %>
+  </div>
+</div>
+<hr/>
+<div style="display: inline-flex; width: 100%;">
+  <div class="col-sm-4">
+    <p>刀片分类： </p>
+    <%= @knife_switch_record.knife_kind %>
+  </div>
 
-<p>
-  <strong>Maintainman:</strong>
-  <%= @knife_switch_record.maintainman %>
-</p>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>供应商： </p>
+    <%= @knife_switch_record.knife_supplier %>
+  </div>
 
-<p>
-  <strong>M qty:</strong>
-  <%= @knife_switch_record.m_qty %>
-</p>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>损坏状态： </p>
+    <%= @knife_switch_record.state %>
+  </div>
+</div>
+<hr/>
 
-<p>
-  <strong>Machine:</strong>
-  <%= @knife_switch_record.machine_id %>
-</p>
+<div style="display: inline-flex; width: 100%;">
+  <div class="col-sm-4">
+    <p>问题描述： </p>
+    <%= @knife_switch_record.problem %>
+  </div>
 
-<p>
-  <strong>Press num:</strong>
-  <%= @knife_switch_record.press_num %>
-</p>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>损坏定义： </p>
+    <%= @knife_switch_record.damage_define %>
+  </div>
 
-<p>
-  <strong>Damage life:</strong>
-  <%= @knife_switch_record.damage_life %>
-</p>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>维修人员： </p>
+    <%= @knife_switch_record.maintainman %>
+  </div>
+</div>
+<hr/>
 
-<p>
-  <strong>Broken life:</strong>
-  <%= @knife_switch_record.broken_life %>
-</p>
+<div style="display: inline-flex; width: 100%;">
+  <div class="col-sm-4">
+    <p>数量： </p>
+    <%= @knife_switch_record.m_qty %>
+  </div>
 
-<p>
-  <strong>Total life:</strong>
-  <%= @knife_switch_record.total_life %>
-</p>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>机器号： </p>
+    <%= @knife_switch_record.machine_id %>
+  </div>
 
-<%= link_to 'Edit', edit_knife_switch_record_path(@knife_switch_record) %> |
-<%= link_to 'Back', knife_switch_records_path %>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>压接次数： </p>
+    <%= @knife_switch_record.press_num %>
+  </div>
+</div>
+<hr/>
+
+<div style="display: inline-flex; width: 100%;">
+  <div class="col-sm-4">
+    <p>damage_life： </p>
+    <%= @knife_switch_record.damage_life %>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>broken_life： </p>
+    <%= @knife_switch_record.broken_life %>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>total_life： </p>
+    <%= @knife_switch_record.total_life %>
+  </div>
+</div>
+<hr/>
+
+
+<div style="display: inline-flex; width: 100%;">
+  <div class="col-sm-4">
+    <p>操作员： </p>
+    <%= @knife_switch_record.operater %>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>验收确认： </p>
+    <%= @knife_switch_record.is_ok %>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>分类： </p>
+    <%= @knife_switch_record.sort %>
+  </div>
+</div>
+<hr/>
+
+<div style="display: inline-flex; width: 100%;">
+  <div class="col-sm-4">
+    <p>出库单号： </p>
+    <%= @knife_switch_record.outbound_id %>
+  </div>
+
+</div>
+<hr style="border: 1px solid #000">
+
+<%= link_to '编辑', edit_knife_switch_record_path(@knife_switch_record), :class => 'btn btn-info', :style => 'color:#000; margin-left:2%;margin-top:1%;' %>
+<%= link_to '返回', knife_switch_records_path, :class => 'btn btn-info', :style => 'color:#000; margin-left:2%;margin-top:1%;' %>
