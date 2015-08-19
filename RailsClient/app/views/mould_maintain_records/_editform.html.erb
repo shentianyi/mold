@@ -14,12 +14,6 @@
         width: 130px;
     }
 
-    fieldset {
-        margin-top: 100px;
-        width: 50%;
-        margin-left: 25%;
-    }
-
 </style>
 
 <%= form_for(@mould_maintain_record) do |f| %>
@@ -44,14 +38,26 @@
         </div>
 
         <div class="col-sm-12">
+          <%= f.label :count, '维护次数:' %>
+          <%= f.text_field :count %>
+        </div>
+
+
+        <div class="col-sm-12">
           <%= f.label :plan_date, '计划维护时间:' %>
           <%= f.text_field :plan_date %>
+        </div>
+
+
+        <div class="col-sm-12">
+          <%= f.label :real_date, '实际维护时间:' %>
+          <%= f.text_field :real_date %>
         </div>
 
         <hr style="border: 1px solid#999"/>
 
         <button type="submit" style="margin-left: 10px;margin-top:0;" class="btn btn-primary" name="commit">完成</button>
-      </fieldset>
+    </fieldset>
     </div>
 
 <% end %>

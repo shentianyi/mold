@@ -1,8 +1,9 @@
 <style type="text/css">
-    .col-sm-6 {
+    .col-sm-6, .col-sm-12 {
         text-align: left;
         margin-top: 1%;
         margin-bottom: 2%;
+        margin-left: 0;
         display: inline-flex;
     }
 
@@ -25,48 +26,64 @@
           </ul>
         </div>
     <% end %>
-    <div class="col-sm-6">
-      <%= f.label :模具号： %><br>
-      <%= f.text_field :mould_id %>
-    </div>
-    <div class="col-sm-6">
-      <%= f.label :项目： %><br>
-      <%= f.text_field :project_id %>
-    </div>
-    <div class="col-sm-6">
-      <%= f.label :端子莱尼号： %><br>
-      <%= f.text_field :terminal_leoni_id %>
-    </div>
-    <div class="col-sm-6">
-      <%= f.label :刀片型号1： %><br>
-      <%= f.text_field :knife_type1 %>
-    </div>
-    <div class="col-sm-6">
-      <%= f.label :刀片型号2： %><br>
-      <%= f.text_field :knife_type2 %>
-    </div>
-    <div class="col-sm-6">
-      <%= f.label :电线型号： %><br>
-      <%= f.text_field :wire_type %>
-    </div>
-    <div class="col-sm-6">
-      <%= f.label :剖面： %><br>
-      <%= f.text_field :image_after %>
-    </div>
-    <div class="col-sm-6">
-      <%= f.label :剖面（换刀前）： %><br>
-      <%= f.text_field :image_before %>
+    <div>
+      <div class="col-sm-6">
+        <%= f.label :mould_id, '模具号:' %>
+        <%= f.text_field :mould_id %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.label :project_id, '项目:' %>
+        <%= f.text_field :project_id %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.label :switch_date, '日期:' %>
+        <%= f.text_field :switch_date %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.label :terminal_leoni_id, '端子莱尼号:' %>
+        <%= f.text_field :terminal_leoni_id %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.label :knife_type1, '刀片型号1:' %>
+        <br>
+        <%= f.text_field :knife_type1 %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.label :knife_type2, '刀片型号2:' %>
+        <br>
+        <%= f.text_field :knife_type2 %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.label :wire_type, '电线型号:' %>
+        <br>
+        <%= f.text_field :wire_type %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.label :image_after, '剖面:' %>
+        <br>
+        <%= f.text_field :image_after %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.label :image_before, '剖面(换刀前):' %>
+        <br>
+        <%= f.text_field :image_before %>
+      </div>
+
+      <div class="col-sm-6">
+        <%= f.label :wire_cross, '截面mm:' %>
+        <br>
+        <%= f.text_field :wire_cross %>
+      </div>
+
+      <div class="col-sm-6">
+        <%= f.label :is_ok, '验收确认:' %>
+        <br>
+        <%= f.text_field :is_ok %>
+      </div>
+      <div class="col-sm-6"></div>
+      <div class="col-sm-6"></div>
     </div>
 
-    <div class="col-sm-6">
-      <%= f.label :截面mm： %><br>
-      <%= f.text_field :wire_cross %>
-    </div>
-    <div class="col-sm-6">
-      <%= f.label :验收确认： %><br>
-      <%= f.text_field :is_ok %>
-    </div>
     <hr style="border: 1px solid #000;opacity: 0.5;"/>
-
     <button type="submit" style="margin-left: 10px;margin-top:0;" class="btn btn-primary" name="commit">完成</button>
 <% end %>
