@@ -23,7 +23,7 @@
   </div>
   <div class="col-sm-2">
     <b>日期：</b>
-    <input type="text">
+    <input type="text" id="datepicker">
   </div>
 
   <div class="col-sm-2">
@@ -103,3 +103,9 @@
     </tbody>
   </table>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#datepicker").datepicker();
+    });
+</script>

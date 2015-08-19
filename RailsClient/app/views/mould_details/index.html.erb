@@ -111,7 +111,8 @@
           <td><%= mould_detail.mould_state %></td>
           <td><%= mould_detail.mould_type %></td>
           <td><%= mould_detail.mould_supplier %></td>
-          <td><%= link_to '[详情]', mould_detail %><%= link_to '[编辑]', edit_mould_detail_path(mould_detail) %>
+          <td><%= link_to '[详情]', mould_detail %>
+            <%= link_to '[编辑]', edit_mould_detail_path(mould_detail) %>
             <%= link_to '[删除]', mould_detail, method: :delete, data: {confirm: '确认删除?'} %>
           </td>
         </tr>
@@ -121,8 +122,8 @@
 </div>
 
 
-<script>
-    $(function () {
+<script type="text/javascript">
+    $(document).ready(function () {
         $("#datepicker").datepicker();
     });
 </script>

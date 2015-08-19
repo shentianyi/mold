@@ -28,7 +28,7 @@
 <div style="display: inline-flex;" class="col-sm-12">
   <div class="col-sm-2">
     <b>日期：</b>
-    <input type="text">
+    <input type="text" id="datepicker">
   </div>
   <div class="col-sm-3">
     <b>端子莱尼号：</b>
@@ -112,3 +112,9 @@
     </tbody>
   </table>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#datepicker").datepicker();
+    });
+</script>
