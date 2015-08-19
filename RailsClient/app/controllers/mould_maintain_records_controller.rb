@@ -34,12 +34,18 @@ class MouldMaintainRecordsController < ApplicationController
     args[:count] = record.nil? ? 1 : (record.count.to_i + 1)
 
     @mould_maintain_record = MouldMaintainRecord.new(args)
+    is_record = MouldMaintainRecord.where(mould_id: args[:mould_id], plan_date: args[:plan_date]).first
 
     respond_to do |format|
-      if @mould_maintain_record.save
-        format.html { redirect_to @mould_maintain_record, notice: 'Mould maintain record was successfully created.' }
-        format.json { render :show, status: :created, location: @mould_maintain_record }
-      else
+      if is_record.nil?
+        if @mould_maintain_record.save
+          format.html { redirect_to @mould_maintain_record, notice: 'Mould maintain record was successfully created.' }
+          format.json { render :show, status: :created, location: @mould_maintain_record }
+        else
+          format.html { render :new }
+          format.json { render json: @mould_maintain_record.errors, status: :unprocessable_entity }
+        end
+        else
         format.html { render :new }
         format.json { render json: @mould_maintain_record.errors, status: :unprocessable_entity }
       end

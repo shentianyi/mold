@@ -79,9 +79,12 @@ module FileHandler
       def self.validate_row(row,line)
         msg = Message.new(contents: [])
 
-        record = MouldMaintainRecord.where(mould_id: mould_id, plan_date: row['plan_time']).first
+        puts "----------------------"
+        puts row
+
+        record = MouldMaintainRecord.where(mould_id: row['mould_id'], plan_date: row['plan_date']).first
         unless record.nil?
-          msg.contents << "时间:#{row['plan_date']} 已存在!"
+          msg.contents << "时间记录:#{row['plan_date']} 已存在!"
         end
 
         unless msg.result=(msg.contents.size==0)
