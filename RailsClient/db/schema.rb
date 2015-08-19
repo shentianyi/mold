@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 20150818034707) do
     t.integer  "count",      limit: 4,   default: 0
     t.datetime "plan_date"
     t.datetime "real_date"
+    t.string   "note",       limit: 255
     t.string   "email",      limit: 255, default: "mj@leoni.com", null: false
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
