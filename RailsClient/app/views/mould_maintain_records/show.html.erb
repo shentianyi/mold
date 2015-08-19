@@ -1,24 +1,67 @@
 <p id="notice"><%= notice %></p>
+<style type="text/css">
+    hr {
+        margin-left: 10px;
+        border: 1px solid #999;
+    }
 
-<p>
-  <strong>Mould:</strong>
-  <%= @mould_maintain_record.mould_id %>
-</p>
+    .col-sm-12 {
+        display: inline-flex;
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
 
-<p>
-  <strong>Count:</strong>
-  <%= @mould_maintain_record.count %>
-</p>
+    .col-sm-12>p {
+        width: 200px;
+    }
 
-<p>
-  <strong>Plan date:</strong>
-  <%= @mould_maintain_record.plan_date %>
-</p>
+    legend {
+        width: 130px;
+    }
 
-<p>
-  <strong>Real date:</strong>
-  <%= @mould_maintain_record.real_date %>
-</p>
+    fieldset {
+        margin-top: 10%;
+        width: 50%;
+        margin-left: 25%;
+        border: 1px solid #000;
+    }
 
-<%= link_to 'Edit', edit_mould_maintain_record_path(@mould_maintain_record) %> |
-<%= link_to 'Back', mould_maintain_records_path %>
+    p {
+        font-size: 1.2em;
+    }
+</style>
+
+
+<h1>模具维护记录<em>详情</em></h1>
+<hr/>
+<div class="container">
+  <fieldset>
+    <legend>模具维护记录</legend>
+    <div class="col-sm-12">
+      <p>模具号：</p>
+      <%= @mould_maintain_record.mould_id %>
+    </div>
+    <hr/>
+
+    <div class="col-sm-12">
+      <p>维护次数：</p>
+      <%= @mould_maintain_record.count %>
+    </div>
+    <hr/>
+
+    <div class="col-sm-12">
+      <p>计划维护日期：</p>
+      <%= @mould_maintain_record.plan_date %>
+    </div>
+    <hr/>
+
+    <div class="col-sm-12">
+      <p>实际维护日期：</p>
+      <%= @mould_maintain_record.real_date %>
+    </div>
+
+    <hr/>
+    <%= link_to '编辑', edit_mould_maintain_record_path(@mould_maintain_record), :class => 'btn btn-info', :style => 'color:#000;padding-top:10px; margin-left:2%;margin-top:1%;' %>
+    <%= link_to '返回', mould_maintain_records_path, :class => 'btn btn-info', :style => 'color:#000; margin-left:2%;padding-top:10px;margin-top:1%;' %>
+  </fieldset>
+</div>
