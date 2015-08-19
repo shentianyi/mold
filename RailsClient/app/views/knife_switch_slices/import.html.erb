@@ -1,0 +1,18 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        data_upload("#item-data-uploader");
+    });
+</script>
+<p id="notice">
+  <%= notice %>
+</p>
+<h3>上传模具换刀切片文件</h3>
+<div>
+  选择数据文件：
+  <input id="item-data-uploader" type="file" name="files[]" data-url="/knife_switch_slices/import"/>
+
+  <div id="item-data-uploader-preview" style="display:none;"></div>
+  <div>
+    <a href="/files/<%= ImportTemplate.knife_switch_slice_excel_template %>">下载模板：<%= ImportTemplate::KNIFE_SWITCH_SLICE_EXCEL_TEMPLATE %></a>
+  </div>
+</div>

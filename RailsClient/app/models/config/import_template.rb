@@ -3,6 +3,7 @@ class ImportTemplate
 
   MOULD_MAINTAIN_RECORD_EXCEL_TEMPLATE='mould_maintain_record.xlsx'
   MOULD_MAINTAIN_TIME_EXCEL_TEMPLATE='mould_maintain_time.xlsx'
+  KNIFE_SWITCH_SLICE_EXCEL_TEMPLATE='knife_switch_slice.xlsx'
 
 
 
