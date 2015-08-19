@@ -56,6 +56,11 @@
       <div class="col-sm-4">
         <%= f.label :状态： %>
         <%= f.text_field :mould_state %>
+
+        <!--
+        <%= f.select :mould_state, options_for_select([['未过期', '未过期'], ['即将过期', '即将过期'], ['已过期', '已过期']], params[:mould_state]),
+                     {}, {:style => 'width:35%;'} %>
+             -->
       </div>
 
       <div class="col-sm-4">

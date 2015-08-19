@@ -12,8 +12,6 @@
         text-align: left;
         margin: 0;
     }
-
-
 </style>
 
 <p id="notice"><%= notice %></p>
@@ -105,15 +103,14 @@
     <% @mould_details.each do |mould_detail| %>
         <tr>
           <td><%= mould_detail.mould_id %></td>
-          <td><%= mould_detail.mould_type %></td>
-          <td><%= mould_detail.mould_supplier %></td>
-          <td><%= mould_detail.position %></td>
           <td><%= mould_detail.terminal_leoni_no %></td>
           <td><%= mould_detail.terminal_supplier %></td>
-          <td><%= mould_detail.stopwater %></td>
-          <td><%= mould_detail.use_range %></td>
           <td><%= mould_detail.wire_type %></td>
-
+          <td><%= mould_detail.wire_type %></td>
+          <td><%= mould_detail.next_time %></td>
+          <td><%= mould_detail.mould_state %></td>
+          <td><%= mould_detail.mould_type %></td>
+          <td><%= mould_detail.mould_supplier %></td>
           <td><%= link_to '[详情]', mould_detail %><%= link_to '[编辑]', edit_mould_detail_path(mould_detail) %>
             <%= link_to '[删除]', mould_detail, method: :delete, data: {confirm: '确认删除?'} %>
           </td>

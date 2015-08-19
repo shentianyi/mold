@@ -1,33 +1,62 @@
+<style type="text/css">
+
+    .col-sm-12 {
+        display: inline-flex;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .col-sm-12>label {
+        width: 150px;
+    }
+
+    legend {
+        width: 130px;
+    }
+
+</style>
+
 <%= form_for(@mould_maintain_record) do |f| %>
-  <% if @mould_maintain_record.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@mould_maintain_record.errors.count, "error") %> prohibited this mould_maintain_record from being saved:</h2>
+    <% if @mould_maintain_record.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@mould_maintain_record.errors.count, "error") %> prohibited this mould_maintain_record from
+            being saved:</h2>
 
-      <ul>
-      <% @mould_maintain_record.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @mould_maintain_record.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="container">
+      <fieldset>
+        <legend>模具维护记录</legend>
+        <div class="col-sm-12">
+          <%= f.label :模具号： %>
+          <%= f.text_field :mould_id %>
+        </div>
+
+        <div class="col-sm-12">
+          <%= f.label :维护次数： %>
+          <%= f.text_field :count %>
+        </div>
+
+
+        <div class="col-sm-12">
+          <%= f.label :计划维护时间： %>
+          <%= f.text_field :plan_date %>
+        </div>
+
+
+        <div class="col-sm-12">
+          <%= f.label :实际维护时间： %>
+          <%= f.text_field :real_date %>
+        </div>
+
+        <hr style="border: 1px solid#999"/>
+
+        <button type="submit" style="margin-left: 10px;margin-top:0;" class="btn btn-primary" name="commit">完成</button>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :mould_id %><br>
-    <%= f.text_field :mould_id %>
-  </div>
-  <div class="field">
-    <%= f.label :count %><br>
-    <%= f.text_field :count %>
-  </div>
-  <div class="field">
-    <%= f.label :plan_date %><br>
-    <%= f.text_field :plan_date %>
-  </div>
-  <div class="field">
-    <%= f.label :real_date %><br>
-    <%= f.text_field :real_date %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    </fieldset>
 <% end %>

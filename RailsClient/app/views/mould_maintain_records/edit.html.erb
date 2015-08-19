@@ -1,6 +1,25 @@
-<h1>Editing Mould Maintain Record</h1>
+<style type="text/css">
+    fieldset {
+        margin-top: 10%;
+        width: 50%;
+        margin-left: 25%;
+        border: 1px solid #000;
+    }
 
+    p {
+        font-size: 1.2em;
+    }
+</style>
+
+
+
+<div style="display: inline-flex; margin-top:10px;">
+  <%= link_to '返回', mould_maintain_records_path, :class => 'btn btn-info',
+              :style => 'color:#000;' %>
+
+  <%= link_to '详情', @mould_maintain_record, :class => 'btn btn-info',
+              :style => 'color:#000;' %>
+  <h1 style="position: absolute;right: 20px;">模具维护记录<em>编辑</em></h1>
+</div>
+<hr style="border: 1px solid #000"/>
 <%= render 'form' %>
-
-<%= link_to 'Show', @mould_maintain_record %> |
-<%= link_to 'Back', mould_maintain_records_path %>

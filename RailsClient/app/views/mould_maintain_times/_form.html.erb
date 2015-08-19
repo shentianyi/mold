@@ -1,57 +1,70 @@
+<style type="text/css">
+    .col-sm-6 {
+        margin-top: 20px;
+        display: inline-flex;
+    }
+
+    label {
+        width: 150px;
+    }
+
+
+</style>
+
 <%= form_for(@mould_maintain_time) do |f| %>
-  <% if @mould_maintain_time.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@mould_maintain_time.errors.count, "error") %> prohibited this mould_maintain_time from being saved:</h2>
+    <% if @mould_maintain_time.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@mould_maintain_time.errors.count, "error") %> prohibited this mould_maintain_time from
+            being saved:</h2>
 
-      <ul>
-      <% @mould_maintain_time.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @mould_maintain_time.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="col-sm-6">
+      <%= f.label :模具号： %>
+      <%= f.text_field :mould_id %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :mould_id %><br>
-    <%= f.text_field :mould_id %>
-  </div>
-  <div class="field">
-    <%= f.label :project_id %><br>
-    <%= f.text_field :project_id %>
-  </div>
-  <div class="field">
-    <%= f.label :device_id %><br>
-    <%= f.text_field :device_id %>
-  </div>
-  <div class="field">
-    <%= f.label :serviceman %><br>
-    <%= f.text_field :serviceman %>
-  </div>
-  <div class="field">
-    <%= f.label :err_note %><br>
-    <%= f.text_field :err_note %>
-  </div>
-  <div class="field">
-    <%= f.label :solution_method %><br>
-    <%= f.text_field :solution_method %>
-  </div>
-  <div class="field">
-    <%= f.label :code %><br>
-    <%= f.text_field :code %>
-  </div>
-  <div class="field">
-    <%= f.label :feed_code %><br>
-    <%= f.text_field :feed_code %>
-  </div>
-    <div class="field">
-      <%= f.label :开始时间 %><br>
+    <div class="col-sm-6">
+      <%= f.label :项目： %>
+      <%= f.text_field :project_id %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.label :设备编号： %>
+      <%= f.text_field :device_id %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.label :抢修人员： %>
+      <%= f.text_field :serviceman %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.label :问题描述： %>
+      <%= f.text_field :err_note %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.label :解决措施： %>
+      <%= f.text_field :solution_method %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.label :代码： %>
+      <%= f.text_field :code %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.label :送料方式： %>
+      <%= f.text_field :feed_code %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.label :开始时间： %>
       <%= f.text_field :start_time %>
     </div>
-    <div class="field">
-      <%= f.label :结束时间 %><br>
+    <div class="col-sm-6">
+      <%= f.label :结束时间： %>
       <%= f.text_field :end_time %>
     </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+    <button type="submit" style="margin-left: 10px;margin-top:20px;" class="btn btn-primary" name="commit">完成</button>
 <% end %>
