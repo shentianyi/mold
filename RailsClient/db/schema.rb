@@ -112,10 +112,12 @@ ActiveRecord::Schema.define(version: 20150818034707) do
     t.boolean  "is_dirty",          limit: 1,   default: true
     t.boolean  "is_new",            limit: 1,   default: true
     t.datetime "idle_time"
+
     t.string   "note",              limit: 255
     t.string   "email",             limit: 255, default: "mj@leoni.com", null: false
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false
+
   end
 
   add_index "mould_details", ["mould_id"], name: "index_mould_details_on_mould_id", using: :btree

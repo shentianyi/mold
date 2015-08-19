@@ -1,77 +1,123 @@
+<style type="text/css">
+    .col-sm-4 {
+        text-align: left;
+        margin-top: 1%;
+    }
+
+    label {
+        width: 120px;
+    }
+
+</style>
 <%= form_for(@knife_switch_record) do |f| %>
-  <% if @knife_switch_record.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@knife_switch_record.errors.count, "error") %> prohibited this knife_switch_record from being saved:</h2>
+    <% if @knife_switch_record.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@knife_switch_record.errors.count, "error") %> prohibited this knife_switch_record from
+            being saved:</h2>
 
-      <ul>
-      <% @knife_switch_record.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @knife_switch_record.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+      <div class="col-sm-4">
+        <%= f.label :模具号： %>
+        <%= f.text_field :mould_id %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.label :项目： %>
+        <%= f.text_field :project_id %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.label :刀片型号： %>
+        <%= f.text_field :knife_type %>
+      </div>
     </div>
-  <% end %>
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+      <div class="col-sm-4">
+        <%= f.label :刀片分类： %>
+        <%= f.text_field :knife_kind %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.label :供应商： %>
+        <%= f.text_field :knife_supplier %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.label :损坏状态： %>
+        <%= f.text_field :state %>
+      </div>
+    </div>
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+      <div class="col-sm-4">
+        <%= f.label :问题描述： %>
+        <%= f.text_field :problem %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.label :损坏定义： %>
+        <%= f.text_field :damage_define %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.label :维修人员： %>
+        <%= f.text_field :maintainman %>
+      </div>
+    </div>
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+      <div class="col-sm-4">
+        <%= f.label :数量： %>
+        <%= f.text_field :m_qty %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.label :机器号： %>
+        <%= f.text_field :machine_id %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.label :压接次数： %>
+        <%= f.text_field :press_num %>
+      </div>
+    </div>
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+      <div class="col-sm-4">
+        <%= f.label :damage_life %>
+        <%= f.text_field :damage_life %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.label :broken_life %>
+        <%= f.text_field :broken_life %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.label :total_life %>
+        <%= f.text_field :total_life %>
+      </div>
+    </div>
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
 
-  <div class="field">
-    <%= f.label :mould_id %><br>
-    <%= f.text_field :mould_id %>
-  </div>
-  <div class="field">
-    <%= f.label :project_id %><br>
-    <%= f.text_field :project_id %>
-  </div>
-  <div class="field">
-    <%= f.label :knife_type %><br>
-    <%= f.text_field :knife_type %>
-  </div>
-  <div class="field">
-    <%= f.label :knife_kind %><br>
-    <%= f.text_field :knife_kind %>
-  </div>
-  <div class="field">
-    <%= f.label :knife_supplier %><br>
-    <%= f.text_field :knife_supplier %>
-  </div>
-  <div class="field">
-    <%= f.label :state %><br>
-    <%= f.text_field :state %>
-  </div>
-  <div class="field">
-    <%= f.label :problem %><br>
-    <%= f.text_field :problem %>
-  </div>
-  <div class="field">
-    <%= f.label :damage_define %><br>
-    <%= f.text_field :damage_define %>
-  </div>
-  <div class="field">
-    <%= f.label :maintainman %><br>
-    <%= f.text_field :maintainman %>
-  </div>
-  <div class="field">
-    <%= f.label :m_qty %><br>
-    <%= f.text_field :m_qty %>
-  </div>
-  <div class="field">
-    <%= f.label :machine_id %><br>
-    <%= f.text_field :machine_id %>
-  </div>
-  <div class="field">
-    <%= f.label :press_num %><br>
-    <%= f.text_field :press_num %>
-  </div>
-  <div class="field">
-    <%= f.label :damage_life %><br>
-    <%= f.text_field :damage_life %>
-  </div>
-  <div class="field">
-    <%= f.label :broken_life %><br>
-    <%= f.text_field :broken_life %>
-  </div>
-  <div class="field">
-    <%= f.label :total_life %><br>
-    <%= f.text_field :total_life %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+      <div class="col-sm-4">
+        <%= f.label :操作员： %>
+        <%= f.text_field :operater %>
+      </div>
+
+
+      <div class="col-sm-4">
+        <%= f.label :验收确认： %>
+        <%= f.text_field :is_ok %>
+      </div>
+
+      <div class="col-sm-4">
+        <%= f.label :分类： %>
+        <%= f.text_field :sort %>
+      </div>
+    </div>
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+      <div class="col-sm-4">
+        <%= f.label :出库单号： %>
+        <%= f.text_field :outbound_id %>
+      </div>
+    </div>
+
+    <hr style="border: 1px solid #000;opacity: 0.5;"/>
+    <button type="submit" style="margin-left: 10px;margin-top:0;" class="btn btn-primary" name="commit">完成</button>
 <% end %>

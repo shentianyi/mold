@@ -1,49 +1,72 @@
+<style type="text/css">
+    .col-sm-6 {
+        text-align: left;
+        margin-top: 1%;
+        margin-bottom: 2%;
+        display: inline-flex;
+    }
+
+    label {
+        width: 150px;
+    }
+</style>
+
+
 <%= form_for(@knife_switch_slice) do |f| %>
-  <% if @knife_switch_slice.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@knife_switch_slice.errors.count, "error") %> prohibited this knife_switch_slice from being saved:</h2>
+    <% if @knife_switch_slice.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@knife_switch_slice.errors.count, "error") %> prohibited this knife_switch_slice from being
+            saved:</h2>
 
-      <ul>
-      <% @knife_switch_slice.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @knife_switch_slice.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="col-sm-6">
+      <%= f.label :模具号： %><br>
+      <%= f.text_field :mould_id %>
     </div>
-  <% end %>
+    <div class="col-sm-6">
+      <%= f.label :项目： %><br>
+      <%= f.text_field :project_id %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.label :端子莱尼号： %><br>
+      <%= f.text_field :terminal_leoni_id %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.label :刀片型号1： %><br>
+      <%= f.text_field :knife_type1 %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.label :刀片型号2： %><br>
+      <%= f.text_field :knife_type2 %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.label :电线型号： %><br>
+      <%= f.text_field :wire_type %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.label :剖面： %><br>
+      <%= f.text_field :image_after %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.label :剖面（换刀前）： %><br>
+      <%= f.text_field :image_before %>
+    </div>
 
-  <div class="field">
-    <%= f.label :mould_id %><br>
-    <%= f.text_field :mould_id %>
-  </div>
-  <div class="field">
-    <%= f.label :project_id %><br>
-    <%= f.text_field :project_id %>
-  </div>
-  <div class="field">
-    <%= f.label :terminal_leoni_id %><br>
-    <%= f.text_field :terminal_leoni_id %>
-  </div>
-  <div class="field">
-    <%= f.label :knife_type1 %><br>
-    <%= f.text_field :knife_type1 %>
-  </div>
-  <div class="field">
-    <%= f.label :knife_type2 %><br>
-    <%= f.text_field :knife_type2 %>
-  </div>
-  <div class="field">
-    <%= f.label :wire_type %><br>
-    <%= f.text_field :wire_type %>
-  </div>
-  <div class="field">
-    <%= f.label :image_after %><br>
-    <%= f.text_field :image_after %>
-  </div>
-  <div class="field">
-    <%= f.label :image_before %><br>
-    <%= f.text_field :image_before %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="col-sm-6">
+      <%= f.label :截面mm： %><br>
+      <%= f.text_field :wire_cross %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.label :验收确认： %><br>
+      <%= f.text_field :is_ok %>
+    </div>
+    <hr style="border: 1px solid #000;opacity: 0.5;"/>
+
+    <button type="submit" style="margin-left: 10px;margin-top:0;" class="btn btn-primary" name="commit">完成</button>
 <% end %>

@@ -1,55 +1,127 @@
 <p id="notice"><%= notice %></p>
+<style type="text/css">
+    hr {
+        border: 1px solid #000;
+    }
 
-<h1>Listing Knife Switch Records</h1>
+    .btn {
+        margin-left: 10%;
+        margin-top: 10%;
+        color: #000;
+    }
 
-<table>
-  <thead>
-    <tr>
-      <th>Mould</th>
-      <th>Project</th>
-      <th>Knife type</th>
-      <th>Knife kind</th>
-      <th>Knife supplier</th>
-      <th>State</th>
-      <th>Problem</th>
-      <th>Damage define</th>
-      <th>Maintainman</th>
-      <th>M qty</th>
-      <th>Machine</th>
-      <th>Press num</th>
-      <th>Damage life</th>
-      <th>Broken life</th>
-      <th>Total life</th>
-      <th colspan="3"></th>
+    th {
+        text-align: center;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    .col-sm-2, .col-sm-3 {
+        float: none;
+        text-align: left;
+    }
+
+    .col-sm-2 > label, .col-sm-2 > input {
+        margin-top: 20px;
+    }
+
+    .col-sm-3 > label, .col-sm-3 > input {
+        margin-top: 20px;
+    }
+</style>
+<div style="display: inline-flex;width: 100%;">
+  <div class="col-sm-2">
+    <label for="date:">日期：</label>
+    <input type="text">
+  </div>
+
+  <div class="col-sm-2">
+    <label for="mould_id:">模具号：</label>
+    <input type="text">
+  </div>
+
+  <div class="col-sm-3">
+    <label for="knife_type:">刀片分类：</label>
+    <select>
+      <option>ALL</option>
+      <option>CH</option>
+      <option>CW</option>
+      <option>ICW</option>
+    </select>
+  </div>
+
+  <div class="col-sm-3">
+    <label for="state:">状态：</label>
+    <select>
+      <option>ALL</option>
+      <option>断裂</option>
+      <option>磨损</option>
+    </select>
+  </div>
+
+  <div class="col-sm-2">
+    <button type="button" class="btn btn-primary">查询</button>
+  </div>
+</div>
+<div>
+  <hr/>
+</div>
+
+<div style="display: inline-flex;width: 100%;">
+  <div class="trapezoid" style="height: 60px;">
+    <p style="padding-top: 20px;">换刀记录表</p>
+  </div>
+  <div style="display: inline-flex;margin-left: 20%;">
+    <%= link_to '新增', new_knife_switch_record_path, :class => 'btn btn-info',
+                :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
+
+    <%= link_to '导入数据', import_mould_details_path, :class => 'btn btn-primary',
+                :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
+    <%= link_to '导出数据', import_mould_details_path, :class => 'btn btn-primary',
+                :style => 'color:#000;padding-top:10px;' %>
+  </div>
+</div>
+
+<div style="margin-left:100px; margin-right: 100px;">
+  <table class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr style="background-color: #ccc">
+      <th style="width: 110px;">模具号</th>
+      <th>项目</th>
+      <th>刀片类型</th>
+      <th>刀片分类</th>
+      <th>供应商</th>
+      <th>损坏状态</th>
+      <th>损坏定义</th>
+      <th>压接次数</th>
+      <th>分类</th>
+      <th>出库单号</th>
+      <th>操作</th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @knife_switch_records.each do |knife_switch_record| %>
-      <tr>
-        <td><%= knife_switch_record.mould_id %></td>
-        <td><%= knife_switch_record.project_id %></td>
-        <td><%= knife_switch_record.knife_type %></td>
-        <td><%= knife_switch_record.knife_kind %></td>
-        <td><%= knife_switch_record.knife_supplier %></td>
-        <td><%= knife_switch_record.state %></td>
-        <td><%= knife_switch_record.problem %></td>
-        <td><%= knife_switch_record.damage_define %></td>
-        <td><%= knife_switch_record.maintainman %></td>
-        <td><%= knife_switch_record.m_qty %></td>
-        <td><%= knife_switch_record.machine_id %></td>
-        <td><%= knife_switch_record.press_num %></td>
-        <td><%= knife_switch_record.damage_life %></td>
-        <td><%= knife_switch_record.broken_life %></td>
-        <td><%= knife_switch_record.total_life %></td>
-        <td><%= link_to 'Show', knife_switch_record %></td>
-        <td><%= link_to 'Edit', edit_knife_switch_record_path(knife_switch_record) %></td>
-        <td><%= link_to 'Destroy', knife_switch_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <tr>
+          <td><%= knife_switch_record.mould_id %></td>
+          <td><%= knife_switch_record.project_id %></td>
+          <td><%= knife_switch_record.knife_type %></td>
+          <td><%= knife_switch_record.knife_kind %></td>
+          <td><%= knife_switch_record.knife_supplier %></td>
+          <td><%= knife_switch_record.state %></td>
+          <td><%= knife_switch_record.damage_define %></td>
+          <td><%= knife_switch_record.press_num %></td>
+          <td><%= knife_switch_record.sort %></td>
+          <td><%= knife_switch_record.outbound_id %></td>
+          <td
+          [<%= link_to '[详情]', knife_switch_record %>
+          <%= link_to '[编辑]', edit_knife_switch_record_path(knife_switch_record) %>
+          <%= link_to '[删除]', knife_switch_record, method: :delete, data: {confirm: 'Are you sure?'} %>
+          </td>
+        </tr>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Knife switch record', new_knife_switch_record_path %>
+    </tbody>
+  </table>
+</div>

@@ -1,6 +1,10 @@
-<h1>Editing Knife Switch Slice</h1>
+<div style="display: inline-flex; margin-top:10px;">
+  <%= link_to '返回', knife_switch_slices_path, :class => 'btn btn-info',
+              :style => 'color:#000;' %>
 
+  <%= link_to '详情', @knife_switch_slice, :class => 'btn btn-info',
+              :style => 'color:#000;' %>
+  <h1 style="position: absolute;right: 20px;">换刀切片<em>编辑</em></h1>
+</div>
+<hr style="border: 1px solid #000"/>
 <%= render 'form' %>
-
-<%= link_to 'Show', @knife_switch_slice %> |
-<%= link_to 'Back', knife_switch_slices_path %>

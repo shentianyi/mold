@@ -1,44 +1,82 @@
 <p id="notice"><%= notice %></p>
+<style type="text/css">
+    .col-sm-6, .col-sm-12 {
+        display: inline-flex;
+    }
 
-<p>
-  <strong>Mould:</strong>
-  <%= @knife_switch_slice.mould_id %>
-</p>
+    p {
+        width: 150px;
+    }
 
-<p>
-  <strong>Project:</strong>
-  <%= @knife_switch_slice.project_id %>
-</p>
+    hr {
+        border: 1px solid #000;
+        opacity: 0.5;
+    }
+</style>
+<h1>换刀切片<em>详情</em></h1>
+<hr/>
 
-<p>
-  <strong>Terminal leoni:</strong>
-  <%= @knife_switch_slice.terminal_leoni_id %>
-</p>
+<div>
+  <div class="col-sm-6">
+    <p>模具号：</p>
+    <%= @knife_switch_slice.mould_id %>
+  </div>
 
-<p>
-  <strong>Knife type1:</strong>
-  <%= @knife_switch_slice.knife_type1 %>
-</p>
+  <div class="col-sm-6">
+    <p>项目：</p>
+    <%= @knife_switch_slice.project_id %>
+  </div>
+  <hr/>
 
-<p>
-  <strong>Knife type2:</strong>
-  <%= @knife_switch_slice.knife_type2 %>
-</p>
+  <div class="col-sm-6">
+    <p>日期：</p>
+    <%= @knife_switch_slice.switch_date %>
+  </div>
 
-<p>
-  <strong>Wire type:</strong>
-  <%= @knife_switch_slice.wire_type %>
-</p>
+  <div class="col-sm-6">
+    <p>端子莱尼号：</p>
+    <%= @knife_switch_slice.terminal_leoni_id %>
+  </div>
+  <hr/>
 
-<p>
-  <strong>Image after:</strong>
-  <%= @knife_switch_slice.image_after %>
-</p>
+  <div class="col-sm-6">
+    <p>刀片型号1：</p>
+    <%= @knife_switch_slice.knife_type1 %>
+  </div>
 
-<p>
-  <strong>Image before:</strong>
-  <%= @knife_switch_slice.image_before %>
-</p>
+  <div class="col-sm-6">
+    <p>刀片型号2：</p>
+    <%= @knife_switch_slice.knife_type2 %>
+  </div>
+  <hr/>
 
-<%= link_to 'Edit', edit_knife_switch_slice_path(@knife_switch_slice) %> |
-<%= link_to 'Back', knife_switch_slices_path %>
+  <div class="col-sm-6">
+    <p>电线型号：</p>
+    <%= @knife_switch_slice.wire_type %>
+  </div>
+
+  <div class="col-sm-6">
+    <p>截面mm：</p>
+    <%= @knife_switch_slice.wire_cross %>
+  </div>
+  <hr/>
+
+  <div class="col-sm-6">
+    <p>剖面：</p>
+    <%= @knife_switch_slice.image_after %>
+  </div>
+
+  <div class="col-sm-6">
+    <p>验收确认：</p>
+    <%= @knife_switch_slice.is_ok %>
+  </div>
+  <hr/>
+
+  <div class="col-sm-12">
+    <p>剖面（换刀前）：</p>
+    <%= @knife_switch_slice.image_before %>
+  </div>
+</div>
+<hr/>
+<%= link_to '编辑', edit_knife_switch_slice_path(@knife_switch_slice), :class => 'btn btn-info', :style => 'color:#000;padding-top:10px; margin-left:2%;margin-top:1%;' %>
+<%= link_to '返回', knife_switch_slices_path, :class => 'btn btn-info', :style => 'color:#000; margin-left:2%;padding-top:10px;margin-top:1%;' %>
