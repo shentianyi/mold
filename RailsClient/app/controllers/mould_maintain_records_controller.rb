@@ -28,7 +28,8 @@ class MouldMaintainRecordsController < ApplicationController
     args = {}
     args[:mould_id] = mould_maintain_record_params[:mould_id]
     args[:plan_date] = mould_maintain_record_params[:plan_date]
-    args[:real_date] = mould_maintain_record_params[:real_date]
+    args[:real_date] = mould_maintain_record_params[:plan_date]
+    args[:note] = mould_maintain_record_params[:note]
     record = MouldMaintainRecord.where(mould_id: args[:mould_id]).order(count: :desc).first
     args[:count] = record.nil? ? 1 : (record.count.to_i + 1)
 
@@ -94,6 +95,6 @@ class MouldMaintainRecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mould_maintain_record_params
-      params.require(:mould_maintain_record).permit(:mould_id, :count, :plan_date, :real_date)
+      params.require(:mould_maintain_record).permit(:mould_id, :count, :plan_date, :real_date, :note)
     end
 end
