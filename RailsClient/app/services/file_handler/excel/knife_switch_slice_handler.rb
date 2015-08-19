@@ -2,7 +2,7 @@ module FileHandler
   module Excel
     class KnifeSwitchSliceHandler<Base
       HEADERS=[
-          'mould_id','project_id','terminal_leoni_id','switch_date','knife_type1','knife_type2','wire_type','wire_cross','image_after','is_ok','image_before'
+          'switch_date','terminal_leoni_id','mould_id','project_id','knife_type1','knife_type2','wire_type','wire_cross','image_after','is_ok','image_before'
       ]
 
       def self.import(file)

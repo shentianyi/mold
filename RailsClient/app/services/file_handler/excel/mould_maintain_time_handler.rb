@@ -2,7 +2,7 @@ module FileHandler
   module Excel
     class MouldMaintainTimeHandler<Base
       HEADERS=[
-          'mould_id','project_id','device_id','serviceman','maintain_date','err_note', 'solution_method', 'code', 'feed_code', 'start_time', 'end_time'
+          'project_id','maintain_date','device_id','mould_id','serviceman','start_time','end_time','err_note','solution_method','code','feed_code'
       ]
 
       def self.import(file)

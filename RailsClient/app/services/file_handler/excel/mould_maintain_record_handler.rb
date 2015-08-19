@@ -2,7 +2,7 @@ module FileHandler
   module Excel
     class MouldMaintainRecordHandler<Base
       HEADERS=[
-          'mould_id','plan_date','real_date'
+          'mould_id','plan_date','note'
       ]
 
       def self.import(file)
@@ -26,7 +26,7 @@ module FileHandler
                 count = record.nil? ? 1 : (record.count.to_i + 1)
                 puts "#############count=#{count}"
 
-                MouldMaintainRecord.create({mould_id: mould_id, count: count, plan_date: row['plan_date'], real_date: row['real_date']});
+                MouldMaintainRecord.create({mould_id: mould_id, count: count, plan_date: row['plan_date'], real_date: row['plan_date']});
               end
             end
             msg.result = true
@@ -79,9 +79,9 @@ module FileHandler
       def self.validate_row(row,line)
         msg = Message.new(contents: [])
 
-        real_date = row['real_date'].to_time
-        if real_date && real_date > Time.now
-          msg.contents << "实际时间:#{row['real_date']} 无效!"
+        record = MouldMaintainRecord.where(mould_id: mould_id, plan_date: row['plan_time']).first
+        unless record.nil?
+          msg.contents << "时间:#{row['plan_date']} 已存在!"
         end
 
         unless msg.result=(msg.contents.size==0)

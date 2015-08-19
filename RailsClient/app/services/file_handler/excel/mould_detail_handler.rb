@@ -1,9 +1,10 @@
 module FileHandler
   module Excel
-    class KnifeSwitchRecordHandler<Base
+    class MouldDetailHandler<Base
       HEADERS=[
-          'switch_date','mould_id','project_id','knife_type','knife_kind','knife_supplier', 'state', 'problem', 'damage_define', 'maintainman', 'qty',
-          'machine_id', 'press_num', 'operater', 'is_ok', 'sort', 'outbound_id'
+          'mould_id','mould_type','mould_supplier','mould_state','position','terminal_leoni_no','terminal_supplier','stopwater','use_range','wire_type','wire_cross','original_param_ch',
+          'original_param_cw','actual_param_ch','actual_param_cw','actual_param_ich','actual_param_icw','step_dch_id','step_ich_id','next_time','c_up_knife','c_down_knife','i_up_knife',
+          'i_down_knife','upper_punch','coc','coh','feeding_claw','after_groove','before_groove','oil_cup','buy_time','release_report','fixed_asset_id','is_idle','idle_time','note'
       ]
 
       def self.import(file)
@@ -15,38 +16,18 @@ module FileHandler
         if validate_msg.result
           #validate file
           begin
-            KnifeSwitchRecord.transaction do
+            MouldDetail.transaction do
               2.upto(book.last_row) do |line|
                 row = {}
                 HEADERS.each_with_index do |k, i|
                   row[k] = book.cell(line, i+1).to_s.strip
                 end
 
-                mould_id = row['mould_id'].to_s
-
-                record = KnifeSwitchRecord.where(mould_id: mould_id).order(m_qty: :desc).first
-                total_count = record.nil? ? 1 : (record.m_qty.to_i + 1)
-
-                if row['state'] == "磨损"
-                  damage_life = record.nil? ? (row['press_num'].to_i) : (row['press_num'].to_i - record.press_num)
-                  broken_life = 0
-                elsif row['state'] == "断裂"
-                  damage_life = 0
-                  broken_life = record.nil? ? (row['press_num'].to_i) : (row['press_num'].to_i - record.press_num)
-                else
-                  damage_life = 0
-                  broken_life = 0
-                end
-                total_life = broken_life | damage_life
-
-                KnifeSwitchRecord.create({mould_id: mould_id, project_id: row['project_id'], switch_date: row['switch_date'], knife_type: row['knife_type'], knife_kind: row['knife_kind'],
-                                          knife_supplier: row['knife_supplier'], state: row['state'], problem: row['problem'], damage_define: row['damage_define'], maintainman: row['maintainman'],
-                                          qty: row['qty'], m_qty: total_count, machine_id: row['machine_id'], press_num: row['press_num'], damage_life: damage_life,
-                                          broken_life: broken_life, total_life: total_life, operater: row['operater'], is_ok: row['is_ok'], sort: row['sort'], outbound_id: row['outbound_id']})
+                MouldDetail.create(row);
               end
             end
             msg.result = true
-            msg.content = "导入模具换刀记录成功"
+            msg.content = "导入模具维护记录成功！"
           rescue => e
             puts e.backtrace
             msg.result = false
@@ -95,9 +76,9 @@ module FileHandler
       def self.validate_row(row,line)
         msg = Message.new(contents: [])
 
-        # if (row['end_time'].to_s.to_time - row['start_time'].to_s.to_time) <= 0
-        #   msg.contents << "维修时间不正确!"
-        # end
+        if MouldDetail.find_by_mould_id(row['mould_id'].to_i)
+          msg.contents<<"该模具已存在！"
+        end
 
         unless msg.result=(msg.contents.size==0)
           msg.content=msg.contents.join('/')
