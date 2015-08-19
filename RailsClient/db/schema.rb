@@ -34,12 +34,13 @@ ActiveRecord::Schema.define(version: 20150818034707) do
     t.string   "problem",        limit: 255, default: ""
     t.string   "damage_define",  limit: 255, default: ""
     t.string   "maintainman",    limit: 255, default: ""
-    t.integer  "m_qty",          limit: 4
+    t.integer  "qty",            limit: 4,   default: 1
+    t.integer  "m_qty",          limit: 4,   default: 0
     t.string   "machine_id",     limit: 255, default: ""
-    t.integer  "press_num",      limit: 4
-    t.integer  "damage_life",    limit: 4
-    t.integer  "broken_life",    limit: 4
-    t.integer  "total_life",     limit: 4
+    t.integer  "press_num",      limit: 4,   default: 0
+    t.integer  "damage_life",    limit: 4,   default: 0
+    t.integer  "broken_life",    limit: 4,   default: 0
+    t.integer  "total_life",     limit: 4,   default: 0
     t.string   "operater",       limit: 255, default: ""
     t.boolean  "is_ok",          limit: 1,   default: false
     t.string   "sort",           limit: 255, default: ""
@@ -112,12 +113,10 @@ ActiveRecord::Schema.define(version: 20150818034707) do
     t.boolean  "is_dirty",          limit: 1,   default: true
     t.boolean  "is_new",            limit: 1,   default: true
     t.datetime "idle_time"
-
     t.string   "note",              limit: 255
     t.string   "email",             limit: 255, default: "mj@leoni.com", null: false
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false
-
   end
 
   add_index "mould_details", ["mould_id"], name: "index_mould_details_on_mould_id", using: :btree
