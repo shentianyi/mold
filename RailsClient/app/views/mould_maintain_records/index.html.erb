@@ -70,6 +70,7 @@
       <th>维护次数</th>
       <th>计划维护日期</th>
       <th>实际维护日期</th>
+      <th>备注</th>
       <th>操作</th>
     </tr>
     </thead>
@@ -81,6 +82,8 @@
           <td><%= mould_maintain_record.count %></td>
           <td><%= mould_maintain_record.plan_date %></td>
           <td><%= mould_maintain_record.real_date %></td>
+          <!--在这修改备注id-->
+          <td><%= mould_maintain_record.mould_id %></td>
           <td><%= link_to '[详情]', mould_maintain_record %>
             <%= link_to '[编辑]', edit_mould_maintain_record_path(mould_maintain_record) %>
             <%= link_to '[删除]', mould_maintain_record, method: :delete, data: {confirm: '确认删除?'} %>

@@ -27,3 +27,13 @@
 <%= render partial: 'shares/handling_msg_box', locals: {handle_message: '处理中...'} %>
 </body>
 </html>
+
+<script>
+    $(function () {
+        $(".datetime-picker").datetimepicker({
+            lang:'ch',
+            format: 'Y-m-d H:i'
+        });
+    });
+</script>
+

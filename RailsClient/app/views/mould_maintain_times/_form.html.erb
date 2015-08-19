@@ -57,11 +57,11 @@
     </div>
     <div class="col-sm-6">
       <%= f.label :start_time, '开始时间:' %>
-      <%= f.text_field :start_time %>
+      <%= f.text_field :start_time,class:'datetime-picker' %>
     </div>
     <div class="col-sm-6">
       <%= f.label :end_time, '结束时间:' %>
-      <%= f.text_field :end_time %>
+      <%= f.text_field :end_time ,class:'datetime-picker'%>
     </div>
     <div class="col-sm-12">
       <hr/>
@@ -69,3 +69,4 @@
 
     <button type="submit" style="margin-left: 10px;margin-top:20px;" class="btn btn-primary" name="commit">完成</button>
 <% end %>
+
