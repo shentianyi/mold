@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20150818034707) do
   end
 
   create_table "knife_switch_records", force: :cascade do |t|
-    t.string   "mould_id",       limit: 255,                 null: false
+    t.string   "mould_id",       limit: 255,                          null: false
     t.string   "project_id",     limit: 255, default: ""
     t.datetime "switch_date"
     t.string   "knife_type",     limit: 255, default: ""
@@ -45,15 +45,16 @@ ActiveRecord::Schema.define(version: 20150818034707) do
     t.string   "sort",           limit: 255, default: ""
     t.string   "outbound_id",    limit: 255, default: ""
     t.string   "image_id",       limit: 255, default: ""
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.string   "email",          limit: 255, default: "mj@leoni.com", null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
   end
 
   add_index "knife_switch_records", ["image_id"], name: "index_knife_switch_records_on_image_id", using: :btree
   add_index "knife_switch_records", ["mould_id"], name: "index_knife_switch_records_on_mould_id", using: :btree
 
   create_table "knife_switch_slices", force: :cascade do |t|
-    t.string   "mould_id",          limit: 255,                 null: false
+    t.string   "mould_id",          limit: 255,                          null: false
     t.string   "project_id",        limit: 255, default: ""
     t.string   "terminal_leoni_id", limit: 255, default: ""
     t.datetime "switch_date"
@@ -64,14 +65,15 @@ ActiveRecord::Schema.define(version: 20150818034707) do
     t.string   "image_after",       limit: 255, default: ""
     t.string   "image_before",      limit: 255, default: ""
     t.boolean  "is_ok",             limit: 1,   default: false
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.string   "email",             limit: 255, default: "mj@leoni.com", null: false
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
   end
 
   add_index "knife_switch_slices", ["mould_id"], name: "index_knife_switch_slices_on_mould_id", using: :btree
 
   create_table "mould_details", force: :cascade do |t|
-    t.string   "mould_id",          limit: 255,                 null: false
+    t.string   "mould_id",          limit: 255,                          null: false
     t.string   "mould_type",        limit: 255, default: ""
     t.string   "mould_state",       limit: 255, default: ""
     t.string   "mould_supplier",    limit: 255, default: ""
@@ -111,27 +113,29 @@ ActiveRecord::Schema.define(version: 20150818034707) do
     t.boolean  "is_new",            limit: 1,   default: true
     t.datetime "idle_time"
     t.string   "note",              limit: 255
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.string   "email",             limit: 255, default: "mj@leoni.com", null: false
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
   end
 
   add_index "mould_details", ["mould_id"], name: "index_mould_details_on_mould_id", using: :btree
   add_index "mould_details", ["position"], name: "index_mould_details_on_position", using: :btree
 
   create_table "mould_maintain_records", force: :cascade do |t|
-    t.string   "mould_id",   limit: 255,             null: false
+    t.string   "mould_id",   limit: 255,                          null: false
     t.integer  "count",      limit: 4,   default: 0
     t.datetime "plan_date"
     t.datetime "real_date"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.string   "email",      limit: 255, default: "mj@leoni.com", null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   add_index "mould_maintain_records", ["count"], name: "index_mould_maintain_records_on_count", using: :btree
   add_index "mould_maintain_records", ["mould_id"], name: "index_mould_maintain_records_on_mould_id", using: :btree
 
   create_table "mould_maintain_times", force: :cascade do |t|
-    t.string   "mould_id",        limit: 255,              null: false
+    t.string   "mould_id",        limit: 255,                          null: false
     t.string   "project_id",      limit: 255, default: ""
     t.string   "device_id",       limit: 255, default: ""
     t.string   "serviceman",      limit: 255, default: ""
@@ -143,8 +147,9 @@ ActiveRecord::Schema.define(version: 20150818034707) do
     t.string   "start_time",      limit: 255
     t.string   "end_time",        limit: 255
     t.integer  "downtime",        limit: 4
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.string   "email",           limit: 255, default: "mj@leoni.com", null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
   end
 
   add_index "mould_maintain_times", ["mould_id"], name: "index_mould_maintain_times_on_mould_id", using: :btree

@@ -23,6 +23,7 @@ class CreateKnifeSwitchRecords < ActiveRecord::Migration
       t.string :sort, :default => ""
       t.string :outbound_id, :default => ""
       t.string :image_id, :default => ""
+      t.string :email, null: false, default: "mj@leoni.com"
 
       t.timestamps null: false
     end

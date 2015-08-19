@@ -12,6 +12,7 @@ class CreateKnifeSwitchSlices < ActiveRecord::Migration
       t.string :image_after, :default => ""
       t.string :image_before, :default => ""
       t.boolean :is_ok, :default => false
+      t.string :email, null: false, default: "mj@leoni.com"
 
       t.timestamps null: false
     end

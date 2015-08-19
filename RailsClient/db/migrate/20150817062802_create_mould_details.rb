@@ -42,6 +42,7 @@ class CreateMouldDetails < ActiveRecord::Migration
       t.boolean :is_new, :default => true
       t.datetime :idle_time
       t.string :note
+      t.string :email, null: false, default: "mj@leoni.com"
 
       t.timestamps null: false
     end
