@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery-1.11.2.min
-//= require jquery_ujs
+//= require jquery-2.1.4.min
 //= require jquery.ui/jquery-ui-1.9.1.custom.min
 //= require jquery.ui/jquery.datetimepicker
 //= require jquery.file.upload/jquery.iframe-transport
@@ -19,4 +19,5 @@
 //= require bootstrap.min.js
 //= require login
 //= require jquery-ui.min
+//= require jquery_ujs
 //= require_tree .

@@ -30,11 +30,15 @@
     .col-sm-3 > label, .col-sm-3 > input {
         margin-top: 20px;
     }
+
+    .col-sm-2>select, .col-sm-3>select {
+        width: 100px;
+    }
 </style>
 <div style="display: inline-flex;width: 100%;">
   <div class="col-sm-2">
     <label for="date:">日期：</label>
-    <input type="text">
+    <input type="text" id="datepicker">
   </div>
 
   <div class="col-sm-2">
@@ -124,3 +128,10 @@
     </tbody>
   </table>
 </div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#datepicker").datepicker();
+    });
+</script>

@@ -94,8 +94,10 @@
 
       <div class="col-sm-4">
         <%= f.label :sort, '分类:' %>
-        <%= f.text_field :sort %>
-      </div>
+        <!--<%= f.text_field :sort %>-->
+
+        <%= f.select :sort, options_for_select([['CH', 'CH'], ['CW', 'CW'], ['ICW', 'ICW']], params[:sort]),
+                     {}, {:style => 'width:35%;'} %>      </div>
     </div>
     <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
