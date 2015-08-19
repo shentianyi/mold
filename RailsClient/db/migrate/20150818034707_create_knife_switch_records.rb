@@ -11,12 +11,13 @@ class CreateKnifeSwitchRecords < ActiveRecord::Migration
       t.string :problem, :default => ""
       t.string :damage_define, :default => ""
       t.string :maintainman, :default => ""
-      t.integer :m_qty, :default => ""
+      t.integer :qty, :default => 1
+      t.integer :m_qty, :default => 0
       t.string :machine_id, :default => ""
-      t.integer :press_num
-      t.integer :damage_life
-      t.integer :broken_life
-      t.integer :total_life
+      t.integer :press_num, :default => 0
+      t.integer :damage_life, :default => 0
+      t.integer :broken_life, :default => 0
+      t.integer :total_life, :default => 0
 
       t.string :operater, :default => ""
       t.boolean :is_ok, :default => false
