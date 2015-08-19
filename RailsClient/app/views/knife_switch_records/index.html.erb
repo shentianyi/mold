@@ -34,11 +34,17 @@
     .col-sm-2>select, .col-sm-3>select {
         width: 100px;
     }
+
+    .col-sm-4>label, .col-sm-4>input {
+        margin-top: 20px;
+    }
 </style>
 <div style="display: inline-flex;width: 100%;">
-  <div class="col-sm-2">
-    <label for="date:">日期：</label>
-    <input type="text" id="datepicker">
+  <div class="col-sm-4">
+    <label for="date:">日期：从</label>
+    <input type="text" class="datetime-picker">
+    <b>到</b>
+    <input type="text" class="datetime-picker">
   </div>
 
   <div class="col-sm-2">

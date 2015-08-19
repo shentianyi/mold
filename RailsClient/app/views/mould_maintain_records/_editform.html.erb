@@ -45,13 +45,19 @@
 
         <div class="col-sm-12">
           <%= f.label :plan_date, '计划维护时间:' %>
-          <%= f.text_field :plan_date %>
+          <%= f.text_field :plan_date, class: 'datetime-picker' %>
         </div>
 
 
         <div class="col-sm-12">
           <%= f.label :real_date, '实际维护时间:' %>
-          <%= f.text_field :real_date %>
+          <%= f.text_field :real_date, class: 'datetime-picker' %>
+        </div>
+
+        <div class="col-sm-12">
+          <!--备注id 已经设定为 ，需要在此处修改-->
+          <%= f.label :mould_id, '备注:' %>
+          <%= f.text_field :mould_id, class: 'datetime-picker' %>
         </div>
 
         <hr style="border: 1px solid#999"/>
@@ -61,12 +67,3 @@
     </div>
 
 <% end %>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#mould_maintain_record_plan_date").datepicker();
-    });
-    $(document).ready(function () {
-        $("#mould_maintain_record_real_date").datepicker();
-    });
-</script>

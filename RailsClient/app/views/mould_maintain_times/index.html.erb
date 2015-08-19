@@ -5,7 +5,7 @@
         text-align: left;
     }
 
-    .col-sm-2>b, .col-sm-2>input {
+    .col-sm-2>b, .col-sm-2>input, .col-sm-4>b, .col-sm-4>input {
         margin-top: 10px;
     }
 
@@ -21,9 +21,10 @@
     <b>项目：</b>
     <input type="text">
   </div>
-  <div class="col-sm-2">
-    <b>日期：</b>
-    <input type="text" id="datepicker">
+  <div class="col-sm-4">
+    <b>日期：从</b>
+    <input type="text" class="datetime-picker"><b>到</b>
+    <input type="text" class="datetime-picker">
   </div>
 
   <div class="col-sm-2">
@@ -103,9 +104,3 @@
     </tbody>
   </table>
 </div>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#datepicker").datepicker();
-    });
-</script>

@@ -37,7 +37,7 @@
       </div>
       <div class="col-sm-6">
         <%= f.label :switch_date, '日期:' %>
-        <%= f.text_field :switch_date %>
+        <%= f.text_field :switch_date, class: 'datetime-picker' %>
       </div>
       <div class="col-sm-6">
         <%= f.label :terminal_leoni_id, '端子莱尼号:' %>
@@ -58,16 +58,6 @@
         <br>
         <%= f.text_field :wire_type %>
       </div>
-      <div class="col-sm-6">
-        <%= f.label :image_after, '剖面:' %>
-        <br>
-        <%= f.text_field :image_after %>
-      </div>
-      <div class="col-sm-6">
-        <%= f.label :image_before, '剖面(换刀前):' %>
-        <br>
-        <%= f.text_field :image_before %>
-      </div>
 
       <div class="col-sm-6">
         <%= f.label :wire_cross, '截面mm:' %>
@@ -87,12 +77,3 @@
     <hr style="border: 1px solid #000;opacity: 0.5;"/>
     <button type="submit" style="margin-left: 10px;margin-top:0;" class="btn btn-primary" name="commit">完成</button>
 <% end %>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#knife_switch_slice_switch_date").datepicker();
-    });
-</script>
-
-
-
