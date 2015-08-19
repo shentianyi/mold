@@ -4,14 +4,17 @@
         height: 50px;
         cursor: pointer;
     }
+
     input[type="submit"]:hover {
         background-color: #286090;
     }
+
     .col-sm-4 {
         float: none;
         text-align: left;
         display: inline-flex;
     }
+
     label {
         width: 150px;
     }
@@ -261,5 +264,9 @@
 
     $(document).ready(function () {
         $("#mould_detail_buy_time").datepicker();
+    });
+
+    $(document).ready(function () {
+        $("#mould_detail_mould_state").val("@mould_detail.mould_state");
     });
 </script>

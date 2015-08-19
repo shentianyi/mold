@@ -102,6 +102,7 @@
       <th>压接次数</th>
       <th>分类</th>
       <th>出库单号</th>
+      <th>日期</th>
       <th>操作</th>
     </tr>
     </thead>
@@ -119,9 +120,10 @@
           <td><%= knife_switch_record.press_num %></td>
           <td><%= knife_switch_record.sort %></td>
           <td><%= knife_switch_record.outbound_id %></td>
+          <td><%= knife_switch_record.switch_date %></td>
           <td><%= link_to '[详情]', knife_switch_record %>
             <%= link_to '[编辑]', edit_knife_switch_record_path(knife_switch_record) %>
-            <%= link_to '[删除]', knife_switch_record, method: :delete, data: {confirm: 'Are you sure?'} %>
+            <%= link_to '[删除]', knife_switch_record, method: :delete, data: {confirm: '确定删除?'} %>
           </td>
         </tr>
     <% end %>
