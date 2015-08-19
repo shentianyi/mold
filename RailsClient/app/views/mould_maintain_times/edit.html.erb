@@ -1,6 +1,10 @@
-<h1>Editing Mould Maintain Time</h1>
+<div style="display: inline-flex; margin-top:10px;">
+  <%= link_to '返回', knife_switch_records_path, :class => 'btn btn-info',
+              :style => 'color:#000;' %>
 
+  <%= link_to '详情', @mould_maintain_time, :class => 'btn btn-info',
+              :style => 'color:#000;' %>
+  <h1 style="position: absolute;right: 20px;">模具维修时间<em>编辑</em></h1>
+</div>
+<hr style="border: 1px solid #000"/>
 <%= render 'form' %>
-
-<%= link_to 'Show', @mould_maintain_time %> |
-<%= link_to 'Back', mould_maintain_times_path %>

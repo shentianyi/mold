@@ -1,44 +1,90 @@
 <p id="notice"><%= notice %></p>
+<style type="text/css">
 
-<p>
-  <strong>Mould:</strong>
-  <%= @mould_maintain_time.mould_id %>
-</p>
+    .col-sm-6 {
+        float: none;
+        margin-left: 20px;
+        text-align: left;
+        display: inline-flex;
+        width: 30%;
+        margin-top: 10px;
+    }
 
-<p>
-  <strong>Project:</strong>
-  <%= @mould_maintain_time.project_id %>
-</p>
+    p {
+        width: 150px;
+    }
 
-<p>
-  <strong>Device:</strong>
-  <%= @mould_maintain_time.device_id %>
-</p>
+    hr {
+        border: 1px solid #ccc;
+        margin-bottom: 2px;
+        margin-top: 2px;
+    }
 
-<p>
-  <strong>Serviceman:</strong>
-  <%= @mould_maintain_time.serviceman %>
-</p>
+    h1 {
+        margin-left: 10px;
+    }
+</style>
 
-<p>
-  <strong>Err note:</strong>
-  <%= @mould_maintain_time.err_note %>
-</p>
+<h1>模具维修时间<em>详情</em></h1>
 
-<p>
-  <strong>Solution method:</strong>
-  <%= @mould_maintain_time.solution_method %>
-</p>
+<hr style="border: 1px solid #000">
 
-<p>
-  <strong>Code:</strong>
-  <%= @mould_maintain_time.code %>
-</p>
+<div style="display: inline-flex; width: 100%; ">
+  <div class="col-sm-6">
+    <p>项目:</p>
+    <%= @mould_maintain_time.project_id %>
+  </div>
 
-<p>
-  <strong>Feed code:</strong>
-  <%= @mould_maintain_time.feed_code %>
-</p>
+  <div class="col-sm-6">
+    <p>模具号:</p>
+    <%= @mould_maintain_time.mould_id %>
+  </div>
+</div>
+<hr/>
 
-<%= link_to 'Edit', edit_mould_maintain_time_path(@mould_maintain_time) %> |
-<%= link_to 'Back', mould_maintain_times_path %>
+<div style="display: inline-flex; width: 100%; ">
+  <div class="col-sm-6">
+    <p>设备编号:</p>
+    <%= @mould_maintain_time.device_id %>
+  </div>
+
+  <div class="col-sm-6">
+    <p>抢修人员:</p>
+    <%= @mould_maintain_time.serviceman %>
+  </div>
+</div>
+<hr/>
+
+<div style="display: inline-flex; width: 100%; ">
+  <div class="col-sm-6">
+    <p>问题描述:</p>
+    <%= @mould_maintain_time.err_note %>
+  </div>
+
+  <div class="col-sm-6">
+    <p>解决措施:</p>
+    <%= @mould_maintain_time.solution_method %>
+  </div>
+  <hr/>
+</div>
+<hr/>
+
+<div style="display: inline-flex; width: 100%; ">
+  <div class="col-sm-6">
+    <p>代码:</p>
+    <%= @mould_maintain_time.code %>
+  </div>
+
+  <div class="col-sm-6">
+    <p>送料方式:</p>
+    <%= @mould_maintain_time.feed_code %>
+  </div>
+  <hr/>
+
+</div>
+
+
+<hr style="border: 1px solid #000">
+
+<%= link_to '编辑', edit_mould_maintain_time_path(@mould_maintain_time), :class => 'btn btn-info', :style => 'color:#000; margin-left:2%;margin-top:1%;' %>
+<%= link_to '返回', mould_maintain_times_path, :class => 'btn btn-info', :style => 'color:#000; margin-left:2%;margin-top:1%;' %>

@@ -2,9 +2,11 @@
     th {
         text-align: center;
     }
+
     td {
         text-align: center;
     }
+
     .col-sm-4, .col-sm-2, .col-sm-3, .col-sm-5 {
         float: none;
         text-align: left;
@@ -38,7 +40,7 @@
 
 <div style="display: inline-flex;margin-top:20px;" class="col-sm-12">
 
-  <div class="col-sm-3">
+  <div class="col-sm-2">
     <b>状态：</b>
     <select>
       <option value="ALL">ALL</option>
@@ -50,12 +52,14 @@
 
 
   <div class="col-sm-4">
-    <b>下次批准日期：</b>
-    <input id="datepicker" type="text">
+    <b>下次批准日期：从</b>
+    <input id="datepicker1" type="text">
+    <b>到</b>
+    <input id="datepicker2" type="text">
   </div>
 
 
-  <div style="display: inline-flex;" class="col-sm-5">
+  <div style="display: inline-flex;" class="col-sm-3">
     <%= link_to '查询', '', :class => 'btn btn-primary',
                 :style => 'color:#000;padding-top:10px;margin:0;' %>
   </div>
@@ -122,6 +126,9 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#datepicker").datepicker();
+        $("#datepicker1").datepicker();
+    });
+    $(document).ready(function () {
+        $("#datepicker2").datepicker();
     });
 </script>
