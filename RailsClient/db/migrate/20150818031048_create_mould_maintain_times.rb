@@ -13,6 +13,7 @@ class CreateMouldMaintainTimes < ActiveRecord::Migration
       t.string :start_time
       t.string :end_time
       t.integer :downtime
+      t.string :email, null: false, default: "mj@leoni.com"
 
       t.timestamps null: false
     end

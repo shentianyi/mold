@@ -56,7 +56,7 @@ class ImagesController < ApplicationController
   def create
     puts '----------------------'
     puts "#{params[:image][:filename]}"
-    File.open('/home/lzd/test.jpg', 'wb') do |f|
+    File.open('/home/lzd/图片/test.jpg', 'wb') do |f|
       f.write(params[:image][:filename].read)
     end
 

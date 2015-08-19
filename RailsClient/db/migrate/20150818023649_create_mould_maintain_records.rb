@@ -5,6 +5,7 @@ class CreateMouldMaintainRecords < ActiveRecord::Migration
       t.integer :count, default: 0
       t.datetime :plan_date
       t.datetime :real_date
+      t.string :email, null: false, default: "mj@leoni.com"
 
       t.timestamps null: false
     end
