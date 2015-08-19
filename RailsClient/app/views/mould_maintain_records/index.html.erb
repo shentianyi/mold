@@ -83,7 +83,7 @@
           <td><%= mould_maintain_record.real_date %></td>
           <td><%= link_to '[详情]', mould_maintain_record %>
             <%= link_to '[编辑]', edit_mould_maintain_record_path(mould_maintain_record) %>
-            <%= link_to '[删除]', mould_maintain_record, method: :delete, data: {confirm: 'Are you sure?'} %>
+            <%= link_to '[删除]', mould_maintain_record, method: :delete, data: {confirm: '确认删除?'} %>
           </td>
         </tr>
     <% end %>
