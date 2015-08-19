@@ -24,7 +24,14 @@ class KnifeSwitchSlicesController < ApplicationController
   # POST /knife_switch_slices
   # POST /knife_switch_slices.json
   def create
+    puts "---------------------------------"
+    puts knife_switch_slice_params
     @knife_switch_slice = KnifeSwitchSlice.new(knife_switch_slice_params)
+
+    File.open('/home/lzd/图片/test2.jpg', 'wb') do |f|
+      f.write(knife_switch_slice_params[:image_before].read)
+    end
+
 
     respond_to do |format|
       if @knife_switch_slice.save
@@ -87,6 +94,7 @@ class KnifeSwitchSlicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def knife_switch_slice_params
-      params.require(:knife_switch_slice).permit(:mould_id, :project_id, :terminal_leoni_id, :knife_type1, :knife_type2, :wire_type, :image_after, :image_before)
+      params.require(:knife_switch_slice).permit(:mould_id, :project_id, :terminal_leoni_id, :knife_type1, :knife_type2, :wire_type, :image_after, :image_before, :switch_date,
+                                                 :is_ok, :wire_cross)
     end
 end

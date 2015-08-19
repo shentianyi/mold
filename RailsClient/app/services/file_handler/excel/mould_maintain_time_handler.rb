@@ -78,6 +78,8 @@ module FileHandler
 
       def self.validate_row(row,line)
         msg = Message.new(contents: [])
+        puts "111111111111111111111111111"
+        puts row
 
         if (row['end_time'].to_s.to_time - row['start_time'].to_s.to_time) <= 0
           msg.contents << "维修时间不正确!"
