@@ -115,10 +115,9 @@
           <td><%= knife_switch_record.press_num %></td>
           <td><%= knife_switch_record.sort %></td>
           <td><%= knife_switch_record.outbound_id %></td>
-          <td
-          [<%= link_to '[详情]', knife_switch_record %>
-          <%= link_to '[编辑]', edit_knife_switch_record_path(knife_switch_record) %>
-          <%= link_to '[删除]', knife_switch_record, method: :delete, data: {confirm: 'Are you sure?'} %>
+          <td><%= link_to '[详情]', knife_switch_record %>
+            <%= link_to '[编辑]', edit_knife_switch_record_path(knife_switch_record) %>
+            <%= link_to '[删除]', knife_switch_record, method: :delete, data: {confirm: 'Are you sure?'} %>
           </td>
         </tr>
     <% end %>
