@@ -76,6 +76,12 @@
 </div>
 
 <div style="margin-left: 100px;margin-right: 5%;">
+  <div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info @knife_switch_slices %>
+    </div>
+    <%= will_paginate @knife_switch_slices, :container => false %>
+  </div>
   <table class="table table-bordered table-striped table-hover">
     <thead>
     <tr style="background-color: #ccc">
@@ -115,4 +121,7 @@
     <% end %>
     </tbody>
   </table>
+  <div class="digg_pagination">
+    <%= will_paginate @knife_switch_slices, :container => false %>
+  </div>
 </div>

@@ -4,7 +4,7 @@ class KnifeSwitchSlicesController < ApplicationController
   # GET /knife_switch_slices
   # GET /knife_switch_slices.json
   def index
-    @knife_switch_slices = KnifeSwitchSlice.all
+    @knife_switch_slices = KnifeSwitchSlice.paginate(:page => params[:page])
   end
 
   # GET /knife_switch_slices/1
@@ -23,14 +23,21 @@ class KnifeSwitchSlicesController < ApplicationController
 
   def do_image_param params
     args = {}
-    before_image_path = $image_path + Time.now.to_s + "-before-" +  params[:image_before].original_filename
-    after_image_path = $image_path + Time.now.to_s + "-after-" +  params[:image_after].original_filename
+    after_image_path = ''
+    before_image_path = ''
 
-    File.open(before_image_path, 'wb') do |f|
-      f.write(params[:image_before].read)
+    unless params[:image_before].nil?
+      before_image_path = $image_path + Time.now.to_s + "-before-" + params[:image_before].original_filename
+      File.open(before_image_path, 'wb') do |f|
+        f.write(params[:image_before].read)
+      end
     end
-    File.open(after_image_path, 'wb') do |f|
-      f.write(params[:image_after].read)
+
+    unless params[:image_after].nil?
+      after_image_path = $image_path + Time.now.to_s + "-after-" + params[:image_after].original_filename
+      File.open(after_image_path, 'wb') do |f|
+        f.write(params[:image_after].read)
+      end
     end
 
     args[:mould_id] = params[:mould_id]
@@ -110,14 +117,14 @@ class KnifeSwitchSlicesController < ApplicationController
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_knife_switch_slice
-      @knife_switch_slice = KnifeSwitchSlice.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_knife_switch_slice
+    @knife_switch_slice = KnifeSwitchSlice.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def knife_switch_slice_params
-      params.require(:knife_switch_slice).permit(:mould_id, :project_id, :terminal_leoni_id, :knife_type1, :knife_type2, :wire_type, :image_after, :image_before, :switch_date,
-                                                 :is_ok, :wire_cross)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def knife_switch_slice_params
+    params.require(:knife_switch_slice).permit(:mould_id, :project_id, :terminal_leoni_id, :knife_type1, :knife_type2, :wire_type, :image_after, :image_before, :switch_date,
+                                               :is_ok, :wire_cross)
+  end
 end

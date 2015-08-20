@@ -4,7 +4,7 @@ class MouldMaintainTimesController < ApplicationController
   # GET /mould_maintain_times
   # GET /mould_maintain_times.json
   def index
-    @mould_maintain_times = MouldMaintainTime.all
+    @mould_maintain_times = MouldMaintainTime.paginate(:page => params[:page])
   end
 
   # GET /mould_maintain_times/1
