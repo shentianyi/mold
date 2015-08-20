@@ -24,7 +24,7 @@ module FileHandler
 
                 mould_id = row['mould_id'].to_s
 
-                record = KnifeSwitchRecord.where(mould_id: mould_id).order(m_qty: :desc).first
+                record = KnifeSwitchRecord.where(mould_id: mould_id, project_id: row['project_id'], knife_type: row['knife_type'], knife_kind: row['knife_kind']).order(m_qty: :desc).first
                 total_count = record.nil? ? 1 : (record.m_qty.to_i + 1)
 
                 if row['state'] == "磨损"

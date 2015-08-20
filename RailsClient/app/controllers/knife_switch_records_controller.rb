@@ -45,7 +45,7 @@ class KnifeSwitchRecordsController < ApplicationController
     args[:sort] = knife_switch_record_params[:sort]
     args[:outbound_id] = knife_switch_record_params[:outbound_id]
 
-    record = KnifeSwitchRecord.where(mould_id: args[:mould_id]).order(m_qty: :desc).first
+    record = KnifeSwitchRecord.where(mould_id: args[:mould_id], project_id: args[:project_id], knife_type: args[:knife_type], knife_kind: args[:knife_kind]).order(m_qty: :desc).first
     args[:m_qty] = record.nil? ? 1 : (record.m_qty.to_i + 1)
 
     if args[:state] == "磨损"
