@@ -51,16 +51,10 @@
     <b>状态：</b>
     <select name="mould_detail[mould_state]" include_blank="true">
       <% {ALL: nil, 未过期: '未过期', 即将过期: '即将过期',已过期: '已过期'}.each do |k, v| %>
-          <option value="<%= v %>" <%= 'selected' if @state==v %>> <%= k %></option>
+          <option value="<%= v %>" <%= 'selected' if @mould_state==v %>> <%= k %></option>
       <% end %>
     </select>
 
-    <select>
-      <option value="ALL">ALL</option>
-      <option value="未过期">未过期</option>
-      <option value="即将过期">即将过期</option>
-      <option value="已过期">已过期</option>
-    </select>
   </div>
 
   <div class="col-sm-6">

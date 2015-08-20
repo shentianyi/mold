@@ -28,17 +28,20 @@
 <p class="title">模具维护记录</p>
 <hr style="border: 1px solid #999;margin-top: 0;padding-top: 0;margin-left: 158px;"/>
 
+<div>
+  <form method="get" action="<%= send("search_#{@model.pluralize}_path") %>">
+
 <div style="display: inline-flex;" class="col-sm-12">
   <div class="col-sm-2">
     <b>模具号：</b>
-    <input type="text">
+    <input type="text" name="mould_maintain_record[mould_id]" value="<%= @mould_id %>">
   </div>
 
-  <div style="display: inline-flex;" class="col-sm-1">
-    <%= link_to '查询', '', :class => 'btn btn-primary',
-                :style => 'color:#000;padding-top:10px;margin:0;' %>
-  </div>
+  <input type="submit" value="查 找" class="btn btn-primary"/>
 
+</div>
+
+  </form>
 </div>
 <hr/>
 
@@ -83,8 +86,8 @@
         <tr>
           <td><%= mould_maintain_record.mould_id %></td>
           <td><%= mould_maintain_record.count %></td>
-          <td><%= mould_maintain_record.plan_date %></td>
-          <td><%= mould_maintain_record.real_date %></td>
+          <td><%= mould_maintain_record.plan_date.nil? ? '' : mould_maintain_record.plan_date.localtime.strftime("%Y-%m-%d")  %></td>
+          <td><%= mould_maintain_record.real_date.nil? ? '' : mould_maintain_record.real_date.localtime.strftime("%Y-%m-%d")  %></td>
           <!--在这修改备注id-->
           <td><%= mould_maintain_record.note %></td>
           <td><%= link_to '[详情]', mould_maintain_record %>
