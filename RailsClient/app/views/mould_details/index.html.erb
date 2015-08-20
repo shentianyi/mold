@@ -29,12 +29,12 @@
 
   <div class="col-sm-3">
     <b>端子莱尼号：</b>
-    <input type="text">
+    <input type="text" name="mould_detail[terminal_leoni_no]" value="<%= @terminal_leoni_no %>">
   </div>
 
   <div class="col-sm-3">
     <b>电线型号：</b>
-    <input type="text">
+    <input type="text" name="mould_detail[wire_type]" value="<%= @wire_type %>">
   </div>
 
 
@@ -49,6 +49,12 @@
 
   <div class="col-sm-2">
     <b>状态：</b>
+    <select name="mould_detail[mould_state]" include_blank="true">
+      <% {ALL: nil, 未过期: '未过期', 即将过期: '即将过期',已过期: '已过期'}.each do |k, v| %>
+          <option value="<%= v %>" <%= 'selected' if @state==v %>> <%= k %></option>
+      <% end %>
+    </select>
+
     <select>
       <option value="ALL">ALL</option>
       <option value="未过期">未过期</option>
@@ -66,7 +72,7 @@
 
   <div class="col-sm-2">
     <b>库位：</b>
-    <input type="text">
+    <input type="text" name="mould_detail[position_id]" value="<%= @position_id %>">
   </div>
 
   <input type="submit" value="查 找" class="btn btn-primary"/>
@@ -128,7 +134,7 @@
           <td><%= mould_detail.terminal_supplier %></td>
           <td><%= mould_detail.wire_type %></td>
           <td><%= mould_detail.wire_cross %></td>
-          <td><%= mould_detail.next_time.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
+          <td><%= mould_detail.next_time.localtime.strftime("%Y-%m-%d") %></td>
           <td><%= mould_detail.mould_state %></td>
           <td><%= mould_detail.mould_type %></td>
           <td><%= mould_detail.mould_supplier %></td>
