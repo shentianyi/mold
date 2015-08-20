@@ -31,7 +31,7 @@
     <b>日期：从</b>
     <input type="text" name="knife_switch_slice[switch_date][start]" value="<%= @switch_date_start %>" class="datetime-picker">
     <b>到</b>
-    <input type="text" name="knife_switch_slice[switch_date][start]" value="<%= @switch_date_start %>" class="datetime-picker">
+    <input type="text" name="knife_switch_slice[switch_date][end]" value="<%= @switch_date_end %>" class="datetime-picker">
   </div>
   <div class="col-sm-3">
     <b>端子莱尼号：</b>
@@ -102,7 +102,7 @@
     <tbody>
     <% @knife_switch_slices.each do |knife_switch_slice| %>
         <tr>
-          <td><%= knife_switch_slice.switch_date %></td>
+          <td><%= knife_switch_slice.switch_date.nil? ? '' : knife_switch_slice.switch_date.localtime.strftime("%Y-%m-%d") %></td>
           <td><%= knife_switch_slice.terminal_leoni_id %></td>
           <td><%= knife_switch_slice.mould_id %></td>
           <td><%= knife_switch_slice.project_id %></td>
