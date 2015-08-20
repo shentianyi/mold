@@ -14,11 +14,6 @@
         text-align: left;
     }
 
-    .col-sm-2 {
-        margin-left: 100px;
-        text-align: left;
-    }
-
     .col-sm-2>input {
         margin-top: 20px;
         width: 100px;
@@ -100,7 +95,7 @@
     <% end %>
     </tbody>
   </table>
-  <div class="digg_pagination">
+  <div class="digg_pagination" style="text-align: center">
     <%= will_paginate @mould_maintain_records, :container => false %>
   </div>
 </div>
