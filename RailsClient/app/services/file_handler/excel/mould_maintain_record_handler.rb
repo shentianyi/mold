@@ -2,7 +2,7 @@ module FileHandler
   module Excel
     class MouldMaintainRecordHandler<Base
       HEADERS=[
-          'mould_id','plan_date','real_date'
+          'mould_id', 'plan_date', 'note'
       ]
 
       def self.import(file)
@@ -14,21 +14,24 @@ module FileHandler
         if validate_msg.result
           #validate file
           begin
-            MouldMaintainRecord.transaction do
-              2.upto(book.last_row) do |line|
-                row = {}
-                HEADERS.each_with_index do |k, i|
-                  row[k] = book.cell(line, i+1).to_s.strip
-                end
+            #MouldMaintainRecord.transaction do
+            2.upto(book.last_row) do |line|
+              row = {}
+              HEADERS.each_with_index do |k, i|
+                row[k] = book.cell(line, i+1).to_s.strip
+              end
 
-                mould_id = row['mould_id'].to_s
-                record = MouldMaintainRecord.where(mould_id: mould_id).order(count: :desc).first
-                count = record.nil? ? 1 : (record.count.to_i + 1)
-                puts "#############count=#{count}"
+              mould_id = row['mould_id'].to_s
+              record = MouldMaintainRecord.where(mould_id: mould_id).order(count: :desc).first
+              count = record.nil? ? 1 : (record.count.to_i + 1)
+              puts "#############count=#{count}"
 
-                MouldMaintainRecord.create({mould_id: mould_id, count: count, plan_date: row['plan_date'], real_date: row['real_date']});
+              is_record = MouldMaintainRecord.where(mould_id: mould_id, plan_date: row['plan_date']).first
+              if is_record.nil?
+                MouldMaintainRecord.create({mould_id: mould_id, count: count, plan_date: row['plan_date'], real_date: row['plan_date'], note: row['note']})
               end
             end
+            #end
             msg.result = true
             msg.content = "导入模具维护记录成功！"
           rescue => e
@@ -76,12 +79,15 @@ module FileHandler
         msg
       end
 
-      def self.validate_row(row,line)
+      def self.validate_row(row, line)
         msg = Message.new(contents: [])
 
-        real_date = row['real_date'].to_time
-        if real_date && real_date > Time.now
-          msg.contents << "实际时间:#{row['real_date']} 无效!"
+        puts "----------------------"
+        puts row
+
+        record = MouldMaintainRecord.where(mould_id: row['mould_id'], plan_date: row['plan_date']).first
+        unless record.nil?
+          msg.contents << "时间记录:#{row['plan_date']} 已存在!"
         end
 
         unless msg.result=(msg.contents.size==0)

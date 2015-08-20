@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   resources :images do
+    collection do
+      match '', to: :show, via: :get
+    end
 
   end
 

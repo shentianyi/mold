@@ -7,7 +7,7 @@
         text-align: center;
     }
 
-    .col-sm-4, .col-sm-2, .col-sm-3, .col-sm-5 {
+    .col-sm-4, .col-sm-2, .col-sm-3, .col-sm-6 {
         float: none;
         text-align: left;
         margin: 0;
@@ -15,19 +15,26 @@
 </style>
 
 <p id="notice"><%= notice %></p>
+<p class="title">模具明细</p>
+<hr style="border: 1px solid #999;margin-top: 0;padding-top: 0;margin-left: 158px;"/>
+
+<div>
+  <form method="get" action="<%= send("search_#{@model.pluralize}_path") %>">
+    
 <div style="display: inline-flex;" class="col-sm-12">
   <div class="col-sm-2">
-    <b>库位：</b>
-    <input type="text">
+    <b>模具号：</b>
+    <input type="text" name="mould_detail[mould_id]" value="<%= @mould_id %>">
   </div>
+
   <div class="col-sm-3">
     <b>端子莱尼号：</b>
-    <input type="text">
+    <input type="text" name="mould_detail[terminal_leoni_no]" value="<%= @terminal_leoni_no %>">
   </div>
 
   <div class="col-sm-3">
     <b>电线型号：</b>
-    <input type="text">
+    <input type="text" name="mould_detail[wire_type]" value="<%= @wire_type %>">
   </div>
 
 
@@ -40,28 +47,53 @@
 
 <div style="display: inline-flex;margin-top:20px;" class="col-sm-12">
 
-  <div class="col-sm-3">
+  <div class="col-sm-2">
     <b>状态：</b>
-    <select>
-      <option value="ALL">ALL</option>
-      <option value="未过期">未过期</option>
-      <option value="即将过期">即将过期</option>
-      <option value="已过期">已过期</option>
+    <select name="mould_detail[mould_state]" include_blank="true">
+      <% {ALL: nil, 未过期: '未过期', 即将过期: '即将过期',已过期: '已过期'}.each do |k, v| %>
+          <option value="<%= v %>" <%= 'selected' if @mould_state==v %>> <%= k %></option>
+      <% end %>
     </select>
+
+  </div>
+
+  <div class="col-sm-6">
+    <b>下次批准日期：从</b>
+    <input type="text" name="mould_detail[next_time][start]" value="<%= @next_time_start %>" class="datetime-picker" style="width: 32%;">
+    <b>到</b>
+    <input type="text" name="mould_detail[next_time][end]" value="<%= @next_time_end %>" class="datetime-picker" style="width: 30%;">
   </div>
 
 
-  <div class="col-sm-4">
-    <b>下次批准日期：</b>
-    <input id="datepicker" type="text">
-  </div>
+    </div>
 
+    <div style="display: inline-flex;margin-top:20px;" class="col-sm-12">
 
-  <div style="display: inline-flex;" class="col-sm-5">
-    <%= link_to '查询', '', :class => 'btn btn-primary',
-                :style => 'color:#000;padding-top:10px;margin:0;' %>
-  </div>
+      <div class="col-sm-2">
+        <b>状态：</b>
+        <select name="mould_detail[mould_state]" include_blank="true">
+          <% {ALL: nil, 未过期: '未过期', 即将过期: '即将过期',已过期: '已过期'}.each do |k, v| %>
+              <option value="<%= v %>" <%= 'selected' if @state==v %>> <%= k %></option>
+          <% end %>
+        </select>
+      </div>
+
+      <div class="col-sm-6">
+        <b>下次批准日期：从</b>
+        <input type="text" name="mould_detail[next_time][start]" value="<%= @next_time_start %>" class="datetime-picker" style="width: 32%;">
+        <b>到</b>
+        <input type="text" name="mould_detail[next_time][end]" value="<%= @next_time_end %>" class="datetime-picker" style="width: 30%;">
+      </div>
+
+      <div class="col-sm-2">
+        <input type="submit" value="查 找" class="btn btn-primary"/>
+      </div>
+    </div>
+
+  </form>
 </div>
+
+
 <div>
   <hr style="border: 1px solid #000;">
 </div>
@@ -69,7 +101,14 @@
   <div class="trapezoid">
     <p style="padding-top: 20px;">模具明细表</p>
   </div>
-  <div style="display: inline-flex;margin-left: 20%;">
+
+  <div class="digg_pagination" style="padding-top: 30px;">
+    <div class="page_info">
+      <%= page_entries_info @mould_details %>
+    </div>
+    <%= will_paginate @mould_details, :container => false %>
+  </div>
+  <div style="display: inline-flex;margin-left: 20px;">
     <%= link_to '新增', new_mould_detail_path, :class => 'btn btn-info',
                 :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
 
@@ -82,11 +121,12 @@
 </div>
 
 <div style="margin-left:100px;margin-right: 100px;">
+
   <table class="table table-bordered table-striped table-hover">
     <thead>
     <tr style="background-color: #ccc">
-      <th style="width: 110px;">库位号</th>
-      <th>莱尼端子号</th>
+      <th style="width: 110px;">模具号</th>
+      <th>端子莱尼号</th>
       <th>端子供应商号</th>
       <th>电线型号</th>
       <th>电线截面QMM</th>
@@ -98,7 +138,6 @@
 
     </tr>
     </thead>
-
     <tbody>
     <% @mould_details.each do |mould_detail| %>
         <tr>
@@ -106,12 +145,13 @@
           <td><%= mould_detail.terminal_leoni_no %></td>
           <td><%= mould_detail.terminal_supplier %></td>
           <td><%= mould_detail.wire_type %></td>
-          <td><%= mould_detail.wire_type %></td>
-          <td><%= mould_detail.next_time %></td>
+          <td><%= mould_detail.wire_cross %></td>
+          <td><%= mould_detail.next_time.localtime.strftime("%Y-%m-%d") %></td>
           <td><%= mould_detail.mould_state %></td>
           <td><%= mould_detail.mould_type %></td>
           <td><%= mould_detail.mould_supplier %></td>
-          <td><%= link_to '[详情]', mould_detail %><%= link_to '[编辑]', edit_mould_detail_path(mould_detail) %>
+          <td><%= link_to '[详情]', mould_detail %>
+            <%= link_to '[编辑]', edit_mould_detail_path(mould_detail) %>
             <%= link_to '[删除]', mould_detail, method: :delete, data: {confirm: '确认删除?'} %>
           </td>
         </tr>
@@ -120,10 +160,7 @@
   </table>
 </div>
 
-
-<script>
-    $(function () {
-        $("#datepicker").datepicker();
-    });
-</script>
+<div class="digg_pagination" style="text-align: center">
+  <%= will_paginate @mould_details, :container => false %>
+</div>
 

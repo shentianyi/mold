@@ -2,6 +2,7 @@
     .col-sm-4 {
         text-align: left;
         margin-top: 1%;
+        display: inline-flex;
     }
 
     label {
@@ -25,99 +26,98 @@
 
     <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
-        <%= f.label :模具号： %>
+        <%= f.label :mould_id, '模具号:' %>
         <%= f.text_field :mould_id %>
       </div>
       <div class="col-sm-4">
-        <%= f.label :项目： %>
+        <%= f.label :project_id, '项目:' %>
         <%= f.text_field :project_id %>
       </div>
       <div class="col-sm-4">
-        <%= f.label :刀片型号： %>
+        <%= f.label :knife_type, '刀片型号:' %>
         <%= f.text_field :knife_type %>
       </div>
     </div>
     <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
-        <%= f.label :刀片分类： %>
-        <%= f.text_field :knife_kind %>
+        <%= f.label :knife_kind, '刀片分类:' %>
+        <%= f.select :knife_kind, options_for_select([['CH', 'CH'], ['CW', 'CW'], ['ICH', 'ICH'], ['ICW', 'ICW']], params[:knife_kind]),
+                     {}, {:style => 'width:35%;'} %>
       </div>
       <div class="col-sm-4">
-        <%= f.label :供应商： %>
+        <%= f.label :knife_supplier, '供应商:' %>
         <%= f.text_field :knife_supplier %>
       </div>
       <div class="col-sm-4">
-        <%= f.label :损坏状态： %>
-        <%= f.text_field :state %>
+        <%= f.label :state, '损坏状态:' %>
+        <%= f.select :state, options_for_select([['磨损', '磨损'], ['断裂', '断裂']], params[:state]),
+                     {}, {:style => 'width:35%;'} %>
       </div>
     </div>
     <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
-        <%= f.label :问题描述： %>
+        <%= f.label :problem, '问题描述:' %>
         <%= f.text_field :problem %>
       </div>
       <div class="col-sm-4">
-        <%= f.label :损坏定义： %>
+        <%= f.label :damage_define, '损坏定义:' %>
         <%= f.text_field :damage_define %>
       </div>
       <div class="col-sm-4">
-        <%= f.label :维修人员： %>
+        <%= f.label :maintainman, '维修人员:' %>
         <%= f.text_field :maintainman %>
       </div>
     </div>
     <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
-        <%= f.label :数量： %>
+        <%= f.label :m_qty, '数量:' %>
         <%= f.text_field :m_qty %>
       </div>
       <div class="col-sm-4">
-        <%= f.label :机器号： %>
+        <%= f.label :machine_id, '机器号:' %>
         <%= f.text_field :machine_id %>
       </div>
       <div class="col-sm-4">
-        <%= f.label :压接次数： %>
+        <%= f.label :press_num, '压接次数:' %>
         <%= f.text_field :press_num %>
-      </div>
-    </div>
-    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
-      <div class="col-sm-4">
-        <%= f.label :damage_life %>
-        <%= f.text_field :damage_life %>
-      </div>
-      <div class="col-sm-4">
-        <%= f.label :broken_life %>
-        <%= f.text_field :broken_life %>
-      </div>
-      <div class="col-sm-4">
-        <%= f.label :total_life %>
-        <%= f.text_field :total_life %>
       </div>
     </div>
     <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
 
       <div class="col-sm-4">
-        <%= f.label :操作员： %>
+        <%= f.label :operater, '操作员:' %>
         <%= f.text_field :operater %>
       </div>
 
 
       <div class="col-sm-4">
-        <%= f.label :验收确认： %>
+        <%= f.label :is_ok, '验收确认:' %>
         <%= f.text_field :is_ok %>
       </div>
 
       <div class="col-sm-4">
-        <%= f.label :分类： %>
+        <%= f.label :sort, '分类:' %>
         <%= f.text_field :sort %>
       </div>
     </div>
     <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
-        <%= f.label :出库单号： %>
+        <%= f.label :outbound_id, '出库单号:' %>
         <%= f.text_field :outbound_id %>
+      </div>
+
+      <div class="col-sm-4">
+        <%= f.label :switch_date, '日期:' %>
+        <%= f.text_field :switch_date, class: 'datetime-picker' %>
       </div>
     </div>
 
     <hr style="border: 1px solid #000;opacity: 0.5;"/>
     <button type="submit" style="margin-left: 10px;margin-top:0;" class="btn btn-primary" name="commit">完成</button>
 <% end %>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#knife_switch_record_knife_kind").val("<%= @knife_switch_record.knife_kind %>");
+    });
+</script>

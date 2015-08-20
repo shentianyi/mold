@@ -30,41 +30,62 @@
     .col-sm-3 > label, .col-sm-3 > input {
         margin-top: 20px;
     }
+
+    .col-sm-2 > select, .col-sm-3 > select {
+        width: 100px;
+    }
+
+    .col-sm-4 > label, .col-sm-4 > input {
+        margin-top: 20px;
+    }
 </style>
-<div style="display: inline-flex;width: 100%;">
-  <div class="col-sm-2">
-    <label for="date:">日期：</label>
-    <input type="text">
-  </div>
 
-  <div class="col-sm-2">
-    <label for="mould_id:">模具号：</label>
-    <input type="text">
-  </div>
+<p class="title">换刀记录</p>
+<hr style="border: 1px solid #999;margin-top: 0;padding-top: 0;margin-left: 158px;"/>
 
-  <div class="col-sm-3">
-    <label for="knife_type:">刀片分类：</label>
-    <select>
-      <option>ALL</option>
-      <option>CH</option>
-      <option>CW</option>
-      <option>ICW</option>
-    </select>
-  </div>
 
-  <div class="col-sm-3">
-    <label for="state:">状态：</label>
-    <select>
-      <option>ALL</option>
-      <option>断裂</option>
-      <option>磨损</option>
-    </select>
-  </div>
+<div>
+  <form method="get" action="<%= send("search_#{@model.pluralize}_path") %>">
 
-  <div class="col-sm-2">
-    <button type="button" class="btn btn-primary">查询</button>
-  </div>
+    <div style="display: inline-flex;width: 100%;">
+      <div class="col-sm-4">
+        <label for="date:">日期：从</label>
+        <input type="text" name="knife_switch_record[switch_date][start]" value="<%= @switch_date_start %>" class="datetime-picker">
+        <b>到</b>
+        <input type="text" name="knife_switch_record[switch_date][end]" value="<%= @switch_date_end %>" class="datetime-picker">
+      </div>
+
+      <div class="col-sm-2">
+        <label for="mould_id:">模具号：</label>
+        <input type="text" name="knife_switch_record[mould_id]" value="<%= @mould_id %>">
+      </div>
+
+      <div class="col-sm-3">
+        <label for="knife_type:">刀片分类：</label>
+        <select name="knife_switch_record[knife_kind]" include_blank="true">
+          <% {ALL: nil, CH: 'CH', CW: 'CW', ICH: 'ICH', ICW: 'ICW'}.each do |k, v| %>
+              <option value="<%= v %>" <%= 'selected' if @knife_kind==v %>> <%= k %></option>
+          <% end %>
+        </select>
+      </div>
+
+      <div class="col-sm-3">
+        <label for="state:">损坏状态：</label>
+        <select name="knife_switch_record[state]" include_blank="true">
+          <% {ALL: nil, 断裂: '断裂damage', 磨损: '磨损mosun'}.each do |k, v| %>
+              <option value="<%= v %>" <%= 'selected' if @state==v %>> <%= k %></option>
+          <% end %>
+        </select>
+
+
+      </div>
+      <input type="submit" value="查 找" class="btn btn-primary"/>
+    </div>
+
+  </form>
 </div>
+
+
 <div>
   <hr/>
 </div>
@@ -73,11 +94,18 @@
   <div class="trapezoid" style="height: 60px;">
     <p style="padding-top: 20px;">换刀记录表</p>
   </div>
-  <div style="display: inline-flex;margin-left: 20%;">
+
+  <div class="digg_pagination" style="margin-top: 30px;">
+    <div class="page_info">
+      <%= page_entries_info @knife_switch_records %>
+    </div>
+    <%= will_paginate @knife_switch_records, :container => false %>
+  </div>
+  <div style="display: inline-flex;margin-left: 20px;">
     <%= link_to '新增', new_knife_switch_record_path, :class => 'btn btn-info',
                 :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
 
-    <%= link_to '导入数据', import_mould_details_path, :class => 'btn btn-primary',
+    <%= link_to '导入数据', import_knife_switch_records_path, :class => 'btn btn-primary',
                 :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
     <%= link_to '导出数据', import_mould_details_path, :class => 'btn btn-primary',
                 :style => 'color:#000;padding-top:10px;' %>
@@ -98,6 +126,7 @@
       <th>压接次数</th>
       <th>分类</th>
       <th>出库单号</th>
+      <th>日期</th>
       <th>操作</th>
     </tr>
     </thead>
@@ -115,12 +144,22 @@
           <td><%= knife_switch_record.press_num %></td>
           <td><%= knife_switch_record.sort %></td>
           <td><%= knife_switch_record.outbound_id %></td>
+          <td><%= knife_switch_record.switch_date.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
           <td><%= link_to '[详情]', knife_switch_record %>
             <%= link_to '[编辑]', edit_knife_switch_record_path(knife_switch_record) %>
-            <%= link_to '[删除]', knife_switch_record, method: :delete, data: {confirm: 'Are you sure?'} %>
+            <%= link_to '[删除]', knife_switch_record, method: :delete, data: {confirm: '确定删除?'} %>
           </td>
         </tr>
     <% end %>
     </tbody>
   </table>
+  <div class="digg_pagination" style="text-align: center">
+    <%= will_paginate @knife_switch_records, :container => false %>
+  </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#datepicker").datepicker();
+    });
+</script>

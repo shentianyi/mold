@@ -2,7 +2,7 @@ module FileHandler
   module Excel
     class MouldMaintainTimeHandler<Base
       HEADERS=[
-          'mould_id','project_id','device_id','serviceman','maintain_date','err_note', 'solution_method', 'code', 'feed_code', 'start_time', 'end_time'
+          'project_id','maintain_date','device_id','mould_id','serviceman','start_time','end_time','err_note','solution_method','code','feed_code'
       ]
 
       def self.import(file)
@@ -22,7 +22,7 @@ module FileHandler
                 end
 
                 mould_id = row['mould_id'].to_s
-                downtime = row['end_time'].to_s.to_time - row['start_time'].to_s.to_time
+                downtime = (row['end_time'].to_s.to_time - row['start_time'].to_s.to_time) / 60
 
                 MouldMaintainTime.create({mould_id: mould_id, project_id: row['project_id'], device_id: row['device_id'], serviceman: row['serviceman'], maintain_date: row['maintain_date'],
                                           err_note: row['err_note'], solution_method: row['solution_method'], code: row['code'], feed_code: row['feed_code'], start_time: row['start_time'],
@@ -78,6 +78,8 @@ module FileHandler
 
       def self.validate_row(row,line)
         msg = Message.new(contents: [])
+        puts "111111111111111111111111111"
+        puts row
 
         if (row['end_time'].to_s.to_time - row['start_time'].to_s.to_time) <= 0
           msg.contents << "维修时间不正确!"

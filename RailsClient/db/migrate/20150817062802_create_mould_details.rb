@@ -11,7 +11,7 @@ class CreateMouldDetails < ActiveRecord::Migration
       t.string :stopwater, :default => ""
       t.string :use_range, :default => ""
       t.string :wire_type, :default => ""
-      t.float :wire_cross
+      t.string :wire_cross, :default => ""
       t.string :original_param_ch, :default => "NO"
       t.string :original_param_cw, :default => "NO"
       t.string :actual_param_ch, :default => "NO"

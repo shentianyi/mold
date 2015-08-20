@@ -59,6 +59,12 @@
       <p>实际维护日期：</p>
       <%= @mould_maintain_record.real_date %>
     </div>
+    <hr/>
+
+    <div class="col-sm-12">
+      <p>备注：</p>
+      <%= @mould_maintain_record.note %>
+    </div>
 
     <hr/>
     <%= link_to '编辑', edit_mould_maintain_record_path(@mould_maintain_record), :class => 'btn btn-info', :style => 'color:#000;padding-top:10px; margin-left:2%;margin-top:1%;' %>

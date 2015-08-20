@@ -8,10 +8,10 @@ class CreateKnifeSwitchSlices < ActiveRecord::Migration
       t.string :knife_type1, :default => ""
       t.string :knife_type2, :default => ""
       t.string :wire_type, :default => ""
-      t.float :wire_cross
+      t.string :wire_cross, :default => ""
       t.string :image_after, :default => ""
       t.string :image_before, :default => ""
-      t.boolean :is_ok, :default => false
+      t.string :is_ok, :default => ""
       t.string :email, null: false, default: "mj@leoni.com"
 
       t.timestamps null: false

@@ -12,6 +12,15 @@
         border: 1px solid #000;
         opacity: 0.5;
     }
+
+    .col-sm-6 {
+        height: 40px;
+    }
+
+    img {
+        text-align: center;
+        margin: 0;
+    }
 </style>
 <h1>换刀切片<em>详情</em></h1>
 <hr/>
@@ -63,7 +72,7 @@
 
   <div class="col-sm-6">
     <p>剖面：</p>
-    <%= @knife_switch_slice.image_after %>
+    <img src="/images?image=<%= URI::encode(@knife_switch_slice.image_after) %>" width="50" height="40" alt=""/>
   </div>
 
   <div class="col-sm-6">
@@ -74,7 +83,7 @@
 
   <div class="col-sm-12">
     <p>剖面（换刀前）：</p>
-    <%= @knife_switch_slice.image_before %>
+    <img src="/images?image=<%= URI::encode(@knife_switch_slice.image_before) %>" width="50" height="40" alt="" style="border-radius: 8px;"/>
   </div>
 </div>
 <hr/>

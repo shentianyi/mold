@@ -14,6 +14,12 @@
         width: 130px;
     }
 
+    fieldset {
+        margin-top: 100px;
+        width: 50%;
+        margin-left: 25%;
+    }
+
 </style>
 
 <%= form_for(@mould_maintain_record) do |f| %>
@@ -33,30 +39,25 @@
       <fieldset>
         <legend>模具维护记录</legend>
         <div class="col-sm-12">
-          <%= f.label :模具号： %>
+          <%= f.label :mould_id, '模具号:' %>
           <%= f.text_field :mould_id %>
         </div>
 
         <div class="col-sm-12">
-          <%= f.label :维护次数： %>
-          <%= f.text_field :count %>
+          <%= f.label :plan_date, '计划维护时间:' %>
+          <%= f.text_field :plan_date, class: 'datetime-picker' %>
         </div>
 
-
         <div class="col-sm-12">
-          <%= f.label :计划维护时间： %>
-          <%= f.text_field :plan_date %>
-        </div>
-
-
-        <div class="col-sm-12">
-          <%= f.label :实际维护时间： %>
-          <%= f.text_field :real_date %>
+          <!--备注id 已经设定为 空，需要在此处修改-->
+          <%= f.label :note, '备注:' %>
+          <%= f.text_field :note %>
         </div>
 
         <hr style="border: 1px solid#999"/>
 
         <button type="submit" style="margin-left: 10px;margin-top:0;" class="btn btn-primary" name="commit">完成</button>
+      </fieldset>
     </div>
-    </fieldset>
+
 <% end %>

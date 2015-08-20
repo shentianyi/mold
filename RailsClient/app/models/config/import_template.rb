@@ -1,10 +1,9 @@
 class ImportTemplate
-  MOULD_DETAILS_CSV_TEMPLATE='mould_details.csv'
-
+  MOULD_DETAIL_EXCEL_TEMPLATE='mould_detail.xlsx'
   MOULD_MAINTAIN_RECORD_EXCEL_TEMPLATE='mould_maintain_record.xlsx'
   MOULD_MAINTAIN_TIME_EXCEL_TEMPLATE='mould_maintain_time.xlsx'
   KNIFE_SWITCH_SLICE_EXCEL_TEMPLATE='knife_switch_slice.xlsx'
-
+  KNIFE_SWITCH_RECORD_EXCEL_TEMPLATE='knife_switch_record.xlsx'
 
 
   def self.method_missing(method_name, *args, &block)

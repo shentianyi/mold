@@ -26,15 +26,14 @@
     <div style="margin-left: 2%;">
       <b style="font-size: 1.2em">选择数据文件：</b>
       <input style="border: 0;margin-left: 5%;margin-top: 2%; width: auto;" id="item-data-uploader" type="file" name="files[]" data-url="/mould_details/import"/>
-      <%= link_to "上传", mould_details_path, :class => 'btn btn-primary', :style => 'margin-left:1%;margin-top:2%;' %>
 
 
       <hr/>
       <div id="item-data-uploader-preview" style="display:none;"></div>
       <div style="margin-top: 2%;">
         <b style="font-size: 1.2em;color: #000">下载模板：</b>
-        <a href="/files/<%= ImportTemplate.mould_details_csv_template %>">
-          <%= ImportTemplate::MOULD_DETAILS_CSV_TEMPLATE %></a>
+        <a href="/files/<%= ImportTemplate.mould_detail_excel_template %>">
+          <%= ImportTemplate::MOULD_DETAIL_EXCEL_TEMPLATE %></a>
       </div>
     </div>
   </fieldset>

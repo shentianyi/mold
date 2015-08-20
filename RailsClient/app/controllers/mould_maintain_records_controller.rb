@@ -4,7 +4,7 @@ class MouldMaintainRecordsController < ApplicationController
   # GET /mould_maintain_records
   # GET /mould_maintain_records.json
   def index
-    @mould_maintain_records = MouldMaintainRecord.all
+    @mould_maintain_records = MouldMaintainRecord.paginate(:page => params[:page], :per_page => 15)
   end
 
   # GET /mould_maintain_records/1
@@ -28,16 +28,23 @@ class MouldMaintainRecordsController < ApplicationController
     args = {}
     args[:mould_id] = mould_maintain_record_params[:mould_id]
     args[:plan_date] = mould_maintain_record_params[:plan_date]
-    args[:real_date] = mould_maintain_record_params[:real_date]
+    args[:real_date] = mould_maintain_record_params[:plan_date]
+    args[:note] = mould_maintain_record_params[:note]
     record = MouldMaintainRecord.where(mould_id: args[:mould_id]).order(count: :desc).first
     args[:count] = record.nil? ? 1 : (record.count.to_i + 1)
 
     @mould_maintain_record = MouldMaintainRecord.new(args)
+    is_record = MouldMaintainRecord.where(mould_id: args[:mould_id], plan_date: args[:plan_date]).first
 
     respond_to do |format|
-      if @mould_maintain_record.save
-        format.html { redirect_to @mould_maintain_record, notice: 'Mould maintain record was successfully created.' }
-        format.json { render :show, status: :created, location: @mould_maintain_record }
+      if is_record.nil?
+        if @mould_maintain_record.save
+          format.html { redirect_to @mould_maintain_record, notice: 'Mould maintain record was successfully created.' }
+          format.json { render :show, status: :created, location: @mould_maintain_record }
+        else
+          format.html { render :new }
+          format.json { render json: @mould_maintain_record.errors, status: :unprocessable_entity }
+        end
       else
         format.html { render :new }
         format.json { render json: @mould_maintain_record.errors, status: :unprocessable_entity }
@@ -87,13 +94,13 @@ class MouldMaintainRecordsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_mould_maintain_record
-      @mould_maintain_record = MouldMaintainRecord.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_mould_maintain_record
+    @mould_maintain_record = MouldMaintainRecord.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def mould_maintain_record_params
-      params.require(:mould_maintain_record).permit(:mould_id, :count, :plan_date, :real_date)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def mould_maintain_record_params
+    params.require(:mould_maintain_record).permit(:mould_id, :count, :plan_date, :real_date, :note)
+  end
 end

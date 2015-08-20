@@ -14,7 +14,7 @@
         margin: 0;
     }
 
-    .col-sm-2 > b, .col-sm-3 > b, .col-sm-2 > input, .col-sm-3 > input {
+    .col-sm-2 > b, .col-sm-3 > b, .col-sm-2 > input, .col-sm-3 > input, .col-sm-4>b, .col-sm-4>input {
         margin-top: 15px;
     }
 
@@ -22,36 +22,43 @@
         margin-top: 80px;
         border: 1px solid #000;
     }
-
 </style>
 
-<div style="display: inline-flex;" class="col-sm-12">
-  <div class="col-sm-2">
-    <b>日期：</b>
-    <input type="text">
-  </div>
-  <div class="col-sm-3">
-    <b>端子莱尼号：</b>
-    <input type="text">
-  </div>
+<p class="title">换刀切片</p>
+<hr style="border: 1px solid #999;margin-top: 0;padding-top: 0;margin-left: 158px;"/>
 
-  <div class="col-sm-2">
-    <b>模具号：</b>
-    <input type="text">
-  </div>
+<div>
+  <form method="get" action="<%= send("search_#{@model.pluralize}_path") %>">
 
+    <div style="display: inline-flex;" class="col-sm-12">
+      <div class="col-sm-4">
+        <b>日期：从</b>
+        <input type="text" name="knife_switch_slice[switch_date][start]" value="<%= @switch_date_start %>" class="datetime-picker">
+        <b>到</b>
+        <input type="text" name="knife_switch_slice[switch_date][end]" value="<%= @switch_date_end %>" class="datetime-picker">
+      </div>
+      <div class="col-sm-3">
+        <b>端子莱尼号：</b>
+        <input type="text" name="knife_switch_slice[terminal_leoni_id]" value="<%= @terminal_leoni_id %>">
+      </div>
 
-  <div class="col-sm-2">
-    <b>项目：</b>
-    <input type="text">
-  </div>
+      <div class="col-sm-2">
+        <b>模具号：</b>
+        <input type="text" name="knife_switch_slice[mould_id]" value="<%= @mould_id %>">
+      </div>
 
-  <div style="display: inline-flex;" class="col-sm-3">
+      <div class="col-sm-2">
+        <b>项目：</b>
+        <input type="text" name="knife_switch_slice[project_id]" value="<%= @project_id %>">
+      </div>
+      <div class="col-sm-2">
+        <input type="submit" value="查 找" class="btn btn-primary"/>
+      </div>
+    </div>
 
-    <%= link_to '查询', '', :class => 'btn btn-primary',
-                :style => 'color:#000;padding-top:10px;margin:0;' %>
-  </div>
+  </form>
 </div>
+
 <hr/>
 
 
@@ -59,11 +66,18 @@
   <div class="trapezoid">
     <p style="margin-top: 25%;">换刀切片表</p>
   </div>
-  <div style="display: inline-flex;margin-left: 20%;">
+
+  <div class="digg_pagination" style="margin-top: 30px;">
+    <div class="page_info">
+      <%= page_entries_info @knife_switch_slices %>
+    </div>
+    <%= will_paginate @knife_switch_slices, :container => false %>
+  </div>
+  <div style="display: inline-flex;margin-left: 20px;">
     <%= link_to '新增', new_knife_switch_slice_path, :class => 'btn btn-info',
                 :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
 
-    <%= link_to '导入数据', import_mould_details_path, :class => 'btn btn-primary',
+    <%= link_to '导入数据', import_knife_switch_slices_path, :class => 'btn btn-primary',
                 :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
 
     <%= link_to '导出数据', import_mould_details_path, :class => 'btn btn-primary',
@@ -93,7 +107,7 @@
     <tbody>
     <% @knife_switch_slices.each do |knife_switch_slice| %>
         <tr>
-          <td><%= knife_switch_slice.switch_date %></td>
+          <td><%= knife_switch_slice.switch_date.nil? ? '' : knife_switch_slice.switch_date.localtime.strftime("%Y-%m-%d") %></td>
           <td><%= knife_switch_slice.terminal_leoni_id %></td>
           <td><%= knife_switch_slice.mould_id %></td>
           <td><%= knife_switch_slice.project_id %></td>
@@ -101,9 +115,13 @@
           <td><%= knife_switch_slice.knife_type2 %></td>
           <td><%= knife_switch_slice.wire_type %></td>
           <td><%= knife_switch_slice.wire_cross %></td>
-          <td><%= knife_switch_slice.image_after %></td>
+          <td>
+            <img src="/images?image=<%= URI::encode(knife_switch_slice.image_after) %>" width="50" height="40" alt=""/>
+          </td>
           <td><%= knife_switch_slice.is_ok %></td>
-          <td><%= knife_switch_slice.image_before %></td>
+          <td>
+            <img src="/images?image=<%= URI::encode(knife_switch_slice.image_before) %>" width="50" height="40" alt=""/>
+          </td>
           <td><%= link_to '[详情]', knife_switch_slice %>
             <%= link_to '[编辑]', edit_knife_switch_slice_path(knife_switch_slice) %>
             <%= link_to '[删除]', knife_switch_slice, method: :delete, data: {confirm: '确定删除?'} %></td>
@@ -111,4 +129,7 @@
     <% end %>
     </tbody>
   </table>
+  <div class="digg_pagination" style="text-align: center">
+    <%= will_paginate @knife_switch_slices, :container => false %>
+  </div>
 </div>

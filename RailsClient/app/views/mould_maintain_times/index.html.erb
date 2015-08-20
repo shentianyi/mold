@@ -5,7 +5,7 @@
         text-align: left;
     }
 
-    .col-sm-2>b, .col-sm-2>input {
+    .col-sm-2>b, .col-sm-2>input, .col-sm-4>b, .col-sm-4>input {
         margin-top: 10px;
     }
 
@@ -15,33 +15,38 @@
     }
 </style>
 
+<p class="title">模具维修时间</p>
+<hr style="border: 1px solid #999;margin-top: 0;padding-top: 0;margin-left: 158px;"/>
+
+<div>
+  <form method="get" action="<%= send("search_#{@model.pluralize}_path") %>">
 
 <div style="display: inline-flex;" class="col-sm-12">
   <div class="col-sm-2">
     <b>项目：</b>
-    <input type="text">
+    <input type="text" name="mould_maintain_time[project_id]" value="<%= @project_id %>">
   </div>
-  <div class="col-sm-2">
-    <b>日期：</b>
-    <input type="text">
+  <div class="col-sm-4">
+    <b>日期：从</b>
+    <input type="text" class="datetime-picker"><b>到</b>
+    <input type="text" class="datetime-picker">
   </div>
 
   <div class="col-sm-2">
     <b>模具号：</b>
-    <input type="text">
+    <input type="text" name="mould_maintain_time[mould_id]" value="<%= @mould_id %>">
   </div>
 
 
   <div class="col-sm-2">
     <b>代码：</b>
-    <input type="text">
+    <input type="text" name="mould_maintain_time[code]" value="<%= @code %>">
   </div>
 
-  <div style="display: inline-flex;" class="col-sm-3">
+  <input type="submit" value="查 找" class="btn btn-primary"/>
+</div>
 
-    <%= link_to '查询', '', :class => 'btn btn-primary',
-                :style => 'color:#000;padding-top:10px;margin:0;' %>
-  </div>
+  </form>
 </div>
 <hr/>
 
@@ -49,7 +54,13 @@
   <div class="trapezoid">
     <p style="margin-top: 25%;">维修时间</p>
   </div>
-  <div style="display: inline-flex;margin-left: 20%;">
+  <div class="digg_pagination" style="margin-top: 30px;">
+    <div class="page_info">
+      <%= page_entries_info @mould_maintain_times %>
+    </div>
+    <%= will_paginate @mould_maintain_times, :container => false %>
+  </div>
+  <div style="display: inline-flex;margin-left: 20px;">
     <%= link_to '新增', new_mould_maintain_time_path, :class => 'btn btn-info',
                 :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
 
@@ -102,4 +113,7 @@
     <% end %>
     </tbody>
   </table>
+  <div class="digg_pagination" style="text-align: center">
+    <%= will_paginate @mould_maintain_times, :container => false %>
+  </div>
 </div>
