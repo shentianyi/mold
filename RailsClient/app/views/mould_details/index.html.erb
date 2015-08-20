@@ -12,6 +12,10 @@
         text-align: left;
         margin: 0;
     }
+
+    .btn, .btn-primary {
+        margin-bottom: 0;
+    }
 </style>
 
 <p id="notice"><%= notice %></p>
@@ -37,16 +41,13 @@
         <input type="text" name="mould_detail[wire_type]" value="<%= @wire_type %>">
       </div>
 
-
       <div class="col-sm-4">
         <b>电线截面QMM：</b>
         <input type="text">
       </div>
-
     </div>
 
     <div style="display: inline-flex;margin-top:20px;" class="col-sm-12">
-
       <div class="col-sm-2">
         <b>状态：</b>
         <select name="mould_detail[mould_state]" include_blank="true">
@@ -55,7 +56,6 @@
           <% end %>
         </select>
       </div>
-
       <div class="col-sm-6">
         <b>下次批准日期：从</b>
         <input type="text" name="mould_detail[next_time][start]" value="<%= @next_time_start %>" class="datetime-picker" style="width: 32%;">
@@ -67,10 +67,8 @@
         <input type="submit" value="查 找" class="btn btn-primary"/>
       </div>
     </div>
-
   </form>
 </div>
-
 
 <div>
   <hr style="border: 1px solid #000;">
@@ -99,7 +97,6 @@
 </div>
 
 <div style="margin-left:100px;margin-right: 100px;">
-
   <table class="table table-bordered table-striped table-hover">
     <thead>
     <tr style="background-color: #ccc">
