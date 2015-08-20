@@ -41,7 +41,7 @@
     <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
         <%= f.label :knife_kind, '刀片分类:' %>
-        <%= f.select :knife_kind, options_for_select([['CH', 'CH'], ['CW', 'CW'], ['ICW', 'ICW']], params[:knife_kind]),
+        <%= f.select :knife_kind, options_for_select([['CH', 'CH'], ['CW', 'CW'], ['ICH', 'ICH'], ['ICW', 'ICW']], params[:knife_kind]),
                      {}, {:style => 'width:35%;'} %>
       </div>
       <div class="col-sm-4">
@@ -50,7 +50,8 @@
       </div>
       <div class="col-sm-4">
         <%= f.label :state, '损坏状态:' %>
-        <%= f.text_field :state %>
+        <%= f.select :state, options_for_select([['磨损', '磨损'], ['断裂', '断裂']], params[:state]),
+                     {}, {:style => 'width:35%;'} %>
       </div>
     </div>
     <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
@@ -114,3 +115,9 @@
     <hr style="border: 1px solid #000;opacity: 0.5;"/>
     <button type="submit" style="margin-left: 10px;margin-top:0;" class="btn btn-primary" name="commit">完成</button>
 <% end %>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#knife_switch_record_knife_kind").val("<%= @knife_switch_record.knife_kind %>");
+    });
+</script>
