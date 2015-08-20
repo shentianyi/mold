@@ -4,7 +4,7 @@ class MouldDetailsController < ApplicationController
   # GET /mould_details
   # GET /mould_details.json
   def index
-    @mould_details = MouldDetail.paginate(:page => params[:page])
+    @mould_details = MouldDetail.paginate(:page => params[:page], :per_page => 15)
   end
 
   # GET /mould_details/1
@@ -89,6 +89,6 @@ class MouldDetailsController < ApplicationController
     params.require(:mould_detail).permit(:mould_id, :mould_type, :mould_supplier, :position, :terminal_leoni_no, :terminal_supplier, :stopwater, :use_range, :wire_type, :wire_cross,
                                          :original_param_ch, :original_param_cw, :actual_param_ch, :actual_param_cw, :actual_param_ich, :actual_param_icw, :step_dch_id, :step_ich_id,
                                          :next_time, :c_up_knife, :i_up_knife, :c_down_knife, :i_down_knife, :upper_punch, :coc, :coh, :feeding_claw, :after_groove, :before_groove,
-                                         :oil_cup, :buy_time, :release_report, :fixed_asset_id, :idle_time, :mould_state, :is_idle)
+                                         :oil_cup, :buy_time, :release_report, :fixed_asset_id, :idle_time, :mould_state, :is_idle, :note)
   end
 end

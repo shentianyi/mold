@@ -4,7 +4,7 @@ class KnifeSwitchRecordsController < ApplicationController
   # GET /knife_switch_records
   # GET /knife_switch_records.json
   def index
-    @knife_switch_records = KnifeSwitchRecord.paginate(:page => params[:page])
+    @knife_switch_records = KnifeSwitchRecord.paginate(:page => params[:page], :per_page => 15)
   end
 
   # GET /knife_switch_records/1

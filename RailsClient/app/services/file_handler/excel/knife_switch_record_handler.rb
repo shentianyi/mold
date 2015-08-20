@@ -27,10 +27,10 @@ module FileHandler
                 record = KnifeSwitchRecord.where(mould_id: mould_id, project_id: row['project_id'], knife_type: row['knife_type'], knife_kind: row['knife_kind']).order(m_qty: :desc).first
                 total_count = record.nil? ? 1 : (record.m_qty.to_i + 1)
 
-                if row['state'] == "磨损"
+                if row['state'].to_s.include?("磨损")
                   damage_life = record.nil? ? (row['press_num'].to_i) : (row['press_num'].to_i - record.press_num)
                   broken_life = 0
-                elsif row['state'] == "断裂"
+                elsif row['state'].to_s.include?("断裂")
                   damage_life = 0
                   broken_life = record.nil? ? (row['press_num'].to_i) : (row['press_num'].to_i - record.press_num)
                 else
@@ -39,6 +39,7 @@ module FileHandler
                 end
                 total_life = broken_life | damage_life
 
+                puts "-----#{broken_life}--------#{damage_life}------#{total_life}"
                 KnifeSwitchRecord.create({mould_id: mould_id, project_id: row['project_id'], switch_date: row['switch_date'], knife_type: row['knife_type'], knife_kind: row['knife_kind'],
                                           knife_supplier: row['knife_supplier'], state: row['state'], problem: row['problem'], damage_define: row['damage_define'], maintainman: row['maintainman'],
                                           qty: row['qty'], m_qty: total_count, machine_id: row['machine_id'], press_num: row['press_num'], damage_life: damage_life,

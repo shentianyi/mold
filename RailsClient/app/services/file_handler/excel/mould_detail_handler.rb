@@ -2,10 +2,10 @@ module FileHandler
   module Excel
     class MouldDetailHandler<Base
       HEADERS=[
-          'mould_id','position','terminal_leoni_no','terminal_supplier','stopwater','use_range','wire_type','wire_cross','original_param_ch',
-          'original_param_cw','actual_param_ch','actual_param_cw','actual_param_ich','actual_param_icw','step_dch_id','step_ich_id','next_time',
-          'mould_state','mould_type','mould_supplier','c_up_knife','i_up_knife','c_down_knife', 'i_down_knife','upper_punch','coc','coh',
-          'feeding_claw','after_groove','before_groove','note','oil_cup','buy_time','release_report','fixed_asset_id','is_idle','idle_time'
+          'mould_id', 'position', 'terminal_leoni_no', 'terminal_supplier', 'stopwater', 'use_range', 'wire_type', 'wire_cross', 'original_param_ch',
+          'original_param_cw', 'actual_param_ch', 'actual_param_cw', 'actual_param_ich', 'actual_param_icw', 'step_dch_id', 'step_ich_id', 'next_time',
+          'mould_state', 'mould_type', 'mould_supplier', 'c_up_knife', 'i_up_knife', 'c_down_knife', 'i_down_knife', 'upper_punch', 'coc', 'coh',
+          'feeding_claw', 'after_groove', 'before_groove', 'note', 'oil_cup', 'buy_time', 'release_report', 'fixed_asset_id', 'is_idle', 'idle_time'
       ]
 
       def self.import(file)
@@ -24,7 +24,11 @@ module FileHandler
                   row[k] = book.cell(line, i+1).to_s.strip
                 end
 
-                MouldDetail.create(row);
+                s = MouldDetail.new(row)
+                unless s.save
+                  puts s.errors.to_json
+                  raise s.errors.to_json
+                end
               end
             end
             msg.result = true
@@ -74,7 +78,7 @@ module FileHandler
         msg
       end
 
-      def self.validate_row(row,line)
+      def self.validate_row(row, line)
         msg = Message.new(contents: [])
 
         if MouldDetail.find_by_mould_id(row['mould_id'].to_i)

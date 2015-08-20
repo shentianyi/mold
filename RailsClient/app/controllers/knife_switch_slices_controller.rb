@@ -4,7 +4,7 @@ class KnifeSwitchSlicesController < ApplicationController
   # GET /knife_switch_slices
   # GET /knife_switch_slices.json
   def index
-    @knife_switch_slices = KnifeSwitchSlice.paginate(:page => params[:page])
+    @knife_switch_slices = KnifeSwitchSlice.paginate(:page => params[:page], :per_page => 15)
   end
 
   # GET /knife_switch_slices/1

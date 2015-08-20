@@ -4,7 +4,7 @@ class MouldMaintainRecordsController < ApplicationController
   # GET /mould_maintain_records
   # GET /mould_maintain_records.json
   def index
-    @mould_maintain_records = MouldMaintainRecord.paginate(:page => params[:page])
+    @mould_maintain_records = MouldMaintainRecord.paginate(:page => params[:page], :per_page => 15)
   end
 
   # GET /mould_maintain_records/1
@@ -45,7 +45,7 @@ class MouldMaintainRecordsController < ApplicationController
           format.html { render :new }
           format.json { render json: @mould_maintain_record.errors, status: :unprocessable_entity }
         end
-        else
+      else
         format.html { render :new }
         format.json { render json: @mould_maintain_record.errors, status: :unprocessable_entity }
       end
@@ -94,13 +94,13 @@ class MouldMaintainRecordsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_mould_maintain_record
-      @mould_maintain_record = MouldMaintainRecord.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_mould_maintain_record
+    @mould_maintain_record = MouldMaintainRecord.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def mould_maintain_record_params
-      params.require(:mould_maintain_record).permit(:mould_id, :count, :plan_date, :real_date, :note)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def mould_maintain_record_params
+    params.require(:mould_maintain_record).permit(:mould_id, :count, :plan_date, :real_date, :note)
+  end
 end

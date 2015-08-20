@@ -4,7 +4,7 @@ class MouldMaintainTimesController < ApplicationController
   # GET /mould_maintain_times
   # GET /mould_maintain_times.json
   def index
-    @mould_maintain_times = MouldMaintainTime.paginate(:page => params[:page])
+    @mould_maintain_times = MouldMaintainTime.paginate(:page => params[:page], :per_page => 15)
   end
 
   # GET /mould_maintain_times/1
@@ -37,7 +37,9 @@ class MouldMaintainTimesController < ApplicationController
     args[:feed_code] = mould_maintain_time_params[:feed_code]
     args[:start_time] = mould_maintain_time_params[:start_time]
     args[:end_time] = mould_maintain_time_params[:end_time]
-    args[:downtime] = (args[:end_time].to_s.to_time - args[:start_time].to_s.to_time) / 60
+    unless args[:end_time].empty? && args[:start_time].empty?
+      args[:downtime] = (args[:end_time].to_s.to_time - args[:start_time].to_s.to_time) / 60
+    end
     puts args
     @mould_maintain_time = MouldMaintainTime.new(args)
 
@@ -94,13 +96,13 @@ class MouldMaintainTimesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_mould_maintain_time
-      @mould_maintain_time = MouldMaintainTime.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_mould_maintain_time
+    @mould_maintain_time = MouldMaintainTime.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def mould_maintain_time_params
-      params.require(:mould_maintain_time).permit(:mould_id, :project_id, :device_id, :serviceman, :err_note, :solution_method, :code, :feed_code, :start_time, :end_time, :downtime, :maintain_date)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def mould_maintain_time_params
+    params.require(:mould_maintain_time).permit(:mould_id, :project_id, :device_id, :serviceman, :err_note, :solution_method, :code, :feed_code, :start_time, :end_time, :downtime, :maintain_date)
+  end
 end
