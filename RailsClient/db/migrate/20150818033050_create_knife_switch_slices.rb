@@ -11,7 +11,7 @@ class CreateKnifeSwitchSlices < ActiveRecord::Migration
       t.float :wire_cross
       t.string :image_after, :default => ""
       t.string :image_before, :default => ""
-      t.boolean :is_ok, :default => false
+      t.string :is_ok, :default => ""
       t.string :email, null: false, default: "mj@leoni.com"
 
       t.timestamps null: false

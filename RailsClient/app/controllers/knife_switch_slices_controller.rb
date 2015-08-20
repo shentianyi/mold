@@ -21,17 +21,40 @@ class KnifeSwitchSlicesController < ApplicationController
   def edit
   end
 
+  def do_image_param params
+    args = {}
+    before_image_path = $image_path + Time.now.to_s + "-before-" +  params[:image_before].original_filename
+    after_image_path = $image_path + Time.now.to_s + "-after-" +  params[:image_after].original_filename
+
+    File.open(before_image_path, 'wb') do |f|
+      f.write(params[:image_before].read)
+    end
+    File.open(after_image_path, 'wb') do |f|
+      f.write(params[:image_after].read)
+    end
+
+    args[:mould_id] = params[:mould_id]
+    args[:project_id] = params[:project_id]
+    args[:terminal_leoni_id] = params[:terminal_leoni_id]
+    args[:switch_date] = params[:switch_date]
+    args[:knife_type1] = params[:knife_type1]
+    args[:knife_type2] = params[:knife_type2]
+    args[:wire_type] = params[:wire_type]
+    args[:wire_cross] = params[:wire_cross]
+    args[:image_after] = after_image_path
+    args[:image_before] = before_image_path
+    args[:is_ok] = params[:is_ok]
+
+    args
+  end
+
   # POST /knife_switch_slices
   # POST /knife_switch_slices.json
   def create
     puts "---------------------------------"
-    puts knife_switch_slice_params
-    @knife_switch_slice = KnifeSwitchSlice.new(knife_switch_slice_params)
-
-    File.open('/home/lzd/图片/test2.jpg', 'wb') do |f|
-      f.write(knife_switch_slice_params[:image_before].read)
-    end
-
+    args = do_image_param(knife_switch_slice_params)
+    puts args
+    @knife_switch_slice = KnifeSwitchSlice.new(args)
 
     respond_to do |format|
       if @knife_switch_slice.save
