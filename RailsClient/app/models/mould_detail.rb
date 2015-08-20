@@ -1,3 +1,3 @@
 class MouldDetail < ActiveRecord::Base
-  validates :mould_id, presence: true, uniqueness: {message: 'mould id should be uniq'}
+  validates :mould_id, presence: true, uniqueness: {message: '模具号不能重复!'}
 end
