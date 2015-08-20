@@ -23,23 +23,19 @@ class KnifeSwitchSlicesController < ApplicationController
 
   def do_image_param params
     args = {}
-<<<<<<< HEAD
-    before_image_path = $image_path + Time.now.strftime('%Y-%m-%d_%H_%M_%S_%s')+ "-before-" +  params[:image_before].original_filename
-    after_image_path = $image_path + Time.now.strftime('%Y-%m-%d_%H_%M_%S_%s') + "-after-" +  params[:image_after].original_filename
-=======
     after_image_path = ''
     before_image_path = ''
->>>>>>> 2dbee5c750c9b3a987d05db35a29c8a5f9c52288
 
     unless params[:image_before].nil?
-      before_image_path = $image_path + Time.now.to_s + "-before-" + params[:image_before].original_filename
+      before_image_path = $image_path + Time.now.strftime('%Y-%m-%d_%H_%M_%S_%s')+ "-before-" + params[:image_before].original_filename
       File.open(before_image_path, 'wb') do |f|
         f.write(params[:image_before].read)
       end
     end
 
     unless params[:image_after].nil?
-      after_image_path = $image_path + Time.now.to_s + "-after-" + params[:image_after].original_filename
+      after_image_path = $image_path + Time.now.strftime('%Y-%m-%d_%H_%M_%S_%s') + "-after-" + params[:image_after].original_filename
+
       File.open(after_image_path, 'wb') do |f|
         f.write(params[:image_after].read)
       end
