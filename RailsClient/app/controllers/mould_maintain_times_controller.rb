@@ -37,7 +37,7 @@ class MouldMaintainTimesController < ApplicationController
     args[:feed_code] = mould_maintain_time_params[:feed_code]
     args[:start_time] = mould_maintain_time_params[:start_time]
     args[:end_time] = mould_maintain_time_params[:end_time]
-    args[:downtime] = args[:end_time].to_s.to_time - args[:start_time].to_s.to_time
+    args[:downtime] = (args[:end_time].to_s.to_time - args[:start_time].to_s.to_time) / 60
     puts args
     @mould_maintain_time = MouldMaintainTime.new(args)
 

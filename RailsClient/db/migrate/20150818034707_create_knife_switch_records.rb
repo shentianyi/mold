@@ -20,7 +20,7 @@ class CreateKnifeSwitchRecords < ActiveRecord::Migration
       t.integer :total_life, :default => 0
 
       t.string :operater, :default => ""
-      t.boolean :is_ok, :default => false
+      t.string :is_ok, :default => ""
       t.string :sort, :default => ""
       t.string :outbound_id, :default => ""
       t.string :image_id, :default => ""
