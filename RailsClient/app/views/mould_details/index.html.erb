@@ -17,10 +17,14 @@
 <p id="notice"><%= notice %></p>
 <p class="title">模具明细</p>
 <hr style="border: 1px solid #999;margin-top: 0;padding-top: 0;margin-left: 158px;"/>
+
+<div>
+  <form method="get" action="<%= send("search_#{@model.pluralize}_path") %>">
+
 <div style="display: inline-flex;" class="col-sm-12">
   <div class="col-sm-2">
     <b>模具号：</b>
-    <input type="text">
+    <input type="text" name="mould_detail[mould_id]" value="<%= @mould_id %>">
   </div>
 
   <div class="col-sm-3">
@@ -55,9 +59,9 @@
 
   <div class="col-sm-6">
     <b>下次批准日期：从</b>
-    <input type="text" class="datetime-picker" style="width: 32%;">
+    <input type="text" name="mould_detail[next_time][start]" value="<%= @next_time_start %>" class="datetime-picker" style="width: 32%;">
     <b>到</b>
-    <input type="text" class="datetime-picker" style="width: 30%;">
+    <input type="text" name="mould_detail[next_time][end]" value="<%= @next_time_end %>" class="datetime-picker" style="width: 30%;">
   </div>
 
   <div class="col-sm-2">
@@ -65,11 +69,13 @@
     <input type="text">
   </div>
 
-  <div style=" display: inline-flex;" class="col-sm-2">
-    <%= link_to '查询', '', :class => 'btn btn-primary',
-                :style => 'color:#000;padding-top:10px;margin:0;' %>
-  </div>
+  <input type="submit" value="查 找" class="btn btn-primary"/>
 </div>
+
+  </form>
+</div>
+
+
 <div>
   <hr style="border: 1px solid #000;">
 </div>
@@ -122,7 +128,7 @@
           <td><%= mould_detail.terminal_supplier %></td>
           <td><%= mould_detail.wire_type %></td>
           <td><%= mould_detail.wire_cross %></td>
-          <td><%= mould_detail.next_time %></td>
+          <td><%= mould_detail.next_time.localtime.strftime("%Y-%m-%d %H:%M:%S") %></td>
           <td><%= mould_detail.mould_state %></td>
           <td><%= mould_detail.mould_type %></td>
           <td><%= mould_detail.mould_supplier %></td>
