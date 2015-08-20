@@ -9,10 +9,14 @@
         background-color: #286090;
     }
 
-    .col-sm-4 {
+    .col-sm-4, .col-sm-12 {
         float: none;
         text-align: left;
         display: inline-flex;
+    }
+
+    .col-sm-12>input {
+        width: 11%;
     }
 
     label {
@@ -245,6 +249,14 @@
       <div class="col-sm-4">
         <%= f.label :idle_time, '闲置日期:' %>
         <%= f.text_field :idle_time, class: 'datetime-picker' %>
+      </div>
+    </div>
+
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+
+      <div class="col-sm-4">
+        <%= f.label :note, '备注:' %>
+        <%= f.text_field :note %>
       </div>
     </div>
 

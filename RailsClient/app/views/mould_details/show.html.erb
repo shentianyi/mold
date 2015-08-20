@@ -237,6 +237,12 @@
     <%= @mould_detail.idle_time %>
   </div>
 </div>
+<hr/>
+
+<div class="col-sm-4" style="display: inline-flex;">
+  <p>备注： </p>
+  <%= @mould_detail.note %>
+</div>
 <hr style="border: 1px solid #000">
 <%= link_to "编辑", edit_mould_detail_path(@mould_detail), :class => 'btn btn-primary', :style => 'color:#000; margin-left:2%;margin-top:1%;' %>
 <%= link_to "返回", mould_details_path, :class => 'btn btn-primary', :style => 'color:#000; margin-left:2%;margin-top:1%;' %>
