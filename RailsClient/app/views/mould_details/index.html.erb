@@ -21,62 +21,51 @@
 <div>
   <form method="get" action="<%= send("search_#{@model.pluralize}_path") %>">
 
-<div style="display: inline-flex;" class="col-sm-12">
-  <div class="col-sm-2">
-    <b>模具号：</b>
-    <input type="text" name="mould_detail[mould_id]" value="<%= @mould_id %>">
-  </div>
+    <div style="display: inline-flex;" class="col-sm-12">
+      <div class="col-sm-2">
+        <b>模具号：</b>
+        <input type="text" name="mould_detail[mould_id]" value="<%= @mould_id %>">
+      </div>
 
-  <div class="col-sm-3">
-    <b>端子莱尼号：</b>
-    <input type="text" name="mould_detail[terminal_leoni_no]" value="<%= @terminal_leoni_no %>">
-  </div>
+      <div class="col-sm-3">
+        <b>端子莱尼号：</b>
+        <input type="text" name="mould_detail[terminal_leoni_no]" value="<%= @terminal_leoni_no %>">
+      </div>
 
-  <div class="col-sm-3">
-    <b>电线型号：</b>
-    <input type="text" name="mould_detail[wire_type]" value="<%= @wire_type %>">
-  </div>
+      <div class="col-sm-3">
+        <b>电线型号：</b>
+        <input type="text" name="mould_detail[wire_type]" value="<%= @wire_type %>">
+      </div>
 
+      <div class="col-sm-4">
+        <b>库位：</b>
+        <input type="text" name="mould_detail[position_id]" value="<%= @position_id %>">
+      </div>
 
-  <div class="col-sm-4">
-    <b>电线截面QMM：</b>
-    <input type="text">
-  </div>
+    </div>
 
-</div>
+    <div style="display: inline-flex;margin-top:20px;" class="col-sm-12">
 
-<div style="display: inline-flex;margin-top:20px;" class="col-sm-12">
+      <div class="col-sm-2">
+        <b>状态：</b>
+        <select name="mould_detail[mould_state]" include_blank="true">
+          <% {ALL: nil, 未过期: '未过期', 即将过期: '即将过期',已过期: '已过期'}.each do |k, v| %>
+              <option value="<%= v %>" <%= 'selected' if @state==v %>> <%= k %></option>
+          <% end %>
+        </select>
+      </div>
 
-  <div class="col-sm-2">
-    <b>状态：</b>
-    <select name="mould_detail[mould_state]" include_blank="true">
-      <% {ALL: nil, 未过期: '未过期', 即将过期: '即将过期',已过期: '已过期'}.each do |k, v| %>
-          <option value="<%= v %>" <%= 'selected' if @state==v %>> <%= k %></option>
-      <% end %>
-    </select>
+      <div class="col-sm-6">
+        <b>下次批准日期：从</b>
+        <input type="text" name="mould_detail[next_time][start]" value="<%= @next_time_start %>" class="datetime-picker" style="width: 32%;">
+        <b>到</b>
+        <input type="text" name="mould_detail[next_time][end]" value="<%= @next_time_end %>" class="datetime-picker" style="width: 30%;">
+      </div>
 
-    <select>
-      <option value="ALL">ALL</option>
-      <option value="未过期">未过期</option>
-      <option value="即将过期">即将过期</option>
-      <option value="已过期">已过期</option>
-    </select>
-  </div>
-
-  <div class="col-sm-6">
-    <b>下次批准日期：从</b>
-    <input type="text" name="mould_detail[next_time][start]" value="<%= @next_time_start %>" class="datetime-picker" style="width: 32%;">
-    <b>到</b>
-    <input type="text" name="mould_detail[next_time][end]" value="<%= @next_time_end %>" class="datetime-picker" style="width: 30%;">
-  </div>
-
-  <div class="col-sm-2">
-    <b>库位：</b>
-    <input type="text" name="mould_detail[position_id]" value="<%= @position_id %>">
-  </div>
-
-  <input type="submit" value="查 找" class="btn btn-primary"/>
-</div>
+      <div class="col-sm-2">
+        <input type="submit" value="查 找" class="btn btn-primary"/>
+      </div>
+    </div>
 
   </form>
 </div>

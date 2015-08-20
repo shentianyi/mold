@@ -3,17 +3,21 @@
     th {
         text-align: center;
     }
+
     td {
         text-align: center;
     }
+
     .col-sm-2, .col-sm-3 {
         float: none;
         text-align: left;
         margin: 0;
     }
+
     .col-sm-2 > b, .col-sm-3 > b, .col-sm-2 > input, .col-sm-3 > input, .col-sm-4>b, .col-sm-4>input {
         margin-top: 15px;
     }
+
     hr {
         margin-top: 80px;
         border: 1px solid #000;
@@ -26,30 +30,31 @@
 <div>
   <form method="get" action="<%= send("search_#{@model.pluralize}_path") %>">
 
-<div style="display: inline-flex;" class="col-sm-12">
-  <div class="col-sm-4">
-    <b>日期：从</b>
-    <input type="text" name="knife_switch_slice[switch_date][start]" value="<%= @switch_date_start %>" class="datetime-picker">
-    <b>到</b>
-    <input type="text" name="knife_switch_slice[switch_date][end]" value="<%= @switch_date_end %>" class="datetime-picker">
-  </div>
-  <div class="col-sm-3">
-    <b>端子莱尼号：</b>
-    <input type="text" name="knife_switch_slice[terminal_leoni_id]" value="<%= @terminal_leoni_id %>">
-  </div>
+    <div style="display: inline-flex;" class="col-sm-12">
+      <div class="col-sm-4">
+        <b>日期：从</b>
+        <input type="text" name="knife_switch_slice[switch_date][start]" value="<%= @switch_date_start %>" class="datetime-picker">
+        <b>到</b>
+        <input type="text" name="knife_switch_slice[switch_date][end]" value="<%= @switch_date_end %>" class="datetime-picker">
+      </div>
+      <div class="col-sm-3">
+        <b>端子莱尼号：</b>
+        <input type="text" name="knife_switch_slice[terminal_leoni_id]" value="<%= @terminal_leoni_id %>">
+      </div>
 
-  <div class="col-sm-2">
-    <b>模具号：</b>
-    <input type="text" name="knife_switch_slice[mould_id]" value="<%= @mould_id %>">
-  </div>
+      <div class="col-sm-2">
+        <b>模具号：</b>
+        <input type="text" name="knife_switch_slice[mould_id]" value="<%= @mould_id %>">
+      </div>
 
-  <div class="col-sm-2">
-    <b>项目：</b>
-    <input type="text" name="knife_switch_slice[project_id]" value="<%= @project_id %>">
-  </div>
-
-  <input type="submit" value="查 找" class="btn btn-primary"/>
-</div>
+      <div class="col-sm-2">
+        <b>项目：</b>
+        <input type="text" name="knife_switch_slice[project_id]" value="<%= @project_id %>">
+      </div>
+      <div class="col-sm-2">
+        <input type="submit" value="查 找" class="btn btn-primary"/>
+      </div>
+    </div>
 
   </form>
 </div>
