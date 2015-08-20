@@ -10,6 +10,10 @@
     label {
         width: 150px;
     }
+
+    input[type=file] {
+        border: 0;
+    }
 </style>
 
 
@@ -71,11 +75,13 @@
         <%= f.text_field :is_ok %>
       </div>
       <div class="col-sm-6">
-          <%= f.label :image_before, '剖面(换刀前)' %><br />
-          <%= f.file_field :image_before %>
+        <%= f.label :image_before, '剖面(换刀前)' %>
+        <br/>
+        <%= f.file_field :image_before %>
       </div>
-      <div class="col-sm-6">
-        <%= f.label :image_after, '剖面(换刀后)' %><br />
+      <div class="col-sm-12">
+        <%= f.label :image_after, '剖面(换刀后)' %>
+        <br/>
         <%= f.file_field :image_after %>
       </div>
     </div>
