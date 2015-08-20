@@ -28,8 +28,8 @@
   </div>
   <div class="col-sm-4">
     <b>日期：从</b>
-    <input type="text" class="datetime-picker"><b>到</b>
-    <input type="text" class="datetime-picker">
+    <input type="text" name="mould_maintain_time[maintain_date][start]" value="<%= @maintain_date_start %>" class="datetime-picker"><b>到</b>
+    <input type="text" name="mould_maintain_time[maintain_date][end]" value="<%= @maintain_date_end %>" class="datetime-picker">
   </div>
 
   <div class="col-sm-2">
@@ -78,6 +78,7 @@
     <tr style="background-color: #ccc">
       <th style="width: 110px;">模具号</th>
       <th>项目</th>
+      <th>日期</th>
       <th>设备编号</th>
       <th>抢修人员</th>
       <th>问题描述</th>
@@ -95,6 +96,7 @@
     <% @mould_maintain_times.each do |mould_maintain_time| %>
         <tr>
           <td><%= mould_maintain_time.mould_id %></td>
+          <td><%= mould_maintain_time.maintain_date.nil? ? '' :  mould_maintain_time.maintain_date.localtime.strftime("%Y-%m-%d") %></td>
           <td><%= mould_maintain_time.project_id %></td>
           <td><%= mould_maintain_time.device_id %></td>
           <td><%= mould_maintain_time.serviceman %></td>

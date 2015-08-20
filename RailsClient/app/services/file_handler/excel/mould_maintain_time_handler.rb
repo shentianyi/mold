@@ -11,15 +11,18 @@ module FileHandler
         book.default_sheet = book.sheets.first
 
         validate_msg = validate_import(file)
+
         if validate_msg.result
           #validate file
           begin
             MouldMaintainTime.transaction do
               2.upto(book.last_row) do |line|
                 row = {}
+
                 HEADERS.each_with_index do |k, i|
                   row[k] = book.cell(line, i+1).to_s.strip
                 end
+
 
                 mould_id = row['mould_id'].to_s
                 downtime = (row['end_time'].to_s.to_time - row['start_time'].to_s.to_time) / 60
@@ -78,8 +81,6 @@ module FileHandler
 
       def self.validate_row(row,line)
         msg = Message.new(contents: [])
-        puts "111111111111111111111111111"
-        puts row
 
         if (row['end_time'].to_s.to_time - row['start_time'].to_s.to_time) <= 0
           msg.contents << "维修时间不正确!"
