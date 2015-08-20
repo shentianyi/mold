@@ -27,14 +27,15 @@ class KnifeSwitchSlicesController < ApplicationController
     before_image_path = ''
 
     unless params[:image_before].nil?
-      before_image_path = $image_path + Time.now.to_s + "-before-" + params[:image_before].original_filename
+      before_image_path = $image_path + Time.now.strftime('%Y-%m-%d_%H_%M_%S_%s')+ "-before-" + params[:image_before].original_filename
       File.open(before_image_path, 'wb') do |f|
         f.write(params[:image_before].read)
       end
     end
 
     unless params[:image_after].nil?
-      after_image_path = $image_path + Time.now.to_s + "-after-" + params[:image_after].original_filename
+      after_image_path = $image_path + Time.now.strftime('%Y-%m-%d_%H_%M_%S_%s') + "-after-" + params[:image_after].original_filename
+
       File.open(after_image_path, 'wb') do |f|
         f.write(params[:image_after].read)
       end
@@ -78,7 +79,7 @@ class KnifeSwitchSlicesController < ApplicationController
   # PATCH/PUT /knife_switch_slices/1.json
   def update
     respond_to do |format|
-      if @knife_switch_slice.update(knife_switch_slice_params)
+      if @knife_switch_slice.update(do_image_param(knife_switch_slice_params))
         format.html { redirect_to @knife_switch_slice, notice: 'Knife switch slice was successfully updated.' }
         format.json { render :show, status: :ok, location: @knife_switch_slice }
       else

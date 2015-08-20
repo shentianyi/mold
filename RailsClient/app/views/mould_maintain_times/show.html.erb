@@ -79,8 +79,26 @@
     <p>送料方式:</p>
     <%= @mould_maintain_time.feed_code %>
   </div>
-  <hr/>
+</div>
+<hr/>
 
+<div style="display: inline-flex; width: 100%; ">
+  <div class="col-sm-6">
+    <p>开始时间:</p>
+    <%= @mould_maintain_time.start_time %>
+  </div>
+  <div class="col-sm-6">
+    <p>结束时间:</p>
+    <%= @mould_maintain_time.end_time %>
+  </div>
+</div>
+<hr/>
+
+<div style="display: inline-flex; width: 100%; ">
+  <div class="col-sm-6">
+    <p>维修时间:</p>
+    <%= @mould_maintain_time.downtime %>
+  </div>
 </div>
 
 
