@@ -22,9 +22,12 @@ module FileHandler
                 row = {}
                 HEADERS.each_with_index do |k, i|
                   row[k] = book.cell(line, i+1).to_s.strip
+                  row[k] = row[k].sub(/\.0/, '') if k=='terminal_leoni_no'
+                  row[k] = row[k].sub(/\.0/, '') if k=='mould_id'
+                  row[k] = row[k].sub(/\.0/, '') if k=='position'
                 end
 
-                s = MouldDetail.new(row)
+                s =MouldDetail.new(row)
                 unless s.save
                   puts s.errors.to_json
                   raise s.errors.to_json
