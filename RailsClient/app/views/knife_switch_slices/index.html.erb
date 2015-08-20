@@ -105,9 +105,9 @@
           <td><%= knife_switch_slice.knife_type2 %></td>
           <td><%= knife_switch_slice.wire_type %></td>
           <td><%= knife_switch_slice.wire_cross %></td>
-          <td><%= knife_switch_slice.image_after %></td>
+          <td><img src="/images?image=<%= URI::encode(knife_switch_slice.image_after) %>" width="60" height="40"/></td>
           <td><%= knife_switch_slice.is_ok %></td>
-          <td><%= knife_switch_slice.image_before %></td>
+          <td><img src="/images?image=<%= URI::encode(knife_switch_slice.image_before) %>" width="60" height="40"/></td>
           <td><%= link_to '[详情]', knife_switch_slice %>
             <%= link_to '[编辑]', edit_knife_switch_slice_path(knife_switch_slice) %>
             <%= link_to '[删除]', knife_switch_slice, method: :delete, data: {confirm: '确定删除?'} %></td>

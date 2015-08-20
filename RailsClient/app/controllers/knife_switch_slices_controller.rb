@@ -23,8 +23,8 @@ class KnifeSwitchSlicesController < ApplicationController
 
   def do_image_param params
     args = {}
-    before_image_path = $image_path + Time.now.to_s + "-before-" +  params[:image_before].original_filename
-    after_image_path = $image_path + Time.now.to_s + "-after-" +  params[:image_after].original_filename
+    before_image_path = $image_path + Time.now.strftime('%Y-%m-%d_%H_%M_%S_%s')+ "-before-" +  params[:image_before].original_filename
+    after_image_path = $image_path + Time.now.strftime('%Y-%m-%d_%H_%M_%S_%s') + "-after-" +  params[:image_after].original_filename
 
     File.open(before_image_path, 'wb') do |f|
       f.write(params[:image_before].read)

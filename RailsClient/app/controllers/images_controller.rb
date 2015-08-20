@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:show, :edit, :update, :destroy]
-  before_filter :find_image_by_param, :only => [:show]
+  #before_action :set_image, only: [:show, :edit, :update, :destroy]
+  #before_filter :find_image_by_param, :only => [:show]
 
 
   #处理文件的上传
@@ -38,8 +38,11 @@ class ImagesController < ApplicationController
   # GET /images/1
   # GET /images/1.json
   def show
-    data=File.new(@image.diskfile, "rb").read
-    send_data(data, :filename => @image.filename, :type => @image.content_type, :disposition => "inline")
+    #data=File.new(params[:image], "rb").read
+
+    puts '----------------------'
+    #puts data
+    send_file(params[:image])
   end
 
   # GET /images/new
