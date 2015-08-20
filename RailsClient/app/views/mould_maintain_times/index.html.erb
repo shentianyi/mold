@@ -52,7 +52,13 @@
   <div class="trapezoid">
     <p style="margin-top: 25%;">维修时间</p>
   </div>
-  <div style="display: inline-flex;margin-left: 20%;">
+  <div class="digg_pagination" style="margin-top: 50px;">
+    <div class="page_info">
+      <%= page_entries_info @mould_maintain_times %>
+    </div>
+    <%= will_paginate @mould_maintain_times, :container => false %>
+  </div>
+  <div style="display: inline-flex;margin-left: 20px;">
     <%= link_to '新增', new_mould_maintain_time_path, :class => 'btn btn-info',
                 :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
 
@@ -65,12 +71,6 @@
 </div>
 
 <div style="margin-left: 100px;margin-right: 5%;">
-  <div class="digg_pagination">
-    <div class="page_info">
-      <%= page_entries_info @mould_maintain_times %>
-    </div>
-    <%= will_paginate @mould_maintain_times, :container => false %>
-  </div>
   <table class="table table-bordered table-striped table-hover">
     <thead>
     <tr style="background-color: #ccc">

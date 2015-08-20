@@ -43,6 +43,7 @@ class ImagesController < ApplicationController
     puts '----------------------'
     #puts data
     send_file(params[:image])
+
   end
 
   # GET /images/new

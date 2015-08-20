@@ -79,7 +79,7 @@ class KnifeSwitchSlicesController < ApplicationController
   # PATCH/PUT /knife_switch_slices/1.json
   def update
     respond_to do |format|
-      if @knife_switch_slice.update(knife_switch_slice_params)
+      if @knife_switch_slice.update(do_image_param(knife_switch_slice_params))
         format.html { redirect_to @knife_switch_slice, notice: 'Knife switch slice was successfully updated.' }
         format.json { render :show, status: :ok, location: @knife_switch_slice }
       else
