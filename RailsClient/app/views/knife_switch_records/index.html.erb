@@ -100,6 +100,12 @@
 </div>
 
 <div style="margin-left:100px; margin-right: 100px;">
+  <div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info @knife_switch_records %>
+    </div>
+    <%= will_paginate @knife_switch_records, :container => false %>
+  </div>
   <table class="table table-bordered table-striped table-hover">
     <thead>
     <tr style="background-color: #ccc">
@@ -140,8 +146,10 @@
     <% end %>
     </tbody>
   </table>
+  <div class="digg_pagination">
+    <%= will_paginate @knife_switch_records, :container => false %>
+  </div>
 </div>
-
 
 <script type="text/javascript">
     $(document).ready(function () {

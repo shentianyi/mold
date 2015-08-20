@@ -4,7 +4,7 @@ class MouldMaintainRecordsController < ApplicationController
   # GET /mould_maintain_records
   # GET /mould_maintain_records.json
   def index
-    @mould_maintain_records = MouldMaintainRecord.all
+    @mould_maintain_records = MouldMaintainRecord.paginate(:page => params[:page])
   end
 
   # GET /mould_maintain_records/1
