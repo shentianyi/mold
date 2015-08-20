@@ -30,6 +30,10 @@ Rails.application.routes.draw do
   end
 
 
+  controller :welcome do
+   get :report
+  end
+
   resources :users
 
   resources :mould_details do
