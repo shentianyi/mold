@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :spare_parts
   resources :images do
     collection do
       match '', to: :show, via: :get

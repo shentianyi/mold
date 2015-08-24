@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Spare Parts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Record date</th>
+      <th>Mould</th>
+      <th>Project</th>
+      <th>Spare type</th>
+      <th>Spare kind</th>
+      <th>Broken state</th>
+      <th>Maintainman</th>
+      <th>Qty</th>
+      <th>Machine</th>
+      <th>Outbound</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spare_parts.each do |spare_part| %>
+      <tr>
+        <td><%= spare_part.record_date %></td>
+        <td><%= spare_part.mould_id %></td>
+        <td><%= spare_part.project_id %></td>
+        <td><%= spare_part.spare_type %></td>
+        <td><%= spare_part.spare_kind %></td>
+        <td><%= spare_part.broken_state %></td>
+        <td><%= spare_part.maintainman %></td>
+        <td><%= spare_part.qty %></td>
+        <td><%= spare_part.machine_id %></td>
+        <td><%= spare_part.outbound_id %></td>
+        <td><%= link_to 'Show', spare_part %></td>
+        <td><%= link_to 'Edit', edit_spare_part_path(spare_part) %></td>
+        <td><%= link_to 'Destroy', spare_part, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Spare part', new_spare_part_path %>

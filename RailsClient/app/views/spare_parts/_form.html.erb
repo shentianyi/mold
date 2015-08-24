@@ -1,0 +1,57 @@
+<%= form_for(@spare_part) do |f| %>
+  <% if @spare_part.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@spare_part.errors.count, "error") %> prohibited this spare_part from being saved:</h2>
+
+      <ul>
+      <% @spare_part.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :record_date %><br>
+    <%= f.text_field :record_date %>
+  </div>
+  <div class="field">
+    <%= f.label :mould_id %><br>
+    <%= f.text_field :mould_id %>
+  </div>
+  <div class="field">
+    <%= f.label :project_id %><br>
+    <%= f.text_field :project_id %>
+  </div>
+  <div class="field">
+    <%= f.label :spare_type %><br>
+    <%= f.text_field :spare_type %>
+  </div>
+  <div class="field">
+    <%= f.label :spare_kind %><br>
+    <%= f.text_field :spare_kind %>
+  </div>
+  <div class="field">
+    <%= f.label :broken_state %><br>
+    <%= f.text_field :broken_state %>
+  </div>
+  <div class="field">
+    <%= f.label :maintainman %><br>
+    <%= f.text_field :maintainman %>
+  </div>
+  <div class="field">
+    <%= f.label :qty %><br>
+    <%= f.text_field :qty %>
+  </div>
+  <div class="field">
+    <%= f.label :machine_id %><br>
+    <%= f.text_field :machine_id %>
+  </div>
+  <div class="field">
+    <%= f.label :outbound_id %><br>
+    <%= f.text_field :outbound_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

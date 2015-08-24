@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Record date:</strong>
+  <%= @spare_part.record_date %>
+</p>
+
+<p>
+  <strong>Mould:</strong>
+  <%= @spare_part.mould_id %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @spare_part.project_id %>
+</p>
+
+<p>
+  <strong>Spare type:</strong>
+  <%= @spare_part.spare_type %>
+</p>
+
+<p>
+  <strong>Spare kind:</strong>
+  <%= @spare_part.spare_kind %>
+</p>
+
+<p>
+  <strong>Broken state:</strong>
+  <%= @spare_part.broken_state %>
+</p>
+
+<p>
+  <strong>Maintainman:</strong>
+  <%= @spare_part.maintainman %>
+</p>
+
+<p>
+  <strong>Qty:</strong>
+  <%= @spare_part.qty %>
+</p>
+
+<p>
+  <strong>Machine:</strong>
+  <%= @spare_part.machine_id %>
+</p>
+
+<p>
+  <strong>Outbound:</strong>
+  <%= @spare_part.outbound_id %>
+</p>
+
+<%= link_to 'Edit', edit_spare_part_path(@spare_part) %> |
+<%= link_to 'Back', spare_parts_path %>
