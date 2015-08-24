@@ -7,7 +7,7 @@ class MouldMaintainTime < ActiveRecord::Base
   validates_presence_of :end_time, :message => "结束时间不能为空!"
 
   HEADERS=[
-      '项目','日期','设备编号','模具号','抢修人员','开始时间','结束时间', 'Downtime' '问题描述','解决措施','代码','送料方式'
+      '项目','日期','设备编号','模具号','抢修人员','开始时间','结束时间', 'Downtime', '问题描述','解决措施','代码','送料方式'
   ]
   # HEADERS=[
   #     'project_id','maintain_date','device_id','mould_id','serviceman','start_time','end_time','err_note','solution_method','code','feed_code'
@@ -30,6 +30,7 @@ class MouldMaintainTime < ActiveRecord::Base
 
                           mould.downtime,
                           mould.err_note,
+                          mould.solution_method,
                           mould.code,
                           mould.feed_code
                       ]
