@@ -37,6 +37,8 @@ class KnifeSwitchRecord < ActiveRecord::Base
                           record.m_qty,
                           record.machine_id,
                           record.press_num,
+                          record.damage_life,
+                          record.broken_life,
 
                           record.operater,
                           record.is_ok,

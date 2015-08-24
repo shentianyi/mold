@@ -70,9 +70,14 @@
   </div>
   <hr/>
 
+  <!--<div class="col-sm-6">-->
+    <!--<p>剖面：</p>-->
+    <!--<img src="/images?image=<%= URI::encode(@knife_switch_slice.image_after) %>" width="50" height="40" alt=""/>-->
+  <!--</div>-->
+
   <div class="col-sm-6">
     <p>剖面：</p>
-    <img src="/images?image=<%= URI::encode(@knife_switch_slice.image_after) %>" width="50" height="40" alt=""/>
+    <%= @knife_switch_slice.image_after %>
   </div>
 
   <div class="col-sm-6">
@@ -81,10 +86,14 @@
   </div>
   <hr/>
 
-  <div class="col-sm-12">
+  <div class="col-sm-6">
     <p>剖面（换刀前）：</p>
-    <img src="/images?image=<%= URI::encode(@knife_switch_slice.image_before) %>" width="50" height="40" alt="" style="border-radius: 8px;"/>
+    <%= @knife_switch_slice.image_before %>
   </div>
+  <!--<div class="col-sm-12">-->
+    <!--<p>剖面（换刀前）：</p>-->
+    <!--<img src="/images?image=<%= URI::encode(@knife_switch_slice.image_before) %>" width="50" height="40" alt="" style="border-radius: 8px;"/>-->
+  <!--</div>-->
 </div>
 <hr/>
 <%= link_to '编辑', edit_knife_switch_slice_path(@knife_switch_slice), :class => 'btn btn-info', :style => 'color:#000;padding-top:10px; margin-left:2%;margin-top:1%;' %>
