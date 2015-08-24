@@ -63,6 +63,37 @@
         <input type="text" name="mould_detail[next_time][end]" value="<%= @next_time_end %>" class="datetime-picker" style="width: 30%;">
       </div>
 
+      <!--此处开始为新添加查询条件-->
+      <div class="col-sm-4">
+        <b>模具供应商：</b>
+        <input type="text">
+      </div>
+    </div>
+
+    <div style="display: inline-flex;margin-top:20px;" class="col-sm-12">
+      <div class="col-sm-2" style="display: inline-flex;">
+        <b>芯线上刀：</b>
+        <input type="text">
+      </div>
+
+      <div class="col-sm-3" style="display: inline-flex;">
+        <b>芯线下刀：</b>
+        <input type="text">
+      </div>
+
+      <div class="col-sm-3" style="display: inline-flex;">
+        <b>绝缘上刀：</b>
+        <input type="text">
+      </div>
+
+      <div class="col-sm-3" style="display: inline-flex;">
+        <b>绝缘下刀：</b>
+        <input type="text">
+      </div>
+    </div>
+
+    <div style="display: inline-flex;margin-top:20px;" class="col-sm-12">
+
       <div class="col-sm-2" style="display: inline-flex;">
         <input type="submit" value="查 找" class="btn btn-primary" name="search"/>
         <input type="submit" value="导 出" class="btn btn-primary" name="download"/>
