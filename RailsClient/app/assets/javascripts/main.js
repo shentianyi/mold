@@ -63,6 +63,18 @@ function MouldRepair() {
     }
 }
 
+function Spare_Info() {
+    var Spare_Info = document.getElementById("Spare_Info");
+    //鼠标移入
+    Spare_Info.onmouseover = function () {
+        Spare_Info.style.backgroundColor = '#4F94CD';
+    }
+    //鼠标移出
+    Spare_Info.onmouseout = function () {
+        Spare_Info.style.backgroundColor = '#424A5D';
+    }
+}
+
 
 function GNRTReport() {
     var GNRTReport = document.getElementById("GNRTReport");

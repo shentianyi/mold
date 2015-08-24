@@ -5,7 +5,7 @@
         text-align: left;
     }
 
-    .col-sm-2 > b, .col-sm-2 > input, .col-sm-4 > b, .col-sm-4 > input {
+    .col-sm-2 > b, .col-sm-2 > input, .col-sm-3 > b, .col-sm-3 > input, .col-sm-4 > b, .col-sm-4 > input {
         margin-top: 10px;
     }
 
@@ -39,6 +39,27 @@
         <b>代码：</b>
         <input type="text" name="mould_maintain_time[code]" value="<%= @code %>">
       </div>
+    </div>
+
+
+    <!--此处开始为新增 查询条件 -->
+    <div style="display: inline-flex;" class="col-sm-12">
+      <div class="col-sm-2">
+        <b>设备编号：</b>
+        <input type="text" name="mould_maintain_time[device_id]" value="<%= @device_id %>">
+      </div>
+
+      <div class="col-sm-3">
+        <b>抢修人员：</b>
+        <input type="text" name="mould_maintain_time[serviceman]" value="<%= @serviceman %>">
+      </div>
+
+      <div class="col-sm-2">
+        <b>送料方式：</b>
+        <input type="text" name="mould_maintain_time[feed_code]" value="<%= @feed_code %>">
+      </div>
+      <!--此处为新增 查询条件 结束 -->
+
       <div class="col-sm-2" style="display: inline-flex;">
         <input type="submit" value="查 找" class="btn btn-primary" name="search"/>
         <input type="submit" value="导 出" class="btn btn-primary" name="download"/>

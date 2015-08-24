@@ -64,6 +64,7 @@
       </div>
 
       <!--此处开始为新添加查询条件-->
+
       <div class="col-sm-4">
         <b>模具供应商：</b>
         <input type="text">
@@ -77,12 +78,12 @@
       </div>
 
       <div class="col-sm-3" style="display: inline-flex;">
-        <b>芯线下刀：</b>
+        <b>绝缘上刀：</b>
         <input type="text">
       </div>
 
       <div class="col-sm-3" style="display: inline-flex;">
-        <b>绝缘上刀：</b>
+        <b>芯线下刀：</b>
         <input type="text">
       </div>
 
@@ -93,18 +94,30 @@
     </div>
 
     <div style="display: inline-flex;margin-top:20px;" class="col-sm-12">
-
       <div class="col-sm-2" style="display: inline-flex;">
+        <b>原始参数CH：</b>
+        <input type="text" style="height: 20px;">
+      </div>
+
+      <div class="col-sm-3" style="display: inline-flex;">
+        <b>原始参数CW：</b>
+        <input type="text" style="height: 20px;">
+      </div>
+
+      <!--此处结束新添加查询条件-->
+
+      <div class="col-sm-1" style="display: inline-flex;">
         <input type="submit" value="查 找" class="btn btn-primary" name="search"/>
+      </div>
+
+      <div class="col-sm-1">
         <input type="submit" value="导 出" class="btn btn-primary" name="download"/>
       </div>
     </div>
   </form>
 </div>
 
-<div>
-  <hr style="border: 1px solid #000;">
-</div>
+<hr style="border: 1px solid #000;">
 <div style="display: inline-flex;width: 100%;">
   <div class="trapezoid">
     <p style="padding-top: 20px;">模具明细表</p>

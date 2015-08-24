@@ -47,7 +47,12 @@
 <div class="slide">
   <form method="get" action="<%= send("search_#{@model.pluralize}_path") %>">
 
-    <div style="display: inline-flex;width: 100%;">
+    <div style="display: inline-flex;" class="col-sm-12">
+      <div class="col-sm-2">
+        <label for="mould_id:">模具号：</label>
+        <input type="text" name="knife_switch_record[mould_id]" value="<%= @mould_id %>">
+      </div>
+
       <div class="col-sm-4">
         <label for="date:">日期：从</label>
         <input type="text" name="knife_switch_record[switch_date][start]" value="<%= @switch_date_start %>" class="datetime-picker">
@@ -55,11 +60,14 @@
         <input type="text" name="knife_switch_record[switch_date][end]" value="<%= @switch_date_end %>" class="datetime-picker">
       </div>
 
+      <!--此处开始为 查询条件新增项-->
+
       <div class="col-sm-2">
-        <label for="mould_id:">模具号：</label>
-        <input type="text" name="knife_switch_record[mould_id]" value="<%= @mould_id %>">
+        <label for="mould_id:">项目：</label>
+        <input type="text" name="knife_switch_record[project_id]" value="<%= @project_id %>">
       </div>
 
+      <!--刀片分类已经做过查询-->
       <div class="col-sm-3">
         <label for="knife_type:">刀片分类：</label>
         <select name="knife_switch_record[knife_kind]" include_blank="true">
@@ -68,8 +76,24 @@
           <% end %>
         </select>
       </div>
+    </div>
+    <div style="display: inline-flex;" class="col-sm-12">
+      <div class="col-sm-2">
+        <label for="mould_id:">刀片型号：</label>
+        <input type="text" name="knife_switch_record[knife_type]" value="<%= @knife_type %>">
+      </div>
 
-      <div class="col-sm-3">
+      <div class="col-sm-4">
+        <label for="mould_id:">供应商：</label>
+        <input type="text" name="knife_switch_record[knife_supplier]" value="<%= @knife_supplier %>">
+
+        <label for="mould_id:">出库单号：</label>
+        <input type="text" name="knife_switch_record[outbound_id]" value="<%= @outbound_id %>">
+      </div>
+
+      <!--此处开始为 查询条件新增项-->
+
+      <div class="col-sm-2">
         <label for="state:">损坏状态：</label>
         <select name="knife_switch_record[state]" include_blank="true">
           <% {ALL: nil, 断裂: '断裂damage', 磨损: '磨损mosun'}.each do |k, v| %>
@@ -77,12 +101,12 @@
           <% end %>
         </select>
       </div>
+
       <div class="col-sm-2" style="display: inline-flex;">
         <input type="submit" value="查 找" class="btn btn-primary" name="search"/>
         <input type="submit" value="导 出" class="btn btn-primary" name="download"/>
       </div>
     </div>
-
   </form>
 </div>
 
