@@ -30,26 +30,54 @@
   <form method="get" action="<%= send("search_#{@model.pluralize}_path") %>">
 
     <div style="display: inline-flex;" class="col-sm-12">
+      <div class="col-sm-2">
+        <b>模具号：</b>
+        <input type="text" name="knife_switch_slice[mould_id]" value="<%= @mould_id %>">
+      </div>
+
       <div class="col-sm-4">
         <b>日期：从</b>
         <input type="text" name="knife_switch_slice[switch_date][start]" value="<%= @switch_date_start %>" class="datetime-picker">
         <b>到</b>
         <input type="text" name="knife_switch_slice[switch_date][end]" value="<%= @switch_date_end %>" class="datetime-picker">
       </div>
+
       <div class="col-sm-3">
         <b>端子莱尼号：</b>
         <input type="text" name="knife_switch_slice[terminal_leoni_id]" value="<%= @terminal_leoni_id %>">
       </div>
 
       <div class="col-sm-2">
-        <b>模具号：</b>
-        <input type="text" name="knife_switch_slice[mould_id]" value="<%= @mould_id %>">
-      </div>
-
-      <div class="col-sm-2">
         <b>项目：</b>
         <input type="text" name="knife_switch_slice[project_id]" value="<%= @project_id %>">
       </div>
+    </div>
+
+
+    <!--新增查询条件从此处开始-->
+    <div style="display: inline-flex;" class="col-sm-12">
+      <div class="col-sm-2">
+        <b>刀片型号1：</b>
+        <input type="text" name="knife_switch_slice[knife_type1]" value="<%= @knife_type1 %>">
+      </div>
+
+      <div class="col-sm-2">
+        <b>刀片型号2：</b>
+        <input type="text" name="knife_switch_slice[knife_type2]" value="<%= @knife_type2 %>">
+      </div>
+
+      <div class="col-sm-2">
+        <b>电线型号：</b>
+        <input type="text" name="knife_switch_slice[wire_type]" value="<%= @wire_type %>">
+      </div>
+
+      <div class="col-sm-2">
+        <b>截面mm：</b>
+        <input type="text" name="knife_switch_slice[wire_cross]" value="<%= @wire_cross %>">
+      </div>
+      <!--新增查询条件到此结束-->
+
+
       <div class="col-sm-2" style="display: inline-flex;">
         <input type="submit" value="查 找" class="btn btn-primary" name="search"/>
         <input type="submit" value="导 出" class="btn btn-primary" name="download"/>
@@ -60,8 +88,6 @@
 </div>
 
 <hr/>
-
-
 <div style="display: inline-flex;width: 100%">
   <div class="trapezoid">
     <p style="margin-top: 25%;">换刀切片表</p>

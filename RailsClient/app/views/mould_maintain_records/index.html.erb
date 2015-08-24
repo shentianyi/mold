@@ -34,6 +34,25 @@
         <b>模具号：</b>
         <input type="text" name="mould_maintain_record[mould_id]" value="<%= @mould_id %>">
       </div>
+
+      <!--此处开始 是 新增查询条件项-->
+
+      <div class="col-sm-2">
+        <b>维护次数：</b>
+        <input type="text" name="mould_maintain_record[count]" value="<%= @count %>">
+      </div>
+
+      <div class="col-sm-2">
+        <b>计划维护日期：</b>
+        <input type="text" name="mould_maintain_record[plan_date]" value="<%= @plan_date %>" class="datetime-picker">
+      </div>
+
+      <div class="col-sm-2">
+        <b>实际维护日期：</b>
+        <input type="text" name="mould_maintain_record[real_date]" value="<%= @real_date %>" class="datetime-picker">
+      </div>
+
+      <!--新增查询条件项 至此结束-->
       <div class="col-sm-2" style="display: inline-flex;">
         <input type="submit" value="查 找" class="btn btn-primary" name="search"/>
         <!--<input type="submit" value="导 出" class="btn btn-primary" name="download"/>-->
