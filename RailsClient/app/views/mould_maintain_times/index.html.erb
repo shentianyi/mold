@@ -10,7 +10,6 @@
     }
 
     hr {
-        margin-top: 80px;
         border: 1px solid #000;
     }
 </style>
@@ -18,7 +17,7 @@
 <p class="title">模具维修时间</p>
 <hr style="border: 1px solid #999;margin-top: 0;padding-top: 0;margin-left: 158px;"/>
 
-<div>
+<div class="slide">
   <form method="get" action="<%= send("search_#{@model.pluralize}_path") %>">
     <div style="display: inline-flex;" class="col-sm-12">
       <div class="col-sm-2">
@@ -40,7 +39,7 @@
         <b>代码：</b>
         <input type="text" name="mould_maintain_time[code]" value="<%= @code %>">
       </div>
-      <div class="col-sm-2">
+      <div class="col-sm-2" style="display: inline-flex;">
         <input type="submit" value="查 找" class="btn btn-primary" name="search"/>
         <input type="submit" value="导 出" class="btn btn-primary" name="download"/>
       </div>
@@ -55,26 +54,24 @@
     <p style="margin-top: 25%;">维修时间</p>
   </div>
 
-  <div style="display: inline-flex;margin-left: 20px;">
-    <%= link_to '新增', new_mould_maintain_time_path, :class => 'btn btn-info',
-                :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
-
-    <%= link_to '导入数据', import_mould_maintain_times_path, :class => 'btn btn-primary',
-                :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
-
-    <%= link_to '导出数据', import_mould_details_path, :class => 'btn btn-primary',
-                :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
-  </div>
-</div>
-
-<div style="margin-left: 100px;margin-right: 5%;">
-
   <div class="digg_pagination" style="margin-top: 30px;">
     <div class="page_info">
       <%= page_entries_info @mould_maintain_times %>
     </div>
     <%= will_paginate @mould_maintain_times, :container => false %>
   </div>
+
+  <div style="display: inline-flex;margin-left: 20px;">
+    <%= link_to '新增', new_mould_maintain_time_path, :class => 'btn btn-info',
+                :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
+
+    <%= link_to '导入数据', import_mould_maintain_times_path, :class => 'btn btn-primary',
+                :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
+  </div>
+</div>
+
+<div style="margin-left: 100px;margin-right: 5%;">
+
   <table class="table table-bordered table-striped table-hover">
     <thead>
     <tr style="background-color: #ccc">
