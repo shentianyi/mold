@@ -43,7 +43,7 @@ module FileHandler
                 KnifeSwitchRecord.create({mould_id: mould_id, project_id: row['project_id'], switch_date: row['switch_date'], knife_type: row['knife_type'], knife_kind: row['knife_kind'],
                                           knife_supplier: row['knife_supplier'], state: row['state'], problem: row['problem'], damage_define: row['damage_define'], maintainman: row['maintainman'],
                                           qty: row['qty'], m_qty: total_count, machine_id: row['machine_id'], press_num: row['press_num'], damage_life: damage_life,
-                                          broken_life: broken_life, total_life: total_life, operater: row['operater'], is_ok: row['is_ok'], sort: row['sort'], outbound_id: row['outbound_id']})
+                                          broken_life: broken_life, total_life: total_life, operater: row['operater'], is_ok: row['is_ok'], sort: row['sort'], outbound_id: row['outbound_id'].sub(/\.0/, '')})
               end
             end
             msg.result = true
