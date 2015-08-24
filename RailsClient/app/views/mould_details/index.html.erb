@@ -16,6 +16,14 @@
     .btn, .btn-primary {
         margin-bottom: 0;
     }
+
+    #table_div {
+        position: absolute;
+        width: 85%;
+        height: 60%;
+        overflow: scroll;
+        margin-bottom: 0;
+    }
 </style>
 
 <p id="notice"><%= notice %></p>
@@ -138,7 +146,7 @@
   </div>
 </div>
 
-<div style="margin-left:100px;margin-right: 100px;">
+<div style="margin-left:50px;" id="table_div">
   <table class="table table-bordered table-striped table-hover">
     <thead>
     <tr style="background-color: #ccc">
@@ -177,7 +185,9 @@
   </table>
 </div>
 
+<!--去掉-->
+<!--
 <div class="digg_pagination" style="text-align: center">
   <%= will_paginate @mould_details, :container => false %>
 </div>
-
+-->
