@@ -21,48 +21,49 @@
 
 
 <div class="slide">
-  <form method="get" action="">
+  <form method="get" action="<%= send("search_#{@model.pluralize}_path") %>">
 
     <div style="display: inline-flex;" class="col-sm-12">
       <div class="col-sm-2">
         <b>模具号：</b>
-        <input type="text">
+        <input type="text" name="spare_part[mould_id]" value="<%= @mould_id %>">
       </div>
 
       <div class="col-sm-3">
         <b>项目：</b>
-        <input type="text">
+        <input type="text" name="spare_part[project_id]" value="<%= @project_id %>">
       </div>
 
       <div class="col-sm-3">
         <b>备件型号：</b>
-        <input type="text">
+        <input type="text" name="spare_part[spare_type]" value="<%= @spare_type %>">
       </div>
 
       <div class="col-sm-4">
         <b>损坏状态：</b>
-        <input type="text">
+        <input type="text" name="spare_part[spare_kind]" value="<%= @spare_kind %>">
       </div>
     </div>
 
     <div style="display: inline-flex;margin-top:20px;" class="col-sm-12">
       <div class="col-sm-2">
         <b>维护人员：</b>
-        <input type="text">
+        <input type="text" name="spare_part[maintainman]" value="<%= @maintainman %>">
       </div>
 
       <div class="col-sm-3">
         <b>机器号：</b>
-        <input type="text">
+        <input type="text" name="spare_part[machine_id]" value="<%= @machine_id %>">
       </div>
 
       <div class="col-sm-3">
         <b>出库单号：</b>
-        <input type="text">
+        <input type="text" name="spare_part[outbound_id]" value="<%= @outbound_id %>">
       </div>
 
       <div class="col-sm-2" style="display: inline-flex;">
         <input type="submit" value="查 找" class="btn btn-primary" name="search"/>
+        <input type="submit" value="导 出" class="btn btn-primary" name="download"/>
       </div>
     </div>
   </form>
@@ -84,7 +85,7 @@
     <%= link_to '新增', new_spare_part_path, :class => 'btn btn-info',
                 :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
 
-    <%= link_to '导入数据', import_mould_details_path, :class => 'btn btn-primary',
+    <%= link_to '导入数据', import_spare_parts_path, :class => 'btn btn-primary',
                 :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
   </div>
 </div>
@@ -110,7 +111,7 @@
     <tbody>
     <% @spare_parts.each do |spare_part| %>
         <tr>
-          <td><%= spare_part.record_date %></td>
+          <td><%= spare_part.record_date.nil? ? '' : spare_part.record_date.localtime.strftime("%Y-%m-%d")  %></td>
           <td><%= spare_part.mould_id %></td>
           <td><%= spare_part.project_id %></td>
           <td><%= spare_part.spare_type %></td>

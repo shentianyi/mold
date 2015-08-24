@@ -51,6 +51,23 @@ class SparePartsController < ApplicationController
     end
   end
 
+  def import
+    puts
+    if request.post?
+      puts "--------------------------------------"
+      msg = Message.new
+      begin
+        file=params[:files][0]
+        fd = FileData.new(data: file, original_name: file.original_filename, path: $upload_data_file_path, path_name: "#{Time.now.strftime('%Y%m%d%H%M%S%L')}~#{file.original_filename}")
+        fd.save
+        msg = FileHandler::Excel::SparePartHandler.import(fd)
+      rescue => e
+        msg.content = e.message
+      end
+      render json: msg
+    end
+  end
+
   # DELETE /spare_parts/1
   # DELETE /spare_parts/1.json
   def destroy

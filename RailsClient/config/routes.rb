@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :spare_parts
   resources :images do
     collection do
       match '', to: :show, via: :get
@@ -66,6 +65,13 @@ Rails.application.routes.draw do
   end
 
   resources :mould_maintain_records do
+    collection do
+      get :search
+      match :import, to: :import, via: [:get, :post]
+    end
+  end
+
+  resources :spare_parts do
     collection do
       get :search
       match :import, to: :import, via: [:get, :post]
