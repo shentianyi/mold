@@ -41,7 +41,7 @@ module ApplicationHelper
                 :filename => @model.pluralize+".xlsx")
       #render :json => query.to_xlsx(query)
     else
-      instance_variable_set("@#{@model.pluralize}", query.paginate(:page => params[:page], :per_page => 15).all)
+      instance_variable_set("@#{@model.pluralize}", query.paginate(:page => params[:page], :per_page => 100).all)
       render :index
     end
 

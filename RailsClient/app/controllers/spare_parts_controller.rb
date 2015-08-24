@@ -4,7 +4,7 @@ class SparePartsController < ApplicationController
   # GET /spare_parts
   # GET /spare_parts.json
   def index
-    @spare_parts = SparePart.all
+    @spare_parts = SparePart.paginate(:page => params[:page], :per_page => 100)
   end
 
   # GET /spare_parts/1
