@@ -44,6 +44,7 @@ module ApplicationHelper
       instance_variable_set("@#{@model.pluralize}", query.paginate(:page => params[:page], :per_page => 15).all)
       render :index
     end
+
   end
 
 

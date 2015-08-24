@@ -24,7 +24,7 @@ class MouldDetailsController < ApplicationController
   def import
     puts
     if request.post?
-      puts "111111111111111111111111111111"
+      puts "--------------------------------------"
       msg = Message.new
       begin
         file=params[:files][0]

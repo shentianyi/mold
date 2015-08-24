@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20150818034707) do
     t.string   "knife_type1",       limit: 255, default: ""
     t.string   "knife_type2",       limit: 255, default: ""
     t.string   "wire_type",         limit: 255, default: ""
-    t.string   "wire_cross",        limit: 255, default: ""
+    t.float    "wire_cross",        limit: 24
     t.string   "image_after",       limit: 255, default: ""
     t.string   "image_before",      limit: 255, default: ""
     t.string   "is_ok",             limit: 255, default: ""
