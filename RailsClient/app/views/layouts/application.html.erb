@@ -19,6 +19,7 @@
           margin-bottom: 0;
           border-bottom-color: transparent;
           border-top-right-radius: 8px;
+          cursor: pointer;
       }
 
       span {
@@ -30,20 +31,9 @@
           font-size: 1.2em;
       }
 
-      tr {
-          font-size: 1.2em;
-      }
-
-      td {
-          font-size: 1.2em;
-      }
-
-      b {
-          font-size: 1.2em;
-      }
-
-      label {
-          font-size: 1.2em;
+          /*用于增大字体*/
+      tr, td, b, label, .digg_pagination {
+          font-size: 1.1em;
       }
   </style>
 
@@ -57,7 +47,7 @@
 
 
 <div style="display: inline-flex; width: 100%;height: 900px;">
-  <div style="float: left;width: 12%;background-color: #424A5D">
+  <div style="float: left;width: 12%;background-color: #424A5D;">
     <%= render 'shares/left' %>
   </div>
   <div style="float:right; width: 100%;background-color: #F2F2F2;">
@@ -75,6 +65,10 @@
             lang: 'ch',
             format: 'Y-m-d H:i'
         });
+    });
+
+    $(".title").click(function () {
+        $(".slide").slideToggle("fast");
     });
 </script>
 
