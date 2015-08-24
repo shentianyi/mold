@@ -63,7 +63,7 @@
         <input type="text" name="mould_detail[next_time][end]" value="<%= @next_time_end %>" class="datetime-picker" style="width: 30%;">
       </div>
 
-      <div class="col-sm-2">
+      <div class="col-sm-2" style="display: inline-flex;">
         <input type="submit" value="查 找" class="btn btn-primary" name="search"/>
         <input type="submit" value="导 出" class="btn btn-primary" name="download"/>
       </div>
@@ -91,9 +91,6 @@
 
     <%= link_to '导入数据', import_mould_details_path, :class => 'btn btn-primary',
                 :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
-
-    <%= link_to '导出数据', import_mould_details_path, :class => 'btn btn-primary',
-                :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
   </div>
 </div>
 

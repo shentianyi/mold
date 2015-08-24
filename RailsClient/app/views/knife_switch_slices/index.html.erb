@@ -51,7 +51,7 @@
         <b>项目：</b>
         <input type="text" name="knife_switch_slice[project_id]" value="<%= @project_id %>">
       </div>
-      <div class="col-sm-2">
+      <div class="col-sm-2" style="display: inline-flex;">
         <input type="submit" value="查 找" class="btn btn-primary" name="search"/>
         <input type="submit" value="导 出" class="btn btn-primary" name="download"/>
       </div>
@@ -81,8 +81,6 @@
     <%= link_to '导入数据', import_knife_switch_slices_path, :class => 'btn btn-primary',
                 :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
 
-    <%= link_to '导出数据', import_mould_details_path, :class => 'btn btn-primary',
-                :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
   </div>
 </div>
 
@@ -90,9 +88,10 @@
   <table class="table table-bordered table-striped table-hover">
     <thead>
     <tr style="background-color: #ccc">
-      <th style="width: 110px;">日期</th>
+      <th style="width: 110px;">模具号</th>
+
       <th>端子莱尼号</th>
-      <th>模具号</th>
+      <th>日期</th>
       <th>项目</th>
       <th>刀片型号1</th>
       <th>刀片型号2</th>
@@ -108,9 +107,9 @@
     <tbody>
     <% @knife_switch_slices.each do |knife_switch_slice| %>
         <tr>
-          <td><%= knife_switch_slice.switch_date.nil? ? '' : knife_switch_slice.switch_date.localtime.strftime("%Y-%m-%d") %></td>
-          <td><%= knife_switch_slice.terminal_leoni_id %></td>
           <td><%= knife_switch_slice.mould_id %></td>
+          <td><%= knife_switch_slice.terminal_leoni_id %></td>
+          <td><%= knife_switch_slice.switch_date.nil? ? '' : knife_switch_slice.switch_date.localtime.strftime("%Y-%m-%d") %></td>
           <td><%= knife_switch_slice.project_id %></td>
           <td><%= knife_switch_slice.knife_type1 %></td>
           <td><%= knife_switch_slice.knife_type2 %></td>
