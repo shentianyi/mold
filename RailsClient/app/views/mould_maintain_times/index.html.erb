@@ -14,7 +14,7 @@
     }
 </style>
 
-<p class="title">模具维修时间</p>
+<p class="title">模具维修时间 <i>&#8593;</i></p>
 <hr style="border: 1px solid #999;margin-top: 0;padding-top: 0;margin-left: 158px;"/>
 
 <div class="slide">
@@ -91,8 +91,7 @@
   </div>
 </div>
 
-<div style="margin-left: 100px;margin-right: 5%;">
-
+<div style="margin-left:50px;" id="table_div">
   <table class="table table-bordered table-striped table-hover">
     <thead>
     <tr style="background-color: #ccc">
@@ -135,7 +134,9 @@
     <% end %>
     </tbody>
   </table>
+  <!--
   <div class="digg_pagination" style="text-align: center">
     <%= will_paginate @mould_maintain_times, :container => false %>
   </div>
+  -->
 </div>

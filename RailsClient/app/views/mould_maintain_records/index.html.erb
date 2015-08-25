@@ -9,11 +9,6 @@
         text-align: center;
     }
 
-    .col-sm-1 {
-        margin-top: 10px;
-        text-align: left;
-    }
-
     .col-sm-2 > input {
         margin-top: 20px;
         width: 100px;
@@ -24,7 +19,7 @@
     }
 
 </style>
-<p class="title">模具维护记录</p>
+<p class="title">模具维护记录 <i>&#8593;</i></p>
 <hr style="border: 1px solid #999;margin-top: 0;padding-top: 0;margin-left: 158px;"/>
 
 <div class="slide">
@@ -81,8 +76,7 @@
   </div>
 </div>
 
-<div style="margin-left: 100px;margin-right: 5%;">
-
+<div style="margin-left:50px;" id="table_div">
   <table class="table table-bordered table-striped table-hover">
     <thead>
     <tr style="background-color: #ccc">
@@ -112,7 +106,9 @@
     <% end %>
     </tbody>
   </table>
+  <!--
   <div class="digg_pagination" style="text-align: center">
     <%= will_paginate @mould_maintain_records, :container => false %>
   </div>
+  -->
 </div>

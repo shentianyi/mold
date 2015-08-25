@@ -1,57 +1,82 @@
+<style type="text/css">
+    .col-sm-4 {
+        text-align: left;
+        margin-top: 1%;
+        display: inline-flex;
+    }
+
+    label {
+        width: 120px;
+    }
+
+</style>
+
 <%= form_for(@spare_part) do |f| %>
-  <% if @spare_part.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@spare_part.errors.count, "error") %> prohibited this spare_part from being saved:</h2>
+    <% if @spare_part.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@spare_part.errors.count, "error") %> prohibited this spare_part from being saved:</h2>
 
-      <ul>
-      <% @spare_part.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @spare_part.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+      <div class="col-sm-4">
+        <%= f.label :mould_id, '模具号:' %>
+        <%= f.text_field :mould_id %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.label :project_id, '项目:' %>
+        <%= f.text_field :project_id %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.label :spare_type, '备件型号:' %>
+        <%= f.text_field :spare_type %>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :record_date %><br>
-    <%= f.text_field :record_date %>
-  </div>
-  <div class="field">
-    <%= f.label :mould_id %><br>
-    <%= f.text_field :mould_id %>
-  </div>
-  <div class="field">
-    <%= f.label :project_id %><br>
-    <%= f.text_field :project_id %>
-  </div>
-  <div class="field">
-    <%= f.label :spare_type %><br>
-    <%= f.text_field :spare_type %>
-  </div>
-  <div class="field">
-    <%= f.label :spare_kind %><br>
-    <%= f.text_field :spare_kind %>
-  </div>
-  <div class="field">
-    <%= f.label :broken_state %><br>
-    <%= f.text_field :broken_state %>
-  </div>
-  <div class="field">
-    <%= f.label :maintainman %><br>
-    <%= f.text_field :maintainman %>
-  </div>
-  <div class="field">
-    <%= f.label :qty %><br>
-    <%= f.text_field :qty %>
-  </div>
-  <div class="field">
-    <%= f.label :machine_id %><br>
-    <%= f.text_field :machine_id %>
-  </div>
-  <div class="field">
-    <%= f.label :outbound_id %><br>
-    <%= f.text_field :outbound_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+      <div class="col-sm-4">
+        <%= f.label :spare_kind, '型号分类:' %>
+        <%= f.text_field :spare_kind %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.label :broken_state, '损坏状态:' %>
+        <%= f.text_field :broken_state %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.label :maintainman, '维护人员:' %>
+        <%= f.text_field :maintainman %>
+      </div>
+    </div>
+
+
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+      <div class="col-sm-4">
+        <%= f.label :record_date, '日期:' %>
+        <%= f.text_field :record_date, :class => 'datetime-picker' %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.label :qty, '数量:' %>
+        <%= f.text_field :qty %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.label :machine_id, '机器号:' %>
+        <%= f.text_field :machine_id %>
+      </div>
+    </div>
+
+
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+      <div class="col-sm-4">
+        <%= f.label :outbound_id, '出库单号:' %>
+        <%= f.text_field :outbound_id %>
+      </div>
+    </div>
+    <hr style="border: 1px solid #000;opacity: 0.5;"/>
+    <button type="submit" style="margin-left: 10px;margin-top:0;" class="btn btn-primary" name="commit">完成</button>
 <% end %>

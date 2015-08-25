@@ -16,7 +16,7 @@
     }
 </style>
 
-<p class="title">备件信息</p>
+<p class="title">备件信息 <i>&#8593;</i></p>
 <hr style="border: 1px solid #999;margin-top: 0;padding-top: 0;margin-left: 158px;"/>
 
 
@@ -90,7 +90,7 @@
   </div>
 </div>
 
-<div style="margin-left:100px;margin-right: 100px;">
+<div style="margin-left:50px;" id="table_div">
   <table class="table table-bordered table-striped table-hover">
     <thead>
     <tr style="background-color: #ccc">
@@ -111,7 +111,7 @@
     <tbody>
     <% @spare_parts.each do |spare_part| %>
         <tr>
-          <td><%= spare_part.record_date.nil? ? '' : spare_part.record_date.localtime.strftime("%Y-%m-%d")  %></td>
+          <td><%= spare_part.record_date.nil? ? '' : spare_part.record_date.localtime.strftime("%Y-%m-%d") %></td>
           <td><%= spare_part.mould_id %></td>
           <td><%= spare_part.project_id %></td>
           <td><%= spare_part.spare_type %></td>
