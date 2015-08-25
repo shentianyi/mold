@@ -28,7 +28,7 @@ module RailsClient
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     #Load custom class
-    %w{models services}.each do |namespace|
+    %w{models services presenters}.each do |namespace|
       config.paths.add File.join('app', namespace), glob: File.join('**', '*.rb')
       config.autoload_paths += Dir[Rails.root.join('app', namespace, '**')]
     end

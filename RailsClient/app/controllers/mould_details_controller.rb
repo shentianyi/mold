@@ -4,7 +4,7 @@ class MouldDetailsController < ApplicationController
   # GET /mould_details
   # GET /mould_details.json
   def index
-    @mould_details = MouldDetail.paginate(:page => params[:page], :per_page => 100)
+    @mould_details = MouldDetail.paginate(:page => params[:page], :per_page => 100) { |mould_detail| MouldDetailPresenter.new(mould_detail) }
   end
 
   # GET /mould_details/1
