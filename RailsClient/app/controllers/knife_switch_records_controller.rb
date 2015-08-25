@@ -28,6 +28,7 @@ class KnifeSwitchRecordsController < ApplicationController
     args = {}
     args[:mould_id] = knife_switch_record_params[:mould_id]
     args[:project_id] = knife_switch_record_params[:project_id]
+    args[:terminal_leoni_id] = knife_switch_record_params[:terminal_leoni_id]
     args[:switch_date] = knife_switch_record_params[:switch_date]
     args[:knife_type] = knife_switch_record_params[:knife_type]
     args[:knife_kind] = knife_switch_record_params[:knife_kind]
@@ -123,7 +124,7 @@ class KnifeSwitchRecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def knife_switch_record_params
-      params.require(:knife_switch_record).permit(:mould_id, :project_id, :switch_date, :knife_type, :knife_kind, :knife_supplier, :state, :problem, :damage_define, :maintainman, :qty, :m_qty,
+      params.require(:knife_switch_record).permit(:mould_id, :project_id, :terminal_leoni_id, :switch_date, :knife_type, :knife_kind, :knife_supplier, :state, :problem, :damage_define, :maintainman, :qty, :m_qty,
                                                   :machine_id, :press_num, :damage_life, :broken_life, :total_life, :operater, :is_ok, :outbound_id, :sort, :image_id)
     end
 end

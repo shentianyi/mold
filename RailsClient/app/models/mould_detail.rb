@@ -91,4 +91,17 @@ class MouldDetail < ActiveRecord::Base
     end
     p.to_stream.read
   end
+
+  def get_knife(mould_detail, kind)
+    case kind
+      when 'CH'
+        mould_detail.c_up_knife
+      when 'CW'
+        mould_detail.c_down_knife
+      when 'ICH'
+        mould_detail.i_up_knife
+      when 'ICW'
+        mould_detail.i_down_knife
+    end
+  end
 end

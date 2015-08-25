@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825061529) do
+ActiveRecord::Schema.define(version: 20150825074136) do
 
   create_table "images", force: :cascade do |t|
     t.string   "filename",      limit: 255, default: "", null: false
@@ -24,31 +24,32 @@ ActiveRecord::Schema.define(version: 20150825061529) do
   end
 
   create_table "knife_switch_records", force: :cascade do |t|
-    t.string   "mould_id",       limit: 255,                          null: false
-    t.string   "project_id",     limit: 255, default: ""
+    t.string   "mould_id",          limit: 255,                          null: false
+    t.string   "project_id",        limit: 255, default: ""
     t.datetime "switch_date"
-    t.string   "knife_type",     limit: 255, default: ""
-    t.string   "knife_kind",     limit: 255, default: ""
-    t.string   "knife_supplier", limit: 255, default: ""
-    t.string   "state",          limit: 255, default: ""
-    t.string   "problem",        limit: 255, default: ""
-    t.string   "damage_define",  limit: 255, default: ""
-    t.string   "maintainman",    limit: 255, default: ""
-    t.integer  "qty",            limit: 4,   default: 1
-    t.integer  "m_qty",          limit: 4,   default: 0
-    t.string   "machine_id",     limit: 255, default: ""
-    t.integer  "press_num",      limit: 4,   default: 0
-    t.integer  "damage_life",    limit: 4,   default: 0
-    t.integer  "broken_life",    limit: 4,   default: 0
-    t.integer  "total_life",     limit: 4,   default: 0
-    t.string   "operater",       limit: 255, default: ""
-    t.string   "is_ok",          limit: 255, default: ""
-    t.string   "sort",           limit: 255, default: ""
-    t.string   "outbound_id",    limit: 255, default: ""
-    t.string   "image_id",       limit: 255, default: ""
-    t.string   "email",          limit: 255, default: "mj@leoni.com", null: false
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.string   "knife_type",        limit: 255, default: ""
+    t.string   "knife_kind",        limit: 255, default: ""
+    t.string   "knife_supplier",    limit: 255, default: ""
+    t.string   "state",             limit: 255, default: ""
+    t.string   "problem",           limit: 255, default: ""
+    t.string   "damage_define",     limit: 255, default: ""
+    t.string   "maintainman",       limit: 255, default: ""
+    t.integer  "qty",               limit: 4,   default: 1
+    t.integer  "m_qty",             limit: 4,   default: 0
+    t.string   "machine_id",        limit: 255, default: ""
+    t.integer  "press_num",         limit: 4,   default: 0
+    t.integer  "damage_life",       limit: 4,   default: 0
+    t.integer  "broken_life",       limit: 4,   default: 0
+    t.integer  "total_life",        limit: 4,   default: 0
+    t.string   "operater",          limit: 255, default: ""
+    t.string   "is_ok",             limit: 255, default: ""
+    t.string   "sort",              limit: 255, default: ""
+    t.string   "outbound_id",       limit: 255, default: ""
+    t.string   "image_id",          limit: 255, default: ""
+    t.string   "email",             limit: 255, default: "mj@leoni.com", null: false
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+    t.string   "terminal_leoni_id", limit: 255, default: ""
   end
 
   add_index "knife_switch_records", ["image_id"], name: "index_knife_switch_records_on_image_id", using: :btree

@@ -2,20 +2,27 @@ class KnifeSwitchRecord < ActiveRecord::Base
   validates_presence_of :mould_id, :message => "模具号不能为空!"
   validates_presence_of :project_id, :message => "项目名不能为空!"
   validates_presence_of :knife_kind, :message => "刀片分类不能为空!"
+  validates_presence_of :terminal_leoni_id, :message => "端子莱尼号不能为空!"
   validates_presence_of :knife_type, :message => "刀片类型不能为空!"
 
+  before_validation :create_knife_type
 
   include TimeStrf
 
   HEADERS=[
-      '日期','模具号','项目','刀片型号','刀片分类','供应商', '损坏状态', '问题描述', '损坏定义', '维护人员', '数量', '维护次数',
+      '日期','模具号','项目', '端子莱尼号','刀片型号','刀片分类','供应商', '损坏状态', '问题描述', '损坏定义', '维护人员', '数量', '维护次数',
       '机器号', '压接次数', '磨损寿命', '断裂寿命', '操作员', '验收确认', '分类', '出库单号'
   ]
 
   # HEADERS=[
-  #     'switch_date','mould_id','project_id','knife_type','knife_kind','knife_supplier', 'state', 'problem', 'damage_define', 'maintainman', 'qty', 'm_qty',
+  #     'switch_date','mould_id','project_id', terminal_leoni_id 'knife_type','knife_kind','knife_supplier', 'state', 'problem', 'damage_define', 'maintainman', 'qty', 'm_qty',
   #     'machine_id', 'press_num', 'operater', 'is_ok', 'sort', 'outbound_id'
   # ]
+
+  def create_knife_type
+    mould_detail = MouldDetail.where(mould_id: self['mould_id'], terminal_leoni_no: self['terminal_leoni_id']).first
+    mould_detail.blank? ? self.errors.add(:knife_type,'未查找到对应刀片型号,请检查!') : (self['knife_type'] = MouldDetail.new().get_knife(mould_detail, self['knife_kind']))
+  end
 
   def self.to_xlsx knife_switch_records
     p = Axlsx::Package.new
@@ -27,6 +34,7 @@ class KnifeSwitchRecord < ActiveRecord::Base
                           record.switch_date,
                           record.mould_id,
                           record.project_id,
+                          record.terminal_leoni_id,
                           record.knife_type,
                           record.knife_kind,
                           record.knife_supplier,

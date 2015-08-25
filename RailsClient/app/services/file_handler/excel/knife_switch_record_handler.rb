@@ -2,7 +2,7 @@ module FileHandler
   module Excel
     class KnifeSwitchRecordHandler<Base
       HEADERS=[
-          'switch_date','mould_id','project_id','knife_type','knife_kind','knife_supplier', 'state', 'problem', 'damage_define', 'maintainman', 'qty',
+          'switch_date', 'mould_id', 'project_id', 'terminal_leoni_id', 'knife_kind', 'knife_supplier', 'state', 'problem', 'damage_define', 'maintainman', 'qty',
           'machine_id', 'press_num', 'operater', 'is_ok', 'sort', 'outbound_id'
       ]
 
@@ -20,6 +20,8 @@ module FileHandler
                 row = {}
                 HEADERS.each_with_index do |k, i|
                   row[k] = book.cell(line, i+1).to_s.strip
+                  row[k] = row[k].sub(/\.0/, '') if k=='mould_id'
+                  row[k] = row[k].sub(/\.0/, '') if k=='terminal_leoni_id'
                 end
 
                 mould_id = row['mould_id'].to_s
@@ -40,10 +42,15 @@ module FileHandler
                 total_life = broken_life | damage_life
 
                 puts "-----#{broken_life}--------#{damage_life}------#{total_life}"
-                KnifeSwitchRecord.create({mould_id: mould_id, project_id: row['project_id'], switch_date: row['switch_date'], knife_type: row['knife_type'], knife_kind: row['knife_kind'],
-                                          knife_supplier: row['knife_supplier'], state: row['state'], problem: row['problem'], damage_define: row['damage_define'], maintainman: row['maintainman'],
-                                          qty: row['qty'], m_qty: total_count, machine_id: row['machine_id'], press_num: row['press_num'], damage_life: damage_life,
-                                          broken_life: broken_life, total_life: total_life, operater: row['operater'], is_ok: row['is_ok'], sort: row['sort'], outbound_id: row['outbound_id'].sub(/\.0/, '')})
+                k = KnifeSwitchRecord.new({mould_id: mould_id, project_id: row['project_id'], terminal_leoni_id: row['terminal_leoni_id'], switch_date: row['switch_date'], knife_kind: row['knife_kind'],
+                                         knife_supplier: row['knife_supplier'], state: row['state'], problem: row['problem'], damage_define: row['damage_define'], maintainman: row['maintainman'],
+                                         qty: row['qty'], m_qty: total_count, machine_id: row['machine_id'], press_num: row['press_num'], damage_life: damage_life,
+                                         broken_life: broken_life, total_life: total_life, operater: row['operater'], is_ok: row['is_ok'], sort: row['sort'], outbound_id: row['outbound_id'].sub(/\.0/, '')})
+                if k.save
+
+                else
+                  raise k.errors.to_json
+                end
               end
             end
             msg.result = true
@@ -93,7 +100,7 @@ module FileHandler
         msg
       end
 
-      def self.validate_row(row,line)
+      def self.validate_row(row, line)
         msg = Message.new(contents: [])
 
         # if (row['end_time'].to_s.to_time - row['start_time'].to_s.to_time) <= 0
