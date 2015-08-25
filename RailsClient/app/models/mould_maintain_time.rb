@@ -6,12 +6,23 @@ class MouldMaintainTime < ActiveRecord::Base
   validates_presence_of :start_time, :message => "开始时间不能为空!"
   validates_presence_of :end_time, :message => "结束时间不能为空!"
 
+  before_save :calc_downtime
+
+  include TimeStrf
+
   HEADERS=[
       '项目','日期','设备编号','模具号','抢修人员','开始时间','结束时间', 'Downtime', '问题描述','解决措施','代码','送料方式'
   ]
   # HEADERS=[
   #     'project_id','maintain_date','device_id','mould_id','serviceman','start_time','end_time','err_note','solution_method','code','feed_code'
   # ]
+
+  def calc_downtime
+    unless self[:end_time].empty? && self[:start_time].empty?
+      puts 's---------------------------------------'
+      self[:downtime] = (self[:end_time].to_s.to_time - self[:start_time].to_s.to_time) / 60
+    end
+  end
 
   def self.to_xlsx mould_maintain_times
     p = Axlsx::Package.new

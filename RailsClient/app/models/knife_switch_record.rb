@@ -5,6 +5,8 @@ class KnifeSwitchRecord < ActiveRecord::Base
   validates_presence_of :knife_type, :message => "刀片类型不能为空!"
 
 
+  include TimeStrf
+
   HEADERS=[
       '日期','模具号','项目','刀片型号','刀片分类','供应商', '损坏状态', '问题描述', '损坏定义', '维护人员', '数量', '维护次数',
       '机器号', '压接次数', '磨损寿命', '断裂寿命', '操作员', '验收确认', '分类', '出库单号'

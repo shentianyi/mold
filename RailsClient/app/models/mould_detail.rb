@@ -12,6 +12,8 @@ class MouldDetail < ActiveRecord::Base
   #before_save :create_uuid
  # before_update :create_uuid
 
+  include TimeStrf
+
   HEADERS=[
       '模具号', '端子莱尼号', '端子供应商', '防水塞', '使用范围', '电线型号', '电线截面', '原始参数CH',
       '原始参数CW', '实测参数CH', '实测参数CW', '实测参数ICH', '实测参数ICW', '步骤DCH', '步骤ICH', '下次批准日期',

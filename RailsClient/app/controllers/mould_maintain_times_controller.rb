@@ -21,9 +21,7 @@ class MouldMaintainTimesController < ApplicationController
   def edit
   end
 
-  # POST /mould_maintain_times
-  # POST /mould_maintain_times.json
-  def create
+  def calc_downtime
     puts "-----------------------------"
     args = {}
     args[:mould_id] = mould_maintain_time_params[:mould_id]
@@ -40,8 +38,14 @@ class MouldMaintainTimesController < ApplicationController
     unless args[:end_time].empty? && args[:start_time].empty?
       args[:downtime] = (args[:end_time].to_s.to_time - args[:start_time].to_s.to_time) / 60
     end
-    puts args
-    @mould_maintain_time = MouldMaintainTime.new(args)
+
+    args
+  end
+
+  # POST /mould_maintain_times
+  # POST /mould_maintain_times.json
+  def create
+    @mould_maintain_time = MouldMaintainTime.new(mould_maintain_time_params)
 
     respond_to do |format|
       if @mould_maintain_time.save

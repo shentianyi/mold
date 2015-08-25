@@ -57,15 +57,6 @@
 
     <div style="display: inline-flex; width: 100%; margin-bottom: 10px;">
       <div class="col-sm-4">
-        <%= f.label :mould_state, '状态:' %>
-        <!--
-        <%= f.text_field :mould_state %>
-        -->
-        <%= f.select :mould_state, options_for_select([['未过期', '未过期'], ['即将过期', '即将过期'], ['已过期', '已过期']], params[:mould_state]),
-                     {}, {:style => 'width:35%;'} %>
-      </div>
-
-      <div class="col-sm-4">
         <%= f.label :terminal_leoni_no, '端子莱尼号:' %>
         <%= f.text_field :terminal_leoni_no %>
       </div>

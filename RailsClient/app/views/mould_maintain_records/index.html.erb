@@ -100,8 +100,8 @@
         <tr>
           <td><%= mould_maintain_record.mould_id %></td>
           <td><%= mould_maintain_record.count %></td>
-          <td><%= mould_maintain_record.plan_date.nil? ? '' : mould_maintain_record.plan_date.localtime.strftime("%Y-%m-%d") %></td>
-          <td><%= mould_maintain_record.real_date.nil? ? '' : mould_maintain_record.real_date.localtime.strftime("%Y-%m-%d") %></td>
+          <td><%= mould_maintain_record.plan_date_day_str %></td>
+          <td><%= mould_maintain_record.real_date_day_str %></td>
           <!--在这修改备注id-->
           <td><%= mould_maintain_record.note %></td>
           <td><%= link_to '[详情]', mould_maintain_record %>

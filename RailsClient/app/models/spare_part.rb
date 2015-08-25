@@ -2,6 +2,8 @@ class SparePart < ActiveRecord::Base
   validates_presence_of :mould_id, :message => "模具号不能为空!"
   validates_presence_of :project_id, :message => "项目名不能为空!"
 
+  include TimeStrf
+
   HEADERS=[
       '日期', '模具号', '项目', '备件型号', '型号分类', '损坏状态', '维护人员', '数量', '机器号', '出库单号'
   ]

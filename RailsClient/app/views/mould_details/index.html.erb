@@ -163,8 +163,8 @@
           <td><%= mould_detail.terminal_supplier %></td>
           <td><%= mould_detail.wire_type %></td>
           <td><%= mould_detail.wire_cross %></td>
-          <td><%= mould_detail.next_time.nil? ? '' : mould_detail.next_time.localtime.strftime("%Y-%m-%d") %></td>
-          <td><%= mould_detail.mould_state %></td>
+          <td><%= mould_detail.next_time_day_str %></td>
+          <td><%= 1 %></td>
           <td><%= mould_detail.mould_type %></td>
           <td><%= mould_detail.mould_supplier %></td>
           <td><%= link_to '[详情]', mould_detail %>

@@ -111,7 +111,7 @@
     <tbody>
     <% @spare_parts.each do |spare_part| %>
         <tr>
-          <td><%= spare_part.record_date.nil? ? '' : spare_part.record_date.localtime.strftime("%Y-%m-%d")  %></td>
+          <td><%= spare_part.record_date_day_str %></td>
           <td><%= spare_part.mould_id %></td>
           <td><%= spare_part.project_id %></td>
           <td><%= spare_part.spare_type %></td>

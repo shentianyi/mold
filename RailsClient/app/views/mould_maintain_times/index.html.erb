@@ -117,7 +117,7 @@
         <tr>
           <td><%= mould_maintain_time.mould_id %></td>
           <td><%= mould_maintain_time.project_id %></td>
-          <td><%= mould_maintain_time.maintain_date.nil? ? '' : mould_maintain_time.maintain_date.localtime.strftime("%Y-%m-%d") %></td>
+          <td><%= mould_maintain_time.maintain_date_day_str %></td>
           <td><%= mould_maintain_time.device_id %></td>
           <td><%= mould_maintain_time.serviceman %></td>
           <td><%= mould_maintain_time.err_note %></td>

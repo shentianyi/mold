@@ -9,7 +9,7 @@ module ApplicationHelper
 
   def search
     @condition=params[@model]
-    query=model.all#.unscoped
+    query=model.all #.unscoped
     @condition.each do |k, v|
       if (v.is_a?(Fixnum) || v.is_a?(String)) && !v.blank?
         puts @condition.has_key?(k+'_fuzzy')
@@ -48,4 +48,7 @@ module ApplicationHelper
   end
 
 
+  def strf_time(time)
+    time.blank? ? '' : time.localtime.strftime('%Y-%m-%d')
+  end
 end
