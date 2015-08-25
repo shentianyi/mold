@@ -1,54 +1,95 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Record date:</strong>
-  <%= @spare_part.record_date_day_str %>
-</p>
+<style type="text/css">
 
-<p>
-  <strong>Mould:</strong>
-  <%= @spare_part.mould_id %>
-</p>
+    .col-sm-4 {
+        float: none;
+        margin-left: 20px;
+        text-align: left;
+        display: inline-flex;
+        width: 30%;
+        margin-top: 10px;
+    }
 
-<p>
-  <strong>Project:</strong>
-  <%= @spare_part.project_id %>
-</p>
+    p {
+        width: 150px;
+    }
 
-<p>
-  <strong>Spare type:</strong>
-  <%= @spare_part.spare_type %>
-</p>
+    hr {
+        border: 1px solid #ccc;
+        margin-bottom: 2px;
+        margin-top: 2px;
+    }
 
-<p>
-  <strong>Spare kind:</strong>
-  <%= @spare_part.spare_kind %>
-</p>
+    h1 {
+        margin-left: 10px;
+    }
+</style>
 
-<p>
-  <strong>Broken state:</strong>
-  <%= @spare_part.broken_state %>
-</p>
+<h1>备件信息<em>详情</em></h1>
 
-<p>
-  <strong>Maintainman:</strong>
-  <%= @spare_part.maintainman %>
-</p>
+<div style="display: inline-flex; width: 100%; ">
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>日期： </p>
+    <%= @spare_part.record_date_day_str %>
+  </div>
 
-<p>
-  <strong>Qty:</strong>
-  <%= @spare_part.qty %>
-</p>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>模具号： </p>
+    <%= @spare_part.mould_id %>
+  </div>
 
-<p>
-  <strong>Machine:</strong>
-  <%= @spare_part.machine_id %>
-</p>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>项目： </p>
+    <%= @spare_part.project_id %>
+  </div>
+</div>
+<hr/>
 
-<p>
-  <strong>Outbound:</strong>
-  <%= @spare_part.outbound_id %>
-</p>
+<div style="display: inline-flex; width: 100%; ">
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>备件型号： </p>
+    <%= @spare_part.spare_type %>
+  </div>
 
-<%= link_to 'Edit', edit_spare_part_path(@spare_part) %> |
-<%= link_to 'Back', spare_parts_path %>
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>型号分类： </p>
+    <%= @spare_part.spare_kind %>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>损坏状态： </p>
+    <%= @spare_part.broken_state %>
+  </div>
+</div>
+<hr/>
+
+<div style="display: inline-flex; width: 100%; ">
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>维护人员： </p>
+    <%= @spare_part.maintainman %>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>数量： </p>
+    <%= @spare_part.qty %>
+  </div>
+
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>机器号： </p>
+    <%= @spare_part.machine_id %>
+  </div>
+</div>
+<hr/>
+
+<div style="display: inline-flex; width: 100%; ">
+  <div class="col-sm-4" style="display: inline-flex;">
+    <p>出库单号： </p>
+    <%= @spare_part.outbound_id %>
+  </div>
+
+</div>
+<hr style="border: 1px solid #000">
+
+<%= link_to '编辑', edit_spare_part_path(@spare_part), :class => 'btn btn-info', :style => 'color:#000; margin-left:2%;margin-top:1%;' %>
+<%= link_to '返回', spare_parts_path, :class => 'btn btn-info', :style => 'color:#000; margin-left:2%;margin-top:1%;' %>

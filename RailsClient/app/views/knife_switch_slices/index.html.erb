@@ -23,7 +23,7 @@
     }
 </style>
 
-<p class="title">换刀切片</p>
+<p class="title">换刀切片 <i>&#8593;</i></p>
 <hr style="border: 1px solid #999;margin-top: 0;padding-top: 0;margin-left: 158px;"/>
 
 <div class="slide">
@@ -109,7 +109,7 @@
   </div>
 </div>
 
-<div style="margin-left: 100px;margin-right: 5%;">
+<div style="margin-left:50px;" id="table_div">
   <table class="table table-bordered table-striped table-hover">
     <thead>
     <tr style="background-color: #ccc">
@@ -142,12 +142,12 @@
           <td><%= knife_switch_slice.wire_cross %></td>
           <td><%= knife_switch_slice.image_after %></td>
           <!--<td>-->
-            <!--<img src="/images?image=<%= URI::encode(knife_switch_slice.image_after) %>" width="50" height="40" alt=""/>-->
+          <!--<img src="/images?image=<%= URI::encode(knife_switch_slice.image_after) %>" width="50" height="40" alt=""/>-->
           <!--</td>-->
           <td><%= knife_switch_slice.is_ok %></td>
           <td><%= knife_switch_slice.image_before %></td>
           <!--<td>-->
-            <!--<img src="/images?image=<%= URI::encode(knife_switch_slice.image_before) %>" width="50" height="40" alt=""/>-->
+          <!--<img src="/images?image=<%= URI::encode(knife_switch_slice.image_before) %>" width="50" height="40" alt=""/>-->
           <!--</td>-->
           <td><%= link_to '[详情]', knife_switch_slice %>
             <%= link_to '[编辑]', edit_knife_switch_slice_path(knife_switch_slice) %>
@@ -156,7 +156,12 @@
     <% end %>
     </tbody>
   </table>
+
+</div>
+
+<!--
   <div class="digg_pagination" style="text-align: center">
     <%= will_paginate @knife_switch_slices, :container => false %>
   </div>
+    -->
 </div>

@@ -33,14 +33,29 @@
 
           /*用于增大字体*/
       tr, td, b, label, .digg_pagination {
-          font-size: 1.1em;
+          font-size: 1.05em;
+      }
+
+      #table_div {
+          position: absolute;
+          width: 85%;
+          height: 60%;
+          margin-bottom: 0;
+          overflow: auto;
+          border: 2px solid #000;
+          border-radius: 8px;
+      }
+
+      .table {
+          width: 100%;
+          white-space: nowrap;
       }
   </style>
 
 </head>
 
 
-<body style="overflow: auto;width: 1900px;">
+<body style="overflow-y:auto;width: 100%;">
 <div style="overflow: auto;">
   <%= render 'shares/head' %>
 </div>
@@ -54,6 +69,7 @@
     <%= yield %>
   </div>
 </div>
+
 <!--处理中信息-->
 <%= render partial: 'shares/handling_msg_box', locals: {handle_message: '处理中...'} %>
 </body>

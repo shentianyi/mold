@@ -10,11 +10,7 @@
         color: #fff;
     }
 
-    th {
-        text-align: center;
-    }
-
-    td {
+    th, td {
         text-align: center;
     }
 
@@ -23,24 +19,20 @@
         text-align: left;
     }
 
-    .col-sm-2 > label, .col-sm-2 > input {
+    .col-sm-2 > label, .col-sm-2 > input, .col-sm-3 > label, .col-sm-3 > input, .col-sm-2 > select, .col-sm-3 > select, .col-sm-4 > label, .col-sm-4 > input {
         margin-top: 20px;
     }
 
-    .col-sm-3 > label, .col-sm-3 > input {
+    .col-sm-5>label {
         margin-top: 20px;
     }
 
-    .col-sm-2 > select, .col-sm-3 > select {
-        width: 100px;
-    }
-
-    .col-sm-4 > label, .col-sm-4 > input {
-        margin-top: 20px;
+    .col-sm-5>input {
+        width: 150px;
     }
 </style>
 
-<p class="title">换刀记录</p>
+<p class="title">换刀记录 <i>&#8593;</i></p>
 <hr style="border: 1px solid #999;margin-top: 0;padding-top: 0;margin-left: 158px;"/>
 
 
@@ -83,7 +75,7 @@
         <input type="text" name="knife_switch_record[knife_type]" value="<%= @knife_type %>">
       </div>
 
-      <div class="col-sm-4">
+      <div class="col-sm-5">
         <label for="mould_id:">供应商：</label>
         <input type="text" name="knife_switch_record[knife_supplier]" value="<%= @knife_supplier %>">
 
@@ -116,8 +108,8 @@
 </div>
 
 <div style="display: inline-flex;width: 100%;">
-  <div class="trapezoid" style="height: 60px;">
-    <p style="padding-top: 20px;">换刀记录表</p>
+  <div class="trapezoid">
+    <p style="margin-top: 25%;">换刀记录表</p>
   </div>
 
   <div class="digg_pagination" style="margin-top: 30px;">
@@ -135,7 +127,7 @@
   </div>
 </div>
 
-<div style="margin-left:100px; margin-right: 100px;">
+<div style="margin-left:50px;" id="table_div">
   <table class="table table-bordered table-striped table-hover">
     <thead>
     <tr style="background-color: #ccc">
@@ -176,9 +168,12 @@
     <% end %>
     </tbody>
   </table>
+
+  <!--
   <div class="digg_pagination" style="text-align: center">
     <%= will_paginate @knife_switch_records, :container => false %>
   </div>
+  -->
 </div>
 
 <script type="text/javascript">

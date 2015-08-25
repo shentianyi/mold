@@ -16,10 +16,12 @@
     .btn, .btn-primary {
         margin-bottom: 0;
     }
+
 </style>
 
 <p id="notice"><%= notice %></p>
-<p class="title">模具明细</p>
+<p class="title">模具明细 <i>&#8593;</i></p>
+
 <hr style="border: 1px solid #999;margin-top: 0;padding-top: 0;margin-left: 158px;"/>
 
 <div class="slide">
@@ -118,6 +120,7 @@
 </div>
 
 <hr style="border: 1px solid #000;">
+
 <div style="display: inline-flex;width: 100%;">
   <div class="trapezoid">
     <p style="padding-top: 20px;">模具明细表</p>
@@ -138,7 +141,7 @@
   </div>
 </div>
 
-<div style="margin-left:100px;margin-right: 100px;">
+<div style="margin-left:50px;" id="table_div">
   <table class="table table-bordered table-striped table-hover">
     <thead>
     <tr style="background-color: #ccc">
@@ -177,7 +180,9 @@
   </table>
 </div>
 
+<!--去掉-->
+<!--
 <div class="digg_pagination" style="text-align: center">
   <%= will_paginate @mould_details, :container => false %>
 </div>
-
+-->

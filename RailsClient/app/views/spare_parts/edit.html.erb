@@ -1,6 +1,11 @@
-<h1>Editing Spare Part</h1>
+<div style="display: inline-flex; margin-top:10px;">
+  <%= link_to '返回', spare_parts_path, :class => 'btn btn-info',
+              :style => 'color:#000;' %>
+
+  <%= link_to '详情', @spare_part, :class => 'btn btn-info',
+              :style => 'color:#000;' %>
+  <h1 style="position: absolute;right: 20px;">备件信息<em>编辑</em></h1>
+</div>
+<hr style="border: 1px solid #000"/>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @spare_part %> |
-<%= link_to 'Back', spare_parts_path %>
