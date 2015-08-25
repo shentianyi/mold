@@ -10,28 +10,28 @@ class MouldDetailPresenter #<Presenter
 
   def parse_state_color
     if @mould_detail.next_time.nil?
-      NOMAL
+      'NOMAL'
     else
       days = (DateTime.parse(@mould_detail.next_time.to_s) - DateTime.parse(Date.today.to_s)).to_s.sub(/\/1/, '').to_i
       if days >= 30
-        GREEN
+        'GREEN'
       elsif (0..30).include? days
-        RED
+        'RED'
       else
-        YELLOW
+        'YELLOW'
       end
     end
   end
 
-  def display state
+  def self.display state
     case state
-      when NOMAL
+      when 'NOMAL'
         NODATE
-      when GREEN
+      when 'GREEN'
         INDATE
-      when RED
+      when 'RED'
         OUTDATE
-      when YELLOW
+      when 'YELLOW'
         WILLOUTDATE
     end
   end

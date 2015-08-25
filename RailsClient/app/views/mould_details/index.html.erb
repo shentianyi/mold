@@ -167,7 +167,7 @@
           <td><%= mould_detail.wire_type %></td>
           <td><%= mould_detail.wire_cross %></td>
           <td><%= mould_detail.next_time_day_str %></td>
-          <td><%= MouldDetailPresenter.new(mould_detail).parse_state %></td>
+          <td class="<% color = MouldDetailPresenter.new(mould_detail).parse_state_color %>"><%= MouldDetailPresenter.display(color) %></td>
           <td><%= mould_detail.mould_type %></td>
           <td><%= mould_detail.mould_supplier %></td>
           <td><%= link_to '[详情]', mould_detail %>
