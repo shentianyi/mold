@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824073814) do
+ActiveRecord::Schema.define(version: 20150825061529) do
 
   create_table "images", force: :cascade do |t|
     t.string   "filename",      limit: 255, default: "", null: false
@@ -108,7 +108,6 @@ ActiveRecord::Schema.define(version: 20150824073814) do
     t.datetime "buy_time"
     t.string   "release_report",    limit: 255
     t.string   "fixed_asset_id",    limit: 255
-    t.boolean  "is_idle",           limit: 1,   default: false
     t.boolean  "is_delete",         limit: 1,   default: false
     t.boolean  "is_dirty",          limit: 1,   default: true
     t.boolean  "is_new",            limit: 1,   default: true
@@ -117,6 +116,7 @@ ActiveRecord::Schema.define(version: 20150824073814) do
     t.string   "email",             limit: 255, default: "mj@leoni.com", null: false
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false
+    t.string   "is_idle",           limit: 255, default: ""
   end
 
   add_index "mould_details", ["mould_id"], name: "index_mould_details_on_mould_id", using: :btree

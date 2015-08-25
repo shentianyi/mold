@@ -16,9 +16,9 @@ class MouldDetailPresenter #<Presenter
       if days >= 30
         'GREEN'
       elsif (0..30).include? days
-        'RED'
-      else
         'YELLOW'
+      else
+        'RED'
       end
     end
   end

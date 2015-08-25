@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   resources :mould_details do
     collection do
       get :search
+      get :scope_search
       match :import, to: :import, via: [:get, :post]
     end
   end

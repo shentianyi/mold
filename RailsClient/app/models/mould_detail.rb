@@ -13,6 +13,8 @@ class MouldDetail < ActiveRecord::Base
   #before_save :create_uuid
  # before_update :create_uuid
 
+  scoped_search on: [:c_up_knife, :i_up_knife, :c_down_knife, :i_down_knife]
+
   include TimeStrf
 
   HEADERS=[
@@ -81,7 +83,7 @@ class MouldDetail < ActiveRecord::Base
                           mould.buy_time,
                           mould.release_report,
                           mould.fixed_asset_id,
-                          mould.is_idle ? '是' : '否',
+                          mould.is_idle,
                           mould.idle_time
                       ]
 
