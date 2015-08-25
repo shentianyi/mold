@@ -7,6 +7,7 @@ class MouldDetail < ActiveRecord::Base
   validates_presence_of :wire_type, :message => "电线型号不能为空!"
   validates_presence_of :wire_cross, :message => "电线截面不能为空!"
   validates_presence_of :terminal_leoni_no, :message => "端子莱尼号不能为空!"
+  validates_presence_of :next_time, :message => "下次批准日期不能为空!"
 
   before_validation :create_uuid
   #before_save :create_uuid
