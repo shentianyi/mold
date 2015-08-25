@@ -13,6 +13,10 @@
         margin: 0;
     }
 
+    .col-sm-4>input {
+        width: 100px;
+    }
+
     .btn, .btn-primary {
         margin-bottom: 0;
     }
@@ -58,7 +62,7 @@
           <% end %>
         </select>
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-4">
         <b>下次批准日期：从</b>
         <input type="text" name="mould_detail[next_time][start]" value="<%= @next_time_start %>" class="datetime-picker" style="width: 32%;">
         <b>到</b>
@@ -67,39 +71,25 @@
 
       <!--此处开始为新添加查询条件-->
 
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <b>模具供应商：</b>
         <input type="text">
       </div>
-    </div>
 
-    <div style="display: inline-flex;margin-top:20px;" class="col-sm-12">
       <div class="col-sm-2" style="display: inline-flex;">
-        <b>原始参数CH：</b>
-        <input type="text" style="height: 20px;">
-      </div>
-
-      <div class="col-sm-3" style="display: inline-flex;">
-        <b>原始参数CW：</b>
-        <input type="text" style="height: 20px;">
-      </div>
-
-      <!--此处结束新添加查询条件-->
-
-      <div class="col-sm-1" style="display: inline-flex;">
         <input type="submit" value="查 找" class="btn btn-primary" name="search"/>
-      </div>
-
-      <div class="col-sm-1">
         <input type="submit" value="导 出" class="btn btn-primary" name="download"/>
       </div>
     </div>
+
   </form>
+
+  <div class="col-sm-12" style="display: inline-flex;width: 380px;border-bottom: 1px dotted #000;
+          border-right: 1px dotted #000;border-top: 2px solid #000;background-color: #fff">
+    <b style="padding-top: 18px;">四种刀搜索：</b>
+    <%= render partial: 'shares/search' %>
+  </div>
 </div>
-
-<b>4把刀搜索：</b>
-<%= render partial: 'shares/search' %>
-
 <hr style="border: 1px solid #000;">
 
 <div style="display: inline-flex;width: 100%;">
