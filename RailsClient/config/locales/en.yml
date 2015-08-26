@@ -26,3 +26,4 @@ en:
     role:
       admin: 'Administrator'
       manager: 'Manager'
+      employee: 'Employeer'

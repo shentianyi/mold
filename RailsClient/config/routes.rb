@@ -34,7 +34,12 @@ Rails.application.routes.draw do
    get :report
   end
 
-  resources :users
+  resources :users do
+    collection do
+      get :search
+      match :import, to: :import, via: [:get, :post]
+    end
+  end
 
   resources :mould_details do
     collection do

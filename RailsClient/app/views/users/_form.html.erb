@@ -14,9 +14,9 @@
     <p>
       <%= f.label :id, '员工号' %>
       <% if current_user.admin? || current_user.manager? %>
-        <%= f.text_field :id%>
+        <%= f.text_field :nr%>
       <%else%>
-        <input type="text" name="id" readonly="" value="<%=current_user.id%>">
+        <input type="text" name="nr" readonly="" value="<%=current_user.nr%>">
       <%end%>
     </p>
 

@@ -4,6 +4,7 @@ class ImportTemplate
   MOULD_MAINTAIN_TIME_EXCEL_TEMPLATE='mould_maintain_time.xlsx'
   KNIFE_SWITCH_SLICE_EXCEL_TEMPLATE='knife_switch_slice.xlsx'
   KNIFE_SWITCH_RECORD_EXCEL_TEMPLATE='knife_switch_record.xlsx'
+  USER_EXCEL_TEMPLATE='user.xlsx'
   SPARE_PART_EXCEL_TEMPLATE='spare_part.xlsx'
 
 

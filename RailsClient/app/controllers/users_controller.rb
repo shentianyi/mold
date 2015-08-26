@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.paginate(:page => params[:page], :per_page => 100)
     #@users = @users.paginate(:page=>params[:page])
   end
 
@@ -68,6 +68,23 @@ class UsersController < ApplicationController
         format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
         format.json { head :no_content }
       end
+    end
+  end
+
+  def import
+    puts
+    if request.post?
+      puts "--------------------------------------"
+      msg = Message.new
+      begin
+        file=params[:files][0]
+        fd = FileData.new(data: file, original_name: file.original_filename, path: $upload_data_file_path, path_name: "#{Time.now.strftime('%Y%m%d%H%M%S%L')}~#{file.original_filename}")
+        fd.save
+        msg = FileHandler::Excel::UserHandler.import(fd)
+      rescue => e
+        msg.content = e.message
+      end
+      render json: msg
     end
   end
 
