@@ -19,17 +19,15 @@ module FileHandler
               row = {}
               HEADERS.each_with_index do |k, i|
                 row[k] = book.cell(line, i+1).to_s.strip
+                row[k] = row[k].sub(/\.0/, '') if k=='mould_id'
               end
 
-              mould_id = row['mould_id'].to_s
-              record = MouldMaintainRecord.where(mould_id: mould_id).order(count: :desc).first
-              count = record.nil? ? 1 : (record.count.to_i + 1)
-              puts "#############count=#{count}"
-
-              is_record = MouldMaintainRecord.where(mould_id: mould_id, plan_date: row['plan_date']).first
-              if is_record.nil?
-                MouldMaintainRecord.create({mould_id: mould_id, count: count, plan_date: row['plan_date'], real_date: row['plan_date'], note: row['note']})
+              s = MouldMaintainRecord.new(row)
+              unless s.save
+                puts s.errors.to_json
+                raise s.errors.to_json
               end
+
             end
             #end
             msg.result = true

@@ -24,33 +24,19 @@ class MouldMaintainRecordsController < ApplicationController
   # POST /mould_maintain_records
   # POST /mould_maintain_records.json
   def create
-    puts "-----------------------------"
-    args = {}
-    args[:mould_id] = mould_maintain_record_params[:mould_id]
-    args[:plan_date] = mould_maintain_record_params[:plan_date]
-    args[:real_date] = mould_maintain_record_params[:plan_date]
-    args[:note] = mould_maintain_record_params[:note]
-    record = MouldMaintainRecord.where(mould_id: args[:mould_id]).order(count: :desc).first
-    args[:count] = record.nil? ? 1 : (record.count.to_i + 1)
-
-    @mould_maintain_record = MouldMaintainRecord.new(args)
-    is_record = MouldMaintainRecord.where(mould_id: args[:mould_id], plan_date: args[:plan_date]).first
+    @mould_maintain_record = MouldMaintainRecord.new(mould_maintain_record_params)
 
     respond_to do |format|
-      if is_record.nil?
-        if @mould_maintain_record.save
-          format.html { redirect_to @mould_maintain_record, notice: 'Mould maintain record was successfully created.' }
-          format.json { render :show, status: :created, location: @mould_maintain_record }
-        else
-          format.html { render :new }
-          format.json { render json: @mould_maintain_record.errors, status: :unprocessable_entity }
-        end
+      if @mould_maintain_record.save
+        format.html { redirect_to @mould_maintain_record, notice: 'Mould maintain record was successfully created.' }
+        format.json { render :show, status: :created, location: @mould_maintain_record }
       else
         format.html { render :new }
         format.json { render json: @mould_maintain_record.errors, status: :unprocessable_entity }
       end
     end
   end
+
 
   # PATCH/PUT /mould_maintain_records/1
   # PATCH/PUT /mould_maintain_records/1.json
@@ -103,4 +89,5 @@ class MouldMaintainRecordsController < ApplicationController
   def mould_maintain_record_params
     params.require(:mould_maintain_record).permit(:mould_id, :count, :plan_date, :real_date, :note)
   end
+
 end

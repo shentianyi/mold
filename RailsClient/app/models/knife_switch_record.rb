@@ -26,6 +26,7 @@ class KnifeSwitchRecord < ActiveRecord::Base
     puts "-------------reset_knife_life----------------"
     records = KnifeSwitchRecord.where(mould_id: self[:mould_id], project_id: self[:project_id], knife_type: self[:knife_type], knife_kind: self[:knife_kind]).where("m_qty >= #{self[:m_qty]}").order(m_qty: :asc)
 
+
     records.each do |record|
       if self[:m_qty] == record.m_qty
         if self[:state].include? "磨损"

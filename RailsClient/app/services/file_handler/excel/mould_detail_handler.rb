@@ -27,11 +27,11 @@ module FileHandler
                   row[k] = row[k].sub(/\.0/, '') if k=='wire_cross'
                 end
 
-                s =MouldDetail.new(row)
-                unless s.save
-                  puts s.errors.to_json
-                  raise s.errors.to_json
-                end
+                  s =MouldDetail.new(row)
+                  unless s.save
+                    puts s.errors.to_json
+                    raise s.errors.to_json
+                  end
               end
             end
             msg.result = true
