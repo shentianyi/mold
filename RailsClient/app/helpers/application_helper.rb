@@ -35,6 +35,10 @@ module ApplicationHelper
       end
     end
 
+    if block_given?
+      query=(yield query)
+    end
+
     if params.has_key? "download"
       send_data(query.to_xlsx(query),
                 :type => "application/vnd.openxmlformates-officedocument.spreadsheetml.sheet",
@@ -50,8 +54,8 @@ module ApplicationHelper
   def scope_search
     model = params[:model].classify.constantize
     @q = params[:q]
-    resultes = model.search_for(@q).paginate(:page=>params[:page])
-    instance_variable_set("@#{params[:controller]}",resultes)
+    resultes = model.search_for(@q).paginate(:page => params[:page])
+    instance_variable_set("@#{params[:controller]}", resultes)
     render :index
   end
 

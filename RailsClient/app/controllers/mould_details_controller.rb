@@ -12,6 +12,22 @@ class MouldDetailsController < ApplicationController
   def show
   end
 
+  def search
+    super { |query|
+      today=Date.today.to_time.utc
+      state= params[:mould_detail][:mould_state]
+      query=if state=='未过期'
+              query.where('next_time>?', today+1.month)
+            elsif state=='即将过期'
+              query.where(next_time: (today..today+1.month))
+            elsif state=='已过期'
+              query.where('next_time<?', today)
+            else
+              query
+            end.unscope(where: :mould_state)
+    }
+  end
+
   # GET /mould_details/new
   def new
     @mould_detail = MouldDetail.new
