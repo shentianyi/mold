@@ -27,11 +27,11 @@
     <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
         <%= f.label :mould_id, '模具号:' %>
-        <%= f.text_field :mould_id, :disabled => 'disabled', :style => 'border:0' %>
+        <%= f.text_field :mould_id, :readonly => 'readonly', :style => 'border:0' %>
       </div>
       <div class="col-sm-4">
         <%= f.label :project_id, '项目:' %>
-        <%= f.text_field :project_id, :disabled => 'disabled', :style => 'border:0' %>
+        <%= f.text_field :project_id, :readonly => 'readonly', :style => 'border:0' %>
       </div>
       <div class="col-sm-4">
         <%= f.label :terminal_leoni_id, '端子莱尼号:' %>
@@ -41,8 +41,7 @@
     <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
         <%= f.label :knife_kind, '刀片分类:' %>
-        <%= f.select :knife_kind, options_for_select([['CH', 'CH'], ['CW', 'CW'], ['ICH', 'ICH'], ['ICW', 'ICW']], params[:knife_kind]),
-                     {}, {:style => 'width:35%;', :disabled => 'disabled', :style => 'border:0'} %>
+        <%= f.text_field :knife_kind, :readonly => 'readonly', :style => 'border:0' %>
       </div>
       <div class="col-sm-4">
         <%= f.label :knife_supplier, '供应商:' %>
