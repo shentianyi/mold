@@ -37,7 +37,7 @@
 
   <div class="col-sm-6">
     <p>日期:</p>
-    <%= @mould_maintain_time.maintain_date.nil? ? '' :  @mould_maintain_time.maintain_date.localtime.strftime("%Y-%m-%d") %>
+    <%= @mould_maintain_time.maintain_date.nil? ? '' : @mould_maintain_time.maintain_date.localtime.strftime("%Y-%m-%d") %>
   </div>
 
   <div class="col-sm-6">
@@ -109,5 +109,7 @@
 
 <hr style="border: 1px solid #000">
 
-<%= link_to '编辑', edit_mould_maintain_time_path(@mould_maintain_time), :class => 'btn btn-info', :style => 'color:#000; margin-left:2%;margin-top:1%;' %>
+<% if current_user.can_edit %>
+    <%= link_to '编辑', edit_mould_maintain_time_path(@mould_maintain_time), :class => 'btn btn-info', :style => 'color:#000; margin-left:2%;margin-top:1%;' %>
+<% end %>
 <%= link_to '返回', mould_maintain_times_path, :class => 'btn btn-info', :style => 'color:#000; margin-left:2%;margin-top:1%;' %>

@@ -96,5 +96,7 @@
   <!--</div>-->
 </div>
 <hr style="border: 1px solid #000"/>
-<%= link_to '编辑', edit_knife_switch_slice_path(@knife_switch_slice), :class => 'btn btn-info', :style => 'color:#000;padding-top:10px; margin-left:2%;margin-top:1%;' %>
+<% if current_user.can_edit %>
+    <%= link_to '编辑', edit_knife_switch_slice_path(@knife_switch_slice), :class => 'btn btn-info', :style => 'color:#000;padding-top:10px; margin-left:2%;margin-top:1%;' %>
+<% end %>
 <%= link_to '返回', knife_switch_slices_path, :class => 'btn btn-info', :style => 'color:#000; margin-left:2%;padding-top:10px;margin-top:1%;' %>

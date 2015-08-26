@@ -91,5 +91,7 @@
 </div>
 <hr style="border: 1px solid #000">
 
-<%= link_to '编辑', edit_spare_part_path(@spare_part), :class => 'btn btn-info', :style => 'color:#000; margin-left:2%;margin-top:1%;' %>
+<% if current_user.can_edit %>
+    <%= link_to '编辑', edit_spare_part_path(@spare_part), :class => 'btn btn-info', :style => 'color:#000; margin-left:2%;margin-top:1%;' %>
+<% end %>
 <%= link_to '返回', spare_parts_path, :class => 'btn btn-info', :style => 'color:#000; margin-left:2%;margin-top:1%;' %>

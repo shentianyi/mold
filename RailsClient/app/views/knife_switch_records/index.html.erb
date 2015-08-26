@@ -27,11 +27,11 @@
         width: 80px;
     }
 
-    .col-sm-5>label {
+    .col-sm-5 > label {
         margin-top: 20px;
     }
 
-    .col-sm-5>input {
+    .col-sm-5 > input {
         width: 150px;
     }
 </style>
@@ -122,13 +122,15 @@
     </div>
     <%= will_paginate @knife_switch_records, :container => false %>
   </div>
-  <div style="display: inline-flex;margin-left: 20px;">
-    <%= link_to '新增', new_knife_switch_record_path, :class => 'btn btn-info',
-                :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
+  <% if current_user.can_edit %>
+      <div style="display: inline-flex;margin-left: 20px;">
+        <%= link_to '新增', new_knife_switch_record_path, :class => 'btn btn-info',
+                    :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
 
-    <%= link_to '导入数据', import_knife_switch_records_path, :class => 'btn btn-primary',
-                :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
-  </div>
+        <%= link_to '导入数据', import_knife_switch_records_path, :class => 'btn btn-primary',
+                    :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
+      </div>
+  <% end %>
 </div>
 
 <div style="margin-left:50px;" id="table_div">
@@ -167,8 +169,12 @@
           <td><%= knife_switch_record.outbound_id %></td>
           <td><%= knife_switch_record.switch_date_day_str %></td>
           <td><%= link_to '[详情]', knife_switch_record %>
-            <%= link_to '[编辑]', edit_knife_switch_record_path(knife_switch_record) %>
-            <%= link_to '[删除]', knife_switch_record, method: :delete, data: {confirm: '确定删除?'} %>
+            <% if current_user.can_edit %>
+                <%= link_to '[编辑]', edit_knife_switch_record_path(knife_switch_record) %>
+            <% end %>
+            <% if current_user.can_delete %>
+                <%= link_to '[删除]', knife_switch_record, method: :delete, data: {confirm: '确定删除?'} %>
+            <% end %>
           </td>
         </tr>
     <% end %>

@@ -13,7 +13,7 @@
         margin: 0;
     }
 
-    .col-sm-4>input {
+    .col-sm-4 > input {
         width: 100px;
     }
 
@@ -103,13 +103,15 @@
     </div>
     <%= will_paginate @mould_details, :container => false %>
   </div>
-  <div style="display: inline-flex;margin-left: 20px;">
-    <%= link_to '新增', new_mould_detail_path, :class => 'btn btn-info',
-                :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
+  <% if current_user.can_edit %>
+      <div style="display: inline-flex;margin-left: 20px;">
+        <%= link_to '新增', new_mould_detail_path, :class => 'btn btn-info',
+                    :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
 
-    <%= link_to '导入数据', import_mould_details_path, :class => 'btn btn-primary',
-                :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
-  </div>
+        <%= link_to '导入数据', import_mould_details_path, :class => 'btn btn-primary',
+                    :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
+      </div>
+  <% end %>
 </div>
 
 <div style="margin-left:50px;" id="table_div">
@@ -150,8 +152,12 @@
           <td><%= mould_detail.c_down_knife %></td>
           <td><%= mould_detail.i_down_knife %></td>
           <td><%= link_to '[详情]', mould_detail %>
-            <%= link_to '[编辑]', edit_mould_detail_path(mould_detail) %>
-            <%= link_to '[删除]', mould_detail, method: :delete, data: {confirm: '确认删除?'} %>
+            <% if current_user.can_edit %>
+                <%= link_to '[编辑]', edit_mould_detail_path(mould_detail) %>
+            <% end %>
+            <% if current_user.can_delete %>
+                <%= link_to '[删除]', mould_detail, method: :delete, data: {confirm: '确认删除?'} %>
+            <% end %>
           </td>
         </tr>
     <% end %>

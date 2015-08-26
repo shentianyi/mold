@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825074136) do
+ActiveRecord::Schema.define(version: 20150826082953) do
 
   create_table "images", force: :cascade do |t|
     t.string   "filename",      limit: 255, default: "", null: false
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20150825074136) do
     t.string   "knife_type1",       limit: 255, default: ""
     t.string   "knife_type2",       limit: 255, default: ""
     t.string   "wire_type",         limit: 255, default: ""
-    t.string   "wire_cross",        limit: 255, default: ""
+    t.float    "wire_cross",        limit: 24
     t.string   "image_after",       limit: 255, default: ""
     t.string   "image_before",      limit: 255, default: ""
     t.string   "is_ok",             limit: 255, default: ""
@@ -195,6 +195,8 @@ ActiveRecord::Schema.define(version: 20150825074136) do
     t.boolean  "is_new",                 limit: 1,   default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "can_edit",               limit: 1,   default: false
+    t.boolean  "can_delete",             limit: 1,   default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

@@ -14,7 +14,7 @@
         margin: 0;
     }
 
-    .col-sm-2 > b, .col-sm-3 > b, .col-sm-2 > input, .col-sm-3 > input, .col-sm-4>b, .col-sm-4>input {
+    .col-sm-2 > b, .col-sm-3 > b, .col-sm-2 > input, .col-sm-3 > input, .col-sm-4 > b, .col-sm-4 > input {
         margin-top: 15px;
     }
 
@@ -99,14 +99,16 @@
     </div>
     <%= will_paginate @knife_switch_slices, :container => false %>
   </div>
-  <div style="display: inline-flex;margin-left: 20px;">
-    <%= link_to '新增', new_knife_switch_slice_path, :class => 'btn btn-info',
-                :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
+  <% if current_user.can_edit %>
+      <div style="display: inline-flex;margin-left: 20px;">
+        <%= link_to '新增', new_knife_switch_slice_path, :class => 'btn btn-info',
+                    :style => 'color:#000;padding-top:10px;margin-left:10px;' %>
 
-    <%= link_to '导入数据', import_knife_switch_slices_path, :class => 'btn btn-primary',
-                :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
+        <%= link_to '导入数据', import_knife_switch_slices_path, :class => 'btn btn-primary',
+                    :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
 
-  </div>
+      </div>
+  <% end %>
 </div>
 
 <div style="margin-left:50px;" id="table_div">
@@ -150,9 +152,13 @@
           <!--<img src="/images?image=<%= URI::encode(knife_switch_slice.image_before) %>" width="50" height="40" alt=""/>-->
           <!--</td>-->
           <td><%= link_to '[详情]', knife_switch_slice %>
-            <%= link_to '[编辑]', edit_knife_switch_slice_path(knife_switch_slice) %>
-            <%= link_to '[删除]', knife_switch_slice, method: :delete, data: {confirm: '确定删除?'} %></td>
-        </tr>
+            <% if current_user.can_edit %>
+                <%= link_to '[编辑]', edit_knife_switch_slice_path(knife_switch_slice) %>
+            <% end %>
+            <% if current_user.can_delete %>
+                <%= link_to '[删除]', knife_switch_slice, method: :delete, data: {confirm: '确定删除?'} %></td>
+            <% end %>
+            </tr>
     <% end %>
     </tbody>
   </table>
