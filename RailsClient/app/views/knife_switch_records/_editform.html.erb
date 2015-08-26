@@ -51,13 +51,14 @@
         <%= f.label :knife_supplier, '供应商:' %>
         <%= f.text_field :knife_supplier %>
       </div>
+    </div>
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
         <%= f.label :state, '损坏状态:' %>
         <%= f.select :state, options_for_select([['磨损', '磨损'], ['断裂', '断裂']], params[:state]),
                      {}, {:style => 'width:35%;'} %>
       </div>
-    </div>
-    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+
       <div class="col-sm-4">
         <%= f.label :problem, '问题描述:' %>
         <%= f.text_field :problem %>
@@ -66,12 +67,13 @@
         <%= f.label :damage_define, '损坏定义:' %>
         <%= f.text_field :damage_define %>
       </div>
+    </div>
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
         <%= f.label :maintainman, '维修人员:' %>
         <%= f.text_field :maintainman %>
       </div>
-    </div>
-    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+
       <div class="col-sm-4">
         <%= f.label :m_qty, '数量:' %>
         <%= f.text_field :m_qty %>
@@ -80,12 +82,12 @@
         <%= f.label :machine_id, '机器号:' %>
         <%= f.text_field :machine_id %>
       </div>
+    </div>
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
         <%= f.label :press_num, '压接次数:' %>
         <%= f.text_field :press_num %>
       </div>
-    </div>
-    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
 
       <div class="col-sm-4">
         <%= f.label :operater, '操作员:' %>
@@ -97,13 +99,13 @@
         <%= f.label :is_ok, '验收确认:' %>
         <%= f.text_field :is_ok %>
       </div>
-
+    </div>
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
         <%= f.label :sort, '分类:' %>
         <%= f.text_field :sort %>
       </div>
-    </div>
-    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+
       <div class="col-sm-4">
         <%= f.label :outbound_id, '出库单号:' %>
         <%= f.text_field :outbound_id %>
