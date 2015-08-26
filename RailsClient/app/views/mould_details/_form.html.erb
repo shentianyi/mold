@@ -56,13 +56,12 @@
     </div>
 
     <div style="display: inline-flex; width: 100%; margin-bottom: 10px;">
+
       <div class="col-sm-4">
         <%= f.label :terminal_leoni_no, '端子莱尼号:' %>
         <%= f.text_field :terminal_leoni_no %>
       </div>
-    </div>
 
-    <div style="display: inline-flex; width: 100%; margin-bottom: 10px;">
       <div class="col-sm-4">
         <%= f.label :terminal_supplier, '端子供应商号:' %>
         <%= f.text_field :terminal_supplier %>
@@ -73,14 +72,15 @@
         <%= f.text_field :stopwater %>
       </div>
 
-      <div class="col-sm-4">
-        <%= f.label :use_range, '使用范围:' %>
-        <%= f.text_field :use_range %>
-      </div>
     </div>
 
 
     <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+      <div class="col-sm-4">
+        <%= f.label :use_range, '使用范围:' %>
+        <%= f.text_field :use_range %>
+      </div>
+
       <div class="col-sm-4">
         <%= f.label :wire_type, '电线型号:' %>
         <%= f.text_field :wire_type %>
@@ -91,13 +91,14 @@
         <%= f.text_field :wire_cross %>
       </div>
 
+    </div>
+
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
         <%= f.label :original_param_ch, '原始参数ch:' %>
         <%= f.text_field :original_param_ch %>
       </div>
-    </div>
 
-    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
         <%= f.label :original_param_cw, '原始参数cw:' %>
         <%= f.text_field :original_param_cw %>
@@ -107,15 +108,15 @@
         <%= f.label :actual_param_ch, '实测参数ch:' %>
         <%= f.text_field :actual_param_ch %>
       </div>
-
-      <div class="col-sm-4">
-        <%= f.label :actual_param_cw, '实测参数cw:' %>
-        <%= f.text_field :actual_param_cw %>
-      </div>
     </div>
 
 
     <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+      <div class="col-sm-4">
+        <%= f.label :actual_param_cw, '实测参数cw:' %>
+        <%= f.text_field :actual_param_cw %>
+      </div>
+
       <div class="col-sm-4">
         <%= f.label :actual_param_ich, '实测参数ich:' %>
         <%= f.text_field :actual_param_ich %>
@@ -125,14 +126,14 @@
         <%= f.label :actual_param_icw, '实测参数icw:' %>
         <%= f.text_field :actual_param_icw %>
       </div>
+    </div>
 
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
         <%= f.label :step_dch_id, '步骤dch:' %>
         <%= f.text_field :step_dch_id %>
       </div>
-    </div>
 
-    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
         <%= f.label :step_ich_id, '步骤ich:' %>
         <%= f.text_field :step_ich_id %>
@@ -142,14 +143,14 @@
         <%= f.label :next_time, '下次批准日期:' %>
         <%= f.text_field :next_time, class: 'datetime-picker' %>
       </div>
+    </div>
 
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
         <%= f.label :c_up_knife, '芯线上刀:' %>
         <%= f.text_field :c_up_knife %>
       </div>
-    </div>
 
-    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
         <%= f.label :i_up_knife, '绝缘上刀:' %>
         <%= f.text_field :i_up_knife %>
@@ -159,15 +160,15 @@
         <%= f.label :c_down_knife, '芯线下刀:' %>
         <%= f.text_field :c_down_knife %>
       </div>
-
-      <div class="col-sm-4">
-        <%= f.label :i_down_knife, '绝缘下刀:' %>
-        <%= f.text_field :i_down_knife %>
-      </div>
     </div>
 
 
     <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+      <div class="col-sm-4">
+        <%= f.label :i_down_knife, '绝缘下刀:' %>
+        <%= f.text_field :i_down_knife %>
+      </div>
+
       <div class="col-sm-4">
         <%= f.label :upper_punch, '上冲头:' %>
         <%= f.text_field :upper_punch %>
@@ -178,14 +179,15 @@
         <%= f.text_field :coc %>
       </div>
 
-      <div class="col-sm-4">
-        <%= f.label :coh, '切断刀座:' %>
-        <%= f.text_field :coh %>
-      </div>
     </div>
 
 
     <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+      <div class="col-sm-4">
+        <%= f.label :coh, '切断刀座:' %>
+        <%= f.text_field :coh %>
+      </div>
+
       <div class="col-sm-4">
         <%= f.label :feeding_claw, '送料爪:' %>
         <%= f.text_field :feeding_claw %>
@@ -196,14 +198,16 @@
         <%= f.text_field :after_groove %>
       </div>
 
-      <div class="col-sm-4">
-        <%= f.label :before_groove, '前凹模:' %>
-        <%= f.text_field :before_groove %>
-      </div>
     </div>
 
 
     <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+
+      <div class="col-sm-4">
+        <%= f.label :before_groove, '前凹模:' %>
+        <%= f.text_field :before_groove %>
+      </div>
+
       <div class="col-sm-4">
         <%= f.label :oil_cup, '油杯:' %>
         <%= f.text_field :oil_cup %>
@@ -213,15 +217,15 @@
         <%= f.label :buy_time, '模具买到日期:' %>
         <%= f.text_field :buy_time, class: 'datetime-picker' %>
       </div>
-
-      <div class="col-sm-4">
-        <%= f.label :release_report, '放行报告:' %>
-        <%= f.text_field :release_report %>
-      </div>
     </div>
 
 
     <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
+      <div class="col-sm-4">
+        <%= f.label :release_report, '放行报告:' %>
+        <%= f.text_field :release_report %>
+      </div>
+
       <div class="col-sm-4">
         <%= f.label :fixed_asset_id, '固定资产号:' %>
         <%= f.text_field :fixed_asset_id %>
@@ -231,14 +235,13 @@
         <%= f.label :is_idle, '是否闲置:' %>
         <%= f.text_field :is_idle %>
       </div>
+    </div>
 
+    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
       <div class="col-sm-4">
         <%= f.label :idle_time, '闲置日期:' %>
         <%= f.text_field :idle_time, class: 'datetime-picker' %>
       </div>
-    </div>
-
-    <div style="display: inline-flex; width: 100%;margin-bottom: 10px;">
 
       <div class="col-sm-4">
         <%= f.label :note, '备注:' %>
