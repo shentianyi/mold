@@ -7,7 +7,7 @@ class KnifeSwitchRecord < ActiveRecord::Base
 
   before_validation :create_knife_type
   before_create :create_knife_life
-  before_update :reset_knife_life
+  after_update :reset_knife_life
 
   include TimeStrf
 
@@ -23,55 +23,56 @@ class KnifeSwitchRecord < ActiveRecord::Base
 
   def reset_knife_life
     # GM25T-027sdfs sdf 410000201-2 CW
-    puts "-------------reset_knife_life----------------"
-    records = KnifeSwitchRecord.where(mould_id: self[:mould_id], project_id: self[:project_id], knife_type: self[:knife_type], knife_kind: self[:knife_kind]).where("m_qty >= #{self[:m_qty]}").order(m_qty: :asc)
-
-    press_num_before = 0
-    total_life = 0
-    damage_life = 0
-    broken_life = 0
-    records.each do |record|
-      puts "press=#{record.press_num}----before= #{press_num_before} --------m_qty=#{record.m_qty}"
-      if record.m_qty == 1
-        press_num_before = self[:press_num]
-        self[:damage_life] = 0
-        self[:broken_life] = 0
-        self[:total_life] = self[:damage_life] | self[:broken_life]
-      else
-
-        if record.m_qty.to_i == self[:m_qty]
-          pre_record = KnifeSwitchRecord.where(mould_id: self[:mould_id], project_id: self[:project_id], knife_type: self[:knife_type], knife_kind: self[:knife_kind], m_qty: (self[:m_qty] -1)).first
-          if pre_record.nil?
-            self[:damage_life] = 0
-            self[:broken_life] = 0
-          else
-            if self[:state].include? "磨损"
-              self[:damage_life] = self[:press_num].to_i - pre_record.press_num
-              self[:broken_life] = 0
-            elsif self[:state].include? "断裂"
-              self[:damage_life] = 0
-              self[:broken_life] = self[:press_num].to_i - pre_record.press_num
-            end
-          end
-          self[:total_life] = self[:damage_life] | self[:broken_life]
-          press_num_before = self[:press_num]
-        elsif record.m_qty.to_i == (self[:m_qty] + 1)
-       puts "################press_num_before=#{press_num_before}##############record.press_num=#{record.press_num}########################################"
-          if record.state.include? "磨损"
-            damage_life = record.press_num - press_num_before
-            broken_life = 0
-          elsif record.state.include? "断裂"
-            damage_life = 0
-            broken_life = record.press_num - press_num_before
-          end
-       puts "======================#{damage_life}"
-          total_life = damage_life | broken_life
-          record.update(damage_life: damage_life, broken_life: broken_life, total_life: total_life)
-          press_num_before = record.press_num
-        end
-
-      end
-    end
+    # puts "-------------reset_knife_life----------------"
+    # records = KnifeSwitchRecord.where(mould_id: self[:mould_id], project_id: self[:project_id], knife_type: self[:knife_type], knife_kind: self[:knife_kind]).where("m_qty >= #{self[:m_qty]}").order(m_qty: :asc)
+    #
+    # press_num_before = 0
+    # total_life = 0
+    # damage_life = 0
+    # broken_life = 0
+    # records.each do |record|
+    #   puts "press=#{record.press_num}----before= #{press_num_before} --------m_qty=#{record.m_qty}"
+    #   if record.m_qty == 1
+    #     press_num_before = self[:press_num]
+    #     self[:damage_life] = 0
+    #     self[:broken_life] = 0
+    #     self[:total_life] = self[:damage_life] | self[:broken_life]
+    #   else
+    #
+    #     if record.m_qty.to_i == self[:m_qty]
+    #       pre_record = KnifeSwitchRecord.where(mould_id: self[:mould_id], project_id: self[:project_id], knife_type: self[:knife_type], knife_kind: self[:knife_kind], m_qty: (self[:m_qty] -1)).first
+    #       if pre_record.nil?
+    #         self[:damage_life] = 0
+    #         self[:broken_life] = 0
+    #       else
+    #         if self[:state].include? "磨损"
+    #           self[:damage_life] = self[:press_num].to_i - pre_record.press_num
+    #           self[:broken_life] = 0
+    #         elsif self[:state].include? "断裂"
+    #           self[:damage_life] = 0
+    #           self[:broken_life] = self[:press_num].to_i - pre_record.press_num
+    #         end
+    #       end
+    #       self[:total_life] = self[:damage_life] | self[:broken_life]
+    #       record.update(damage_life: self[:damage_life], broken_life: self[:broken_life], total_life: self[:total_life])
+    #       press_num_before = self[:press_num]
+    #     elsif record.m_qty.to_i == (self[:m_qty] + 1)
+    #    puts "################press_num_before=#{press_num_before}##############record.press_num=#{record.press_num}########################################"
+    #       if record.state.include? "磨损"
+    #         damage_life = record.press_num - press_num_before
+    #         broken_life = 0
+    #       elsif record.state.include? "断裂"
+    #         damage_life = 0
+    #         broken_life = record.press_num - press_num_before
+    #       end
+    #    puts "======================#{damage_life}"
+    #       total_life = damage_life | broken_life
+    #       record.update(damage_life: damage_life, broken_life: broken_life, total_life: total_life)
+    #       press_num_before = record.press_num
+    #     end
+    #
+    #   end
+    # end
 
   end
 

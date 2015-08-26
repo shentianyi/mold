@@ -37,11 +37,92 @@ class KnifeSwitchRecordsController < ApplicationController
     end
   end
 
+  def reset_knife_life_before_update
+    args = {}
+    args[:mould_id] = knife_switch_record_params[:mould_id]
+    args[:project_id] = knife_switch_record_params[:project_id]
+    args[:terminal_leoni_id] = knife_switch_record_params[:terminal_leoni_id]
+    args[:switch_date] = knife_switch_record_params[:switch_date]
+    args[:knife_type] = knife_switch_record_params[:knife_type]
+
+    args[:knife_kind] = knife_switch_record_params[:knife_kind]
+    args[:knife_supplier] = knife_switch_record_params[:knife_supplier]
+    args[:state] = knife_switch_record_params[:state]
+    args[:problem] = knife_switch_record_params[:problem]
+    args[:damage_define] = knife_switch_record_params[:damage_define]
+
+    args[:maintainman] = knife_switch_record_params[:maintainman]
+    args[:qty] = knife_switch_record_params[:qty]
+    args[:m_qty] = knife_switch_record_params[:m_qty]
+    args[:machine_id] = knife_switch_record_params[:machine_id]
+    args[:press_num] = knife_switch_record_params[:press_num]
+
+    args[:damage_life] = knife_switch_record_params[:damage_life]
+    args[:broken_life] = knife_switch_record_params[:broken_life]
+    args[:total_life] = knife_switch_record_params[:total_life]
+    args[:operater] = knife_switch_record_params[:operater]
+    args[:is_ok] = knife_switch_record_params[:is_ok]
+
+    args[:outbound_id] = knife_switch_record_params[:outbound_id]
+    args[:sort] = knife_switch_record_params[:sort]
+    args[:image_id] = knife_switch_record_params[:image_id]
+
+    records = KnifeSwitchRecord.where(mould_id: args[:mould_id], project_id: args[:project_id], knife_type: args[:knife_type], knife_kind: args[:knife_kind]).where("m_qty >= #{args[:m_qty]}").order(m_qty: :asc)
+
+    press_num_before = 0
+    total_life = 0
+    damage_life = 0
+    broken_life = 0
+    records.each do |record|
+      puts "press=#{record.press_num}----before= #{press_num_before} --------m_qty=#{record.m_qty}"
+      if record.m_qty == 1
+        press_num_before = args[:press_num]
+        args[:damage_life] = 0
+        args[:broken_life] = 0
+        args[:total_life] = args[:damage_life] | args[:broken_life]
+      else
+
+        if record.m_qty.to_i == args[:m_qty]
+          pre_record = KnifeSwitchRecord.where(mould_id: args[:mould_id], project_id: args[:project_id], knife_type: args[:knife_type], knife_kind: args[:knife_kind], m_qty: (args[:m_qty] -1)).first
+          if pre_record.nil?
+            args[:damage_life] = 0
+            args[:broken_life] = 0
+          else
+            if args[:state].include? "磨损"
+              args[:damage_life] = args[:press_num].to_i - pre_record.press_num
+              args[:broken_life] = 0
+            elsif args[:state].include? "断裂"
+              args[:damage_life] = 0
+              args[:broken_life] = args[:press_num].to_i - pre_record.press_num
+            end
+          end
+          args[:total_life] = args[:damage_life] | args[:broken_life]
+          press_num_before = args[:press_num]
+        elsif record.m_qty.to_i == (args[:m_qty] + 1)
+          puts "################press_num_before=#{press_num_before}##############record.press_num=#{record.press_num}########################################"
+          if record.state.include? "磨损"
+            damage_life = record.press_num - press_num_before
+            broken_life = 0
+          elsif record.state.include? "断裂"
+            damage_life = 0
+            broken_life = record.press_num - press_num_before
+          end
+          puts "======================#{damage_life}"
+          total_life = damage_life | broken_life
+          record.update(damage_life: damage_life, broken_life: broken_life, total_life: total_life)
+          press_num_before = record.press_num
+        end
+
+      end
+    end
+    args
+  end
+
   # PATCH/PUT /knife_switch_records/1
   # PATCH/PUT /knife_switch_records/1.json
   def update
     respond_to do |format|
-      if @knife_switch_record.update(knife_switch_record_params)
+      if @knife_switch_record.update(reset_knife_life_before_update)
         format.html { redirect_to @knife_switch_record, notice: 'Knife switch record was successfully updated.' }
         format.json { render :show, status: :ok, location: @knife_switch_record }
       else
