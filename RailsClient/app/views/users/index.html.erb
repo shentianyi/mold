@@ -42,20 +42,22 @@
   <tbody>
   <% @users.each do |user| %>
       <tr>
-        <td><%= user.user_name %></td>
-        <td><%= user.email %></td>
-        <td>
-          <%= link_to '详情', user_path(user), class: 'btn btn-default' %>
-        </td>
-        <% if current_user.can_edit %>
+        <% if current_user.admin? || current_user.manager? || (current_user.id == user.id) %>
+            <td><%= user.user_name %></td>
+            <td><%= user.email %></td>
             <td>
-              <%= link_to '编辑', edit_user_path(user), class: 'btn btn-default' %>
+              <%= link_to '详情', user_path(user), class: 'btn btn-default' %>
             </td>
-        <% end %>
-        <% if current_user.can_delete %>
-        <td>
-          <%= link_to '删除', user, method: :delete, data: {confirm: 'Are you sure?'} %>
-        </td>
+            <% if current_user.can_edit %>
+                <td>
+                  <%= link_to '编辑', edit_user_path(user), class: 'btn btn-default' %>
+                </td>
+            <% end %>
+            <% if current_user.can_delete %>
+                <td>
+                  <%= link_to '删除', user, method: :delete, data: {confirm: 'Are you sure?'} %>
+                </td>
+            <% end %>
         <% end %>
       </tr>
   <% end %>
