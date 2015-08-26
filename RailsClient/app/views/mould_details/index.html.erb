@@ -62,16 +62,16 @@
           <% end %>
         </select>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-5">
         <b>下次批准日期：从</b>
-        <input type="text" name="mould_detail[next_time][start]" value="<%= @next_time_start %>" class="datetime-picker" style="width: 32%;">
+        <input type="text" name="mould_detail[next_time][start]" value="<%= @next_time_start %>" class="date-picker" style="width: 32%;">
         <b>到</b>
-        <input type="text" name="mould_detail[next_time][end]" value="<%= @next_time_end %>" class="datetime-picker" style="width: 30%;">
+        <input type="text" name="mould_detail[next_time][end]" value="<%= @next_time_end %>" class="date-picker" style="width: 30%;">
       </div>
 
       <!--此处开始为新添加查询条件-->
 
-      <div class="col-sm-3">
+      <div class="col-sm-2">
         <b>模具供应商：</b>
         <input type="text">
       </div>

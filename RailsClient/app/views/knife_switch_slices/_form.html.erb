@@ -41,7 +41,7 @@
       </div>
       <div class="col-sm-6">
         <%= f.label :switch_date, '日期:' %>
-        <%= f.text_field :switch_date, class: 'datetime-picker' %>
+        <%= f.text_field :switch_date, class: 'date-picker' %>
       </div>
       <div class="col-sm-6">
         <%= f.label :terminal_leoni_id, '端子莱尼号:' %>
@@ -49,39 +49,32 @@
       </div>
       <div class="col-sm-6">
         <%= f.label :knife_type1, '刀片型号1:' %>
-        <br>
         <%= f.text_field :knife_type1 %>
       </div>
       <div class="col-sm-6">
         <%= f.label :knife_type2, '刀片型号2:' %>
-        <br>
         <%= f.text_field :knife_type2 %>
       </div>
       <div class="col-sm-6">
         <%= f.label :wire_type, '电线型号:' %>
-        <br>
         <%= f.text_field :wire_type %>
       </div>
 
       <div class="col-sm-6">
         <%= f.label :wire_cross, '截面mm:' %>
-        <br>
         <%= f.text_field :wire_cross %>
       </div>
 
       <div class="col-sm-6">
         <%= f.label :is_ok, '验收确认:' %>
-        <br>
         <%= f.text_field :is_ok %>
       </div>
       <div class="col-sm-6">
         <%= f.label :image_before, '剖面(换刀前)' %>
-        <br/>
         <%= f.text_field :image_before %>
       </div>
       <div class="col-sm-12">
         <%= f.label :image_after, '剖面(换刀后)' %>
-        <br/>
         <%= f.text_field :image_after %>
       </div>
     </div>

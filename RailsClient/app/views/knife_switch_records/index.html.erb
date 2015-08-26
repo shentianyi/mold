@@ -51,9 +51,9 @@
 
       <div class="col-sm-4">
         <label for="date:">日期：从</label>
-        <input type="text" name="knife_switch_record[switch_date][start]" value="<%= @switch_date_start %>" class="datetime-picker">
+        <input type="text" name="knife_switch_record[switch_date][start]" value="<%= @switch_date_start %>" class="date-picker">
         <b>到</b>
-        <input type="text" name="knife_switch_record[switch_date][end]" value="<%= @switch_date_end %>" class="datetime-picker">
+        <input type="text" name="knife_switch_record[switch_date][end]" value="<%= @switch_date_end %>" class="date-picker">
       </div>
 
       <!--此处开始为 查询条件新增项-->
@@ -83,7 +83,7 @@
         <label for="mould_id:">供应商：</label>
         <input type="text" name="knife_switch_record[knife_supplier]" value="<%= @knife_supplier %>">
 
-        <label for="mould_id:">出库单号：</label>
+        <label for="mould_id:" style="margin-left: 15px;">出库单号：</label>
         <input type="text" name="knife_switch_record[outbound_id]" value="<%= @outbound_id %>">
       </div>
 
