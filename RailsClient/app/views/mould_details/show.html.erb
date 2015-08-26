@@ -45,7 +45,7 @@
 <div style="display: inline-flex; width: 100%;">
   <div class="col-sm-4">
     <p>状态： </p>
-    <%= @mould_detail.mould_state %>
+    <%= MouldDetailPresenter.new(@mould_detail).parse_state %>
   </div>
 
   <div class="col-sm-4" style="display: inline-flex;">

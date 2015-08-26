@@ -63,7 +63,7 @@ class MouldDetail < ActiveRecord::Base
 
                           mould.step_ich_id,
                           mould.next_time,
-                          mould.mould_state,
+                          MouldDetailPresenter.new(mould).parse_state,
                           mould.mould_type,
                           mould.mould_supplier,
                           mould.c_up_knife,

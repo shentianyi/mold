@@ -23,6 +23,21 @@ class MouldDetailPresenter #<Presenter
     end
   end
 
+  def parse_state
+    if @mould_detail.next_time.nil?
+      NODATE
+    else
+      days = (DateTime.parse(@mould_detail.next_time.to_s) - DateTime.parse(Date.today.to_s)).to_s.sub(/\/1/, '').to_i
+      if days >= 30
+        INDATE
+      elsif (0..30).include? days
+        WILLOUTDATE
+      else
+        OUTDATE
+      end
+    end
+  end
+
   def self.display state
     case state
       when 'NOMAL'
