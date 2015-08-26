@@ -1,24 +1,58 @@
-<h1><%= @user.user_name %></h1>
-<span class="label label-primary"><%= @user.id %></span>
+<style type="text/css">
+    p {
+        width: 150px;
+        font-size: 1.2em;
+    }
 
-<h4>用户名：
-  <small><%= @user.user_name %></small>
-</h4>
-<h4>上次登录IP:
-  <small><%= @user.current_sign_in_ip %></small>
-</h4>
-<h4>角色:
-  <small><%= Role.display(@user.role_id) %></small>
-</h4>
-<h4>邮箱:
-  <small><%= @user.email %></small>
-</h4>
-<h4>电话:
-  <small><%= @user.tel %></small>
-</h4>
-<% if current_user.can_edit %>
-    <%= link_to '编辑', edit_user_path(@user), :class => 'btn btn-default' %>
+    hr {
+        border: 1px solid #999;
+    }
+</style>
 
-|
-<% end %>
-    <%= link_to '返回', users_path, :class => 'btn btn-default' %>
+<div style="display: inline-flex;width: 100%;">
+  <h1>员工信息<em>详情</em></h1>
+  <span class="label label-primary" style="margin-top:20px;;width: 30px;height: 20px;"><%= @user.id %></span>
+</div>
+<hr style="border: 1px solid #000;height: 0;margin-top: 0;"/>
+
+<div style="margin-top: 50px;margin-left: 30%;">
+  <fieldset style="width: 60%;">
+    <legend style="width: 100px;">员工信息</legend>
+    <div style="display: inline-flex;" class="col-sm-12">
+      <p>用户名：</p>
+      <small><%= @user.user_name %></small>
+    </div>
+    <hr/>
+    <div style="display: inline-flex;" class="col-sm-12">
+      <p>上次登录IP：</p>
+      <small><%= @user.current_sign_in_ip %></small>
+    </div>
+    <hr/>
+
+    <div style="display: inline-flex;" class="col-sm-12">
+      <p>角色：</p>
+      <small><%= Role.display(@user.role_id) %></small>
+    </div>
+    <hr/>
+
+    <div style="display: inline-flex;" class="col-sm-12">
+      <p>邮箱：</p>
+      <small><%= @user.email %></small>
+    </div>
+    <hr/>
+
+    <div style="display: inline-flex;" class="col-sm-12">
+      <p>电话：</p>
+      <small><%= @user.tel %></small>
+    </div>
+
+    <hr style="border: 1px solid #000"/>
+    <% if current_user.can_edit %>
+        <%= link_to '编辑', edit_user_path(@user), :class => 'btn btn-primary',
+                    :style => 'margin-top:10px;color:#fff;' %>
+    <% end %>
+    <%= link_to '返回', users_path, :class => 'btn btn-primary',
+                :style => 'margin-top:10px;color:#fff;' %>
+  </fieldset>
+
+</div>

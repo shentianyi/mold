@@ -1,3 +1,18 @@
+<style type="text/css">
+    p>label {
+        margin-left: 20px;
+        width: 120px;
+        font-size: 1.2em;
+    }
+
+    input[type="checkbox"] {
+        width: 20px;
+    }
+
+    input {
+        width: 150px;
+    }
+</style>
 <%= form_for(@user, html: {class: 'form-line'}) do |f| %>
     <% if @user.errors.any? %>
         <div id="error_explanation">
@@ -11,54 +26,68 @@
         </div>
     <% end %>
 
-    <p>
-      <%= f.label :id, '员工号' %>
-      <% if current_user.admin? || current_user.manager? %>
-        <%= f.text_field :nr%>
-      <%else%>
-        <input type="text" name="nr" readonly="" value="<%=current_user.nr%>">
-      <%end%>
-    </p>
+    <fieldset style="border: 2px solid#000;width:40%;margin: 50px 0 0 30%">
+      <legend style="width: 130px;">员工信息新增</legend>
+      <div>
+        <p>
+          <%= f.label :id, '员工号' %>
+          <% if current_user.admin? || current_user.manager? %>
+              <%= f.text_field :nr %>
+          <% else %>
+              <input type="text" name="nr" readonly="" value="<%= current_user.nr %>">
+          <% end %>
+        </p>
 
-    <p>
-      <%= f.label :user_name, '用户名' %>
-      <% if current_user.admin? || current_user.manager? %>
-          <%= f.text_field :user_name %>
-      <%else%>
-          <input type="text" name="id" readonly="" value="<%=current_user.user_name%>">
-      <%end%>
-    </p>
+        <p>
+          <%= f.label :user_name, '用户名' %>
+          <% if current_user.admin? || current_user.manager? %>
+              <%= f.text_field :user_name %>
+          <% else %>
+              <input type="text" name="id" readonly="" value="<%= current_user.user_name %>">
+          <% end %>
+        </p>
 
-    <p>
-      <%= f.label :password, '密 码' %>
-      <%= f.password_field :password %>
-    </p>
-    <p>
-      <%= f.label :password_confirmation, '确认密码' %>
-      <%= f.password_field :password_confirmation %>
-    </p>
+        <p>
+          <%= f.label :password, '密 码' %>
+          <%= f.password_field :password %>
+        </p>
 
-    <p>
-      <%= f.label :role_id, '角 色' %>
+        <p>
+          <%= f.label :password_confirmation, '确认密码' %>
+          <%= f.password_field :password_confirmation %>
+        </p>
 
-      <% if current_user.admin? || current_user.manager? %>
-          <%= f.select(:role_id, Role.menu, {include_blank: false}) %>
-      <%else%>
-          <input type="text" name="id" readonly="" value="<%= Role.display(current_user.role_id) %>">
-      <%end%>
-    </p>
+        <p>
+          <%= f.label :role_id, '角 色' %>
 
-    <p>
-      <%= f.label :email, '邮 箱' %>
-      <%= f.email_field :email %>
-    </p>
+          <% if current_user.admin? || current_user.manager? %>
+              <%= f.select(:role_id, Role.menu, {include_blank: false}) %>
+          <% else %>
+              <input type="text" name="id" readonly="" value="<%= Role.display(current_user.role_id) %>">
+          <% end %>
+        </p>
 
-    <p>
-      <%= f.label :tel, '电 话' %>
-      <%= f.text_field :tel %>
-    </p>
+        <p>
+          <%= f.label :email, '邮 箱' %>
+          <%= f.email_field :email %>
+        </p>
 
-    <div class="actions">
-      <%= f.submit value: '提 交', class: 'btn btn-primary btn-lg' %>
-    </div>
+        <p>
+          <%= f.label :tel, '电 话' %>
+          <%= f.text_field :tel %>
+        </p>
+
+        <!-- checkbox 被点击  value=1-->
+        <p>
+          <%= f.check_box :can_edit, :style => 'margin-left:20px;margin-top: 20px;' %><b>修改</b>
+          <%= f.check_box :can_delete, :style => 'margin-left:100px;margin-top: 20px;' %><b>删除</b>
+        </p>
+      </div>
+
+      <hr style="border: 1px solid #000;"/>
+
+      <div class="actions">
+        <%= f.submit value: '提 交', class: 'btn btn-primary', :style => 'margin:0;' %>
+      </div>
 <% end %>
+</fieldset>

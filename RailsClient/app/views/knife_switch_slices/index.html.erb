@@ -142,12 +142,16 @@
           <td><%= knife_switch_slice.knife_type2 %></td>
           <td><%= knife_switch_slice.wire_type %></td>
           <td><%= knife_switch_slice.wire_cross %></td>
-          <td><%= knife_switch_slice.image_after %></td>
+          <td>
+            <a href="#" onclick="window.open('<%= knife_switch_slice.image_after %>')">
+              <%= knife_switch_slice.image_after %></a></td>
           <!--<td>-->
           <!--<img src="/images?image=<%= URI::encode(knife_switch_slice.image_after) %>" width="50" height="40" alt=""/>-->
           <!--</td>-->
           <td><%= knife_switch_slice.is_ok %></td>
-          <td><%= knife_switch_slice.image_before %></td>
+          <td>
+            <a href="file:///<%= knife_switch_slice.image_before %>"><%= knife_switch_slice.image_before %></a>
+          </td>
           <!--<td>-->
           <!--<img src="/images?image=<%= URI::encode(knife_switch_slice.image_before) %>" width="50" height="40" alt=""/>-->
           <!--</td>-->

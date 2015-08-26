@@ -1,41 +1,67 @@
-<% if current_user.admin? || current_user.manager? %>
-    <h2>员工列表</h2>
+<style type="text/css">
 
-    <div>
+    th, td {
+        text-align: center;
+    }
+</style>
+
+<p class="title">员工列表 <i>&#8593;</i></p>
+<hr style="border: 1px solid #999;margin-top: 0;padding-top: 0;margin-left: 158px;"/>
+<% if current_user.admin? || current_user.manager? %>
+
+    <div class="slide col-sm-12">
       <form method="get" action="<%= send("search_#{@model.pluralize}_path") %>">
-        <div>
-      <span>员工号：
+        <div class="col-sm-3">
+           <span>员工号：
         <input type="text" name="user[id]" value="<%= @id %>"/>
         <input type="hidden" name="user[id_fuzzy]"/>
       </span>
-      <span>  角色：
-        <%= select_tag('user[role_id]', options_for_select(Role.menu, @role_id), include_blank: true) %>
+        </div>
+        <div class="col-sm-3">
+          <span>  角色：
+            <%= select_tag('user[role_id]', options_for_select(Role.menu, @role_id), include_blank: true) %>
       </span>
-          <input type="submit" value="查 找" class="btn btn-primary"/>
+        </div>
+        <div class="col-sm-3">
+          <input style="margin: 0" type="submit" value="查 找" class="btn btn-primary"/>
         </div>
       </form>
     </div>
 
-    <% if current_user.admin? %>
-        <%= link_to "新建员工", send("new_#{@model}_path"), :class => 'btn btn-default' %>
-        <%= link_to '导入数据', import_users_path, :class => 'btn btn-primary',
-                    :style => 'color:#000;padding-top:10px;margin-left:50px;' %>
-    <% end %>
-    <div class="digg_pagination">
-      <div class="page_info">
-        <%= page_entries_info @users %>
-      </div>
-      <%= will_paginate @users, :container => false %>
-    </div>
-<% end %>
+    <hr style="border: 1px solid #000;">
 
+    <div class="container">
+      <fieldset style="width: 80%;margin-top: 60px;border: 1px solid #ccc;">
+
+        <legend style="width: 100px;">员工列表</legend>
+        <div style="display: inline-flex;">
+          <div class="trapezoid" style="margin: 0;">
+            <p style="padding-top: 20px;">员工列表</p>
+          </div>
+          <div style="display: inline-flex;">
+            <div class="digg_pagination" style="padding-top: 10px;padding-left: 10px;">
+              <div class="page_info">
+                <%= page_entries_info @users %>
+              </div>
+              <%= will_paginate @users, :container => false %>
+            </div>
+
+            <% if current_user.admin? %>
+                <%= link_to '新建员工', send("new_#{@model}_path"), :class => 'btn btn-primary',
+                            :style => 'color:#fff;padding-top:10px;margin:10px 0 0 20px' %>
+                <%= link_to '导入数据', import_users_path, :class => 'btn btn-primary',
+                            :style => 'color:#fff;padding-top:10px;margin-left:50px;margin-top:10px;' %>
+            <% end %>
+          </div>
+        </div>
+<% end %>
 
 <table class="table table-bordered table-striped table-hover">
   <thead>
   <tr>
     <th>登陆名</th>
     <th>邮箱</th>
-    <th colspan="3"></th>
+    <th>操作</th>
   </tr>
   </thead>
 
@@ -46,20 +72,18 @@
             <td><%= user.user_name %></td>
             <td><%= user.email %></td>
             <td>
-              <%= link_to '详情', user_path(user), class: 'btn btn-default' %>
+              <%= link_to '[详情]', user_path(user) %>
+              <% if current_user.can_edit %>
+                  <%= link_to '[编辑]', edit_user_path(user) %>
+              <% end %>
+              <% if current_user.can_delete %>
+                  <%= link_to '[删除]', user, method: :delete, data: {confirm: '确定删除?'} %>
+              <% end %>
             </td>
-            <% if current_user.can_edit %>
-                <td>
-                  <%= link_to '编辑', edit_user_path(user), class: 'btn btn-default' %>
-                </td>
-            <% end %>
-            <% if current_user.can_delete %>
-                <td>
-                  <%= link_to '删除', user, method: :delete, data: {confirm: 'Are you sure?'} %>
-                </td>
-            <% end %>
         <% end %>
       </tr>
   <% end %>
   </tbody>
 </table>
+</fieldset>
+</div>
