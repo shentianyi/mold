@@ -67,6 +67,8 @@ class KnifeSwitchRecordsController < ApplicationController
     args[:sort] = knife_switch_record_params[:sort]
     args[:image_id] = knife_switch_record_params[:image_id]
 
+    puts '--------------------------'
+    puts args
     records = KnifeSwitchRecord.where(mould_id: args[:mould_id], project_id: args[:project_id], knife_type: args[:knife_type], knife_kind: args[:knife_kind]).where("m_qty >= #{args[:m_qty]}").order(m_qty: :asc)
 
     press_num_before = 0
@@ -98,7 +100,7 @@ class KnifeSwitchRecordsController < ApplicationController
           end
           args[:total_life] = args[:damage_life] | args[:broken_life]
           press_num_before = args[:press_num]
-        elsif record.m_qty.to_i == (args[:m_qty] + 1)
+        elsif record.m_qty.to_i == (args[:m_qty].to_i + 1)
           puts "################press_num_before=#{press_num_before}##############record.press_num=#{record.press_num}########################################"
           if record.state.include? "磨损"
             damage_life = record.press_num - press_num_before
@@ -122,7 +124,7 @@ class KnifeSwitchRecordsController < ApplicationController
   # PATCH/PUT /knife_switch_records/1.json
   def update
     respond_to do |format|
-      if @knife_switch_record.update(reset_knife_life_before_update)
+      if @knife_switch_record.update(knife_switch_record_params)
         format.html { redirect_to @knife_switch_record, notice: 'Knife switch record was successfully updated.' }
         format.json { render :show, status: :ok, location: @knife_switch_record }
       else
