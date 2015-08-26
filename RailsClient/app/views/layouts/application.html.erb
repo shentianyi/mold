@@ -93,5 +93,12 @@
     $(".title").click(function () {
         $(".slide").slideToggle("fast");
     });
+
+    $(function () {
+        $("#main-menu li").removeClass('active');
+        $('#' + $('#active_li').val()).addClass('active');
+        jQuery(".best_in_place").best_in_place();
+        $('.best_in_place').bind("ajax:success", function () {$(this).closest('tr').effect('highlight'); });
+    });
 </script>
 

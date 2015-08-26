@@ -1,5 +1,10 @@
 class User < ActiveRecord::Base
-
+  validates_presence_of :nr, :message => "员工号不能为空!"
+  validates_presence_of :user_name, :message => "用户名不能为空!"
+  validates_presence_of :email, :message => "邮箱不能为空!"
+  validates_presence_of :role_id, :message => "角色不能为空!"
+  validates_presence_of :password, :message => "密码不能为空!"
+  validates_presence_of :password_confirmation, :message => "密码验证不能为空!"
   validates_uniqueness_of :nr, :email
 
   # Include default devise modules. Others available are:
