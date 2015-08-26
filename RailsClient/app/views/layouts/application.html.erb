@@ -39,7 +39,7 @@
       #table_div {
           position: absolute;
           width: 85%;
-          height: 60%;
+          height: 600px;
           margin-bottom: 0;
           overflow: auto;
           /*border: 2px solid #000;*/
@@ -82,6 +82,13 @@
             format: 'Y-m-d H:i'
         });
     });
+
+    $(function () {
+        $(".date-picker").datepicker({
+            dateFormat: 'yy-m-d'
+        });
+    });
+
 
     $(".title").click(function () {
         $(".slide").slideToggle("fast");

@@ -77,8 +77,8 @@
       </div>
 
       <div class="col-sm-2" style="display: inline-flex;">
-        <input type="submit" value="查 找" class="btn btn-primary" name="search"/>
-        <input type="submit" value="导 出" class="btn btn-primary" name="download"/>
+        <input type="submit" style="margin-top: 0;" value="查 找" class="btn btn-primary" name="search"/>
+        <input type="submit" style="margin-top: 0;" value="导 出" class="btn btn-primary" name="download"/>
       </div>
     </div>
 
@@ -118,13 +118,17 @@
     <tr style="background-color: #ccc">
       <th style="width: 110px;">模具号</th>
       <th>端子莱尼号</th>
-      <th>端子供应商号</th>
+      <!--<th>端子供应商号</th>-->
       <th>电线型号</th>
       <th>电线截面QMM</th>
       <th>下次批准日期</th>
       <th>状态</th>
-      <th>模具型号</th>
+      <!--<th>模具型号</th>-->
       <th>模具供应商</th>
+      <th>芯线上刀</th>
+      <th>绝缘上刀</th>
+      <th>芯线下刀</th>
+      <th>绝缘下刀</th>
       <th>操作</th>
 
     </tr>
@@ -134,13 +138,17 @@
         <tr>
           <td><%= mould_detail.mould_id %></td>
           <td><%= mould_detail.terminal_leoni_no %></td>
-          <td><%= mould_detail.terminal_supplier %></td>
+          <!--<td><%= mould_detail.terminal_supplier %></td>-->
           <td><%= mould_detail.wire_type %></td>
           <td><%= mould_detail.wire_cross %></td>
           <td><%= mould_detail.next_time_day_str %></td>
           <td class="<%= (color = MouldDetailPresenter.new(mould_detail).parse_state_color) %>"><%= MouldDetailPresenter.display(color) %></td>
-          <td><%= mould_detail.mould_type %></td>
+          <!--<td><%= mould_detail.mould_type %></td>-->
           <td><%= mould_detail.mould_supplier %></td>
+          <td><%= mould_detail.c_up_knife %></td>
+          <td><%= mould_detail.i_up_knife %></td>
+          <td><%= mould_detail.c_down_knife %></td>
+          <td><%= mould_detail.i_down_knife %></td>
           <td><%= link_to '[详情]', mould_detail %>
             <%= link_to '[编辑]', edit_mould_detail_path(mould_detail) %>
             <%= link_to '[删除]', mould_detail, method: :delete, data: {confirm: '确认删除?'} %>
