@@ -30,7 +30,7 @@
       <legend style="width: 130px;">员工信息新增</legend>
       <div>
         <p>
-          <%= f.label :id, '员工号' %>
+          <%= f.label :nr, '员工号' %>
           <% if current_user.admin? || current_user.manager? %>
               <%= f.text_field :nr %>
           <% else %>

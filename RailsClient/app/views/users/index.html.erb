@@ -59,7 +59,8 @@
 <table class="table table-bordered table-striped table-hover">
   <thead>
   <tr>
-    <th>登陆名</th>
+    <th>员工号</th>
+    <th>用户名</th>
     <th>邮箱</th>
     <th>操作</th>
   </tr>
@@ -69,6 +70,7 @@
   <% @users.each do |user| %>
       <tr>
         <% if current_user.admin? || current_user.manager? || (current_user.id == user.id) %>
+            <td><%= user.nr %></td>
             <td><%= user.user_name %></td>
             <td><%= user.email %></td>
             <td>
