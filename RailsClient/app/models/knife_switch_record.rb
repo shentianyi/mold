@@ -7,7 +7,7 @@ class KnifeSwitchRecord < ActiveRecord::Base
 
   before_validation :create_knife_type
   before_create :create_knife_life
-  after_update :reset_knife_life
+  #after_update :reset_knife_life
 
   include TimeStrf
 

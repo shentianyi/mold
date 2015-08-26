@@ -67,8 +67,6 @@ class KnifeSwitchRecordsController < ApplicationController
     args[:sort] = knife_switch_record_params[:sort]
     args[:image_id] = knife_switch_record_params[:image_id]
 
-    puts '--------------------------'
-    puts args
     records = KnifeSwitchRecord.where(mould_id: args[:mould_id], project_id: args[:project_id], knife_type: args[:knife_type], knife_kind: args[:knife_kind]).where("m_qty >= #{args[:m_qty]}").order(m_qty: :asc)
 
     press_num_before = 0
@@ -83,19 +81,18 @@ class KnifeSwitchRecordsController < ApplicationController
         args[:broken_life] = 0
         args[:total_life] = args[:damage_life] | args[:broken_life]
       else
-
-        if record.m_qty.to_i == args[:m_qty]
-          pre_record = KnifeSwitchRecord.where(mould_id: args[:mould_id], project_id: args[:project_id], knife_type: args[:knife_type], knife_kind: args[:knife_kind], m_qty: (args[:m_qty] -1)).first
+        if record.m_qty.to_i == args[:m_qty].to_i
+          pre_record = KnifeSwitchRecord.where(mould_id: args[:mould_id], project_id: args[:project_id], knife_type: args[:knife_type], knife_kind: args[:knife_kind], m_qty: (args[:m_qty].to_i - 1)).first
           if pre_record.nil?
             args[:damage_life] = 0
             args[:broken_life] = 0
           else
             if args[:state].include? "磨损"
-              args[:damage_life] = args[:press_num].to_i - pre_record.press_num
+              args[:damage_life] = args[:press_num].to_i - pre_record.press_num.to_i
               args[:broken_life] = 0
             elsif args[:state].include? "断裂"
               args[:damage_life] = 0
-              args[:broken_life] = args[:press_num].to_i - pre_record.press_num
+              args[:broken_life] = args[:press_num].to_i - pre_record.press_num.to_i
             end
           end
           args[:total_life] = args[:damage_life] | args[:broken_life]
@@ -103,18 +100,16 @@ class KnifeSwitchRecordsController < ApplicationController
         elsif record.m_qty.to_i == (args[:m_qty].to_i + 1)
           puts "################press_num_before=#{press_num_before}##############record.press_num=#{record.press_num}########################################"
           if record.state.include? "磨损"
-            damage_life = record.press_num - press_num_before
+            damage_life = record.press_num.to_i - press_num_before.to_i
             broken_life = 0
           elsif record.state.include? "断裂"
             damage_life = 0
-            broken_life = record.press_num - press_num_before
+            broken_life = record.press_num.to_i - press_num_before.to_i
           end
-          puts "======================#{damage_life}"
           total_life = damage_life | broken_life
           record.update(damage_life: damage_life, broken_life: broken_life, total_life: total_life)
           press_num_before = record.press_num
         end
-
       end
     end
     args
@@ -124,7 +119,7 @@ class KnifeSwitchRecordsController < ApplicationController
   # PATCH/PUT /knife_switch_records/1.json
   def update
     respond_to do |format|
-      if @knife_switch_record.update(knife_switch_record_params)
+      if @knife_switch_record.update(reset_knife_life_before_update)
         format.html { redirect_to @knife_switch_record, notice: 'Knife switch record was successfully updated.' }
         format.json { render :show, status: :ok, location: @knife_switch_record }
       else
