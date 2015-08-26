@@ -1,0 +1,10 @@
+<h1><%= @user.user_name%></h1>
+<span class="label label-primary"><%= @user.id%></span>
+
+<h4>用户名： <small><%= @user.user_name %></small></h4>
+<h4>上次登录IP: <small><%= @user.current_sign_in_ip%></small></h4>
+<h4>角色: <small><%= Role.display(@user.role_id) %></small></h4>
+<h4>邮箱: <small><%= @user.email %></small></h4>
+<h4>电话: <small><%= @user.tel %></small></h4>
+
+<%= link_to '编辑', edit_user_path(@user),:class=>'btn btn-default' %> | <%= link_to '返回', users_path,:class=>'btn btn-default' %>

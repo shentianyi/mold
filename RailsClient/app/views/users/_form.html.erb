@@ -1,0 +1,64 @@
+<%= form_for(@user, html: {class: 'form-line'}) do |f| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= f.label :id, '员工号' %>
+      <% if current_user.admin? || current_user.manager? %>
+        <%= f.text_field :id%>
+      <%else%>
+        <input type="text" name="id" readonly="" value="<%=current_user.id%>">
+      <%end%>
+    </p>
+
+    <p>
+      <%= f.label :user_name, '用户名' %>
+      <% if current_user.admin? || current_user.manager? %>
+          <%= f.text_field :user_name %>
+      <%else%>
+          <input type="text" name="id" readonly="" value="<%=current_user.user_name%>">
+      <%end%>
+    </p>
+
+    <p>
+      <%= f.label :password, '密 码' %>
+      <%= f.password_field :password %>
+    </p>
+    <p>
+      <%= f.label :password_confirmation, '确认密码' %>
+      <%= f.password_field :password_confirmation %>
+    </p>
+
+    <p>
+      <%= f.label :role_id, '角 色' %>
+
+      <% if current_user.admin? || current_user.manager? %>
+          <%= f.select(:role_id, Role.menu, {include_blank: false}) %>
+      <%else%>
+          <input type="text" name="id" readonly="" value="<%= Role.display(current_user.role_id) %>">
+      <%end%>
+    </p>
+
+    <p>
+      <%= f.label :email, '邮 箱' %>
+      <%= f.email_field :email %>
+    </p>
+
+    <p>
+      <%= f.label :tel, '电 话' %>
+      <%= f.text_field :tel %>
+    </p>
+
+    <div class="actions">
+      <%= f.submit value: '提 交', class: 'btn btn-primary btn-lg' %>
+    </div>
+<% end %>

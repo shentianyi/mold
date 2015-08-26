@@ -12,8 +12,10 @@
       <tr>
         <td><%= user.user_name %></td>
         <td><%= user.email %></td>
-        <td><%= link_to '详情', user_path(user), class: 'btn btn-default' %></td>
-              <td>
+        <td>
+          <%= link_to '详情', user_path(user), class: 'btn btn-default' %>
+        </td>
+        <td>
           <%= link_to '编辑', edit_user_path(user), class: 'btn btn-default' %>
         </td>
         <td>
