@@ -24,45 +24,7 @@ class KnifeSwitchRecordsController < ApplicationController
   # POST /knife_switch_records
   # POST /knife_switch_records.json
   def create
-    puts "-----------------------------"
-    args = {}
-    args[:mould_id] = knife_switch_record_params[:mould_id]
-    args[:project_id] = knife_switch_record_params[:project_id]
-    args[:terminal_leoni_id] = knife_switch_record_params[:terminal_leoni_id]
-    args[:switch_date] = knife_switch_record_params[:switch_date]
-    args[:knife_type] = knife_switch_record_params[:knife_type]
-    args[:knife_kind] = knife_switch_record_params[:knife_kind]
-    args[:knife_supplier] = knife_switch_record_params[:knife_supplier]
-    args[:state] = knife_switch_record_params[:state]
-    args[:problem] = knife_switch_record_params[:problem]
-    args[:damage_define] = knife_switch_record_params[:damage_define]
-    args[:maintainman] = knife_switch_record_params[:maintainman]
-    args[:qty] = knife_switch_record_params[:qty]
-
-    args[:machine_id] = knife_switch_record_params[:machine_id]
-    args[:press_num] = knife_switch_record_params[:press_num]
-    args[:operater] = knife_switch_record_params[:operater]
-    args[:is_ok] = knife_switch_record_params[:is_ok]
-    args[:sort] = knife_switch_record_params[:sort]
-    args[:outbound_id] = knife_switch_record_params[:outbound_id]
-
-    record = KnifeSwitchRecord.where(mould_id: args[:mould_id], project_id: args[:project_id], knife_type: args[:knife_type], knife_kind: args[:knife_kind]).order(m_qty: :desc).first
-    args[:m_qty] = record.nil? ? 1 : (record.m_qty.to_i + 1)
-
-    if args[:state] == "磨损"
-      args[:damage_life] = record.nil? ? (args[:press_num].to_i) : (args[:press_num].to_i - record.press_num)
-      args[:broken_life] = 0
-    elsif args[:state] == "断裂"
-      args[:damage_life] = 0
-      args[:broken_life] = record.nil? ? (args[:press_num].to_i) : (args[:press_num].to_i - record.press_num)
-    else
-      args[:damage_life] = 0
-      args[:broken_life] = 0
-    end
-    args[:total_life] = args[:damage_life] | args[:broken_life]
-    puts args
-
-    @knife_switch_record = KnifeSwitchRecord.new(args)
+    @knife_switch_record = KnifeSwitchRecord.new(knife_switch_record_params)
 
     respond_to do |format|
       if @knife_switch_record.save

@@ -6,11 +6,13 @@ class KnifeSwitchRecord < ActiveRecord::Base
   validates_presence_of :knife_type, :message => "刀片类型不能为空!"
 
   before_validation :create_knife_type
+  before_create :create_knife_life
+  before_update :reset_knife_life
 
   include TimeStrf
 
   HEADERS=[
-      '日期','模具号','项目', '端子莱尼号','刀片型号','刀片分类','供应商', '损坏状态', '问题描述', '损坏定义', '维护人员', '数量', '维护次数',
+      '日期', '模具号', '项目', '端子莱尼号', '刀片型号', '刀片分类', '供应商', '损坏状态', '问题描述', '损坏定义', '维护人员', '数量', '维护次数',
       '机器号', '压接次数', '磨损寿命', '断裂寿命', '操作员', '验收确认', '分类', '出库单号'
   ]
 
@@ -19,9 +21,52 @@ class KnifeSwitchRecord < ActiveRecord::Base
   #     'machine_id', 'press_num', 'operater', 'is_ok', 'sort', 'outbound_id'
   # ]
 
+  def reset_knife_life
+    # GM25T-027sdfs sdf 410000201-2 CW
+    puts "-------------reset_knife_life----------------"
+    records = KnifeSwitchRecord.where(mould_id: self[:mould_id], project_id: self[:project_id], knife_type: self[:knife_type], knife_kind: self[:knife_kind]).where("m_qty >= #{self[:m_qty]}").order(m_qty: :asc)
+
+    records.each do |record|
+      if self[:m_qty] == record.m_qty
+        if self[:state].include? "磨损"
+          self[:damage_life] = self[:press_num].to_i - record.press_num
+          self[:broken_life] = 0
+        elsif self[:state].include? "断裂"
+          self[:damage_life] = 0
+          self[:broken_life] = self[:press_num].to_i - record.press_num
+        else
+          self[:damage_life] = 0
+          self[:broken_life] = 0
+        end
+      else
+
+      end
+    end
+
+  end
+
+  def create_knife_life
+    puts "-------------create_knife_life----------------"
+    record = KnifeSwitchRecord.where(mould_id: self[:mould_id], project_id: self[:project_id], knife_type: self[:knife_type], knife_kind: self[:knife_kind]).order(m_qty: :desc).first
+    self[:m_qty] = record.nil? ? 1 : (record.m_qty.to_i + 1)
+
+    if self[:state].include? "磨损"
+      self[:damage_life] = record.nil? ? (self[:press_num].to_i) : (self[:press_num].to_i - record.press_num)
+      self[:broken_life] = 0
+    elsif self[:state].include? "断裂"
+      self[:damage_life] = 0
+      self[:broken_life] = record.nil? ? (self[:press_num].to_i) : (self[:press_num].to_i - record.press_num)
+    else
+      self[:damage_life] = 0
+      self[:broken_life] = 0
+    end
+    self[:total_life] = self[:damage_life] | self[:broken_life]
+    puts "-----#{self[:total_life]}--------#{self[:damage_life]}------#{self[:broken_life]}"
+  end
+
   def create_knife_type
     mould_detail = MouldDetail.where(mould_id: self['mould_id'], terminal_leoni_no: self['terminal_leoni_id']).first
-    mould_detail.blank? ? self.errors.add(:knife_type,'未查找到对应刀片型号,请检查!') : (self['knife_type'] = MouldDetail.new().get_knife(mould_detail, self['knife_kind']))
+    mould_detail.blank? ? self.errors.add(:knife_type, '未查找到对应刀片型号,请检查!') : (self['knife_type'] = MouldDetail.new().get_knife(mould_detail, self['knife_kind']))
   end
 
   def self.to_xlsx knife_switch_records
