@@ -125,8 +125,8 @@
           <td><%= mould_maintain_time.solution_method %></td>
           <td><%= mould_maintain_time.code %></td>
           <td><%= mould_maintain_time.feed_code %></td>
-          <td><%= mould_maintain_time.start_time %></td>
-          <td><%= mould_maintain_time.end_time %></td>
+          <td><%= mould_maintain_time.start_time.nil? ? '' : mould_maintain_time.start_time.to_time.strftime('%H:%M:%S') %></td>
+          <td><%= mould_maintain_time.end_time.nil? ? '' : mould_maintain_time.end_time.to_time.strftime('%H:%M:%S') %></td>
           <td><%= mould_maintain_time.downtime %></td>
           <td><%= link_to '[详情]', mould_maintain_time %>
             <% if current_user.can_edit %>

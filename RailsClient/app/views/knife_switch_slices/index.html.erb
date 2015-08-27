@@ -141,16 +141,17 @@
           <td><%= knife_switch_slice.knife_type1 %></td>
           <td><%= knife_switch_slice.knife_type2 %></td>
           <td><%= knife_switch_slice.wire_type %></td>
-          <td><%= knife_switch_slice.wire_cross %></td>
-          <td>
-            <input onclick="select()" style="width: 100%;border: 0;" readonly="readonly" value="<%= knife_switch_slice.image_after %>">
+          <td><%= knife_switch_slice.wire_cross.to_i %></td>
+		  <td link="file:///<%=knife_switch_slice.image_after%>" onclick="f('file:///<%=knife_switch_slice.image_after%>');">
+			  <!-- <input onclick="select()" style="width: 100%;border: 0;" readonly="readonly" value="<%= knife_switch_slice.image_after %>">-->
+			  <a href="<%= knife_switch_slice.image_after%>" target="_blank"><%=knife_switch_slice.image_after%></a>
           </td>
           <!--<td>-->
           <!--<img src="/images?image=<%= URI::encode(knife_switch_slice.image_after) %>" width="50" height="40" alt=""/>-->
           <!--</td>-->
           <td><%= knife_switch_slice.is_ok %></td>
-          <td>
-            <input onclick="select()" style="width: 100%;border: 0;" readonly="readonly" value=" <%= knife_switch_slice.image_before %>">
+          <td link="file:///<%=knife_switch_slice.image_before%>" onclick="f('file:///<%=knife_switch_slice.image_before%>');">
+            <a href="<%= knife_switch_slice.image_before%>" target="_blank"><%=knife_switch_slice.image_before%></a>
           </td>
 
           <!--<td>-->
@@ -169,7 +170,18 @@
   </table>
 
 </div>
-
+<script>
+	function f(link){
+//		alert(link);
+console.log(link);
+//window.open('file:///D:/bb.xps');
+   var objShell = new ActiveXObject("wscript.shell");
+   var file='file:///D:/bb.xps';
+   objShell.Run(link);
+   objShell=null;
+//		window.open(link);
+	 }
+</script>
 <!--
   <div class="digg_pagination" style="text-align: center">
     <%= will_paginate @knife_switch_slices, :container => false %>

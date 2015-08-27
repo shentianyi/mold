@@ -92,7 +92,7 @@
       <div class="col-sm-2">
         <label for="state:">损坏状态：</label>
         <select name="knife_switch_record[state]" include_blank="true">
-          <% {ALL: nil, 断裂: '断裂damage', 磨损: '磨损mosun'}.each do |k, v| %>
+          <% {ALL: nil, 断裂: '断裂', 磨损: '磨损'}.each do |k, v| %>
               <option value="<%= v %>" <%= 'selected' if @state==v %>> <%= k %></option>
           <% end %>
         </select>
