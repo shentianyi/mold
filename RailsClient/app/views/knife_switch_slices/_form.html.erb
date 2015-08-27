@@ -71,11 +71,11 @@
       </div>
       <div class="col-sm-6">
         <%= f.label :image_before, '剖面(换刀前)' %>
-        <%= f.text_field :image_before %>
+        <%= f.text_field :image_before, :onclick => 'select()' %>
       </div>
       <div class="col-sm-12">
         <%= f.label :image_after, '剖面(换刀后)' %>
-        <%= f.text_field :image_after %>
+        <%= f.text_field :image_after, :onclick => 'select()' %>
       </div>
     </div>
 

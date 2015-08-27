@@ -7,6 +7,10 @@
     hr {
         border: 1px solid #999;
     }
+
+    small {
+        font-size: 1.2em;
+    }
 </style>
 
 <div style="display: inline-flex;width: 100%;">
@@ -45,6 +49,18 @@
       <p>电话：</p>
       <small><%= @user.tel %></small>
     </div>
+    <hr/>
+
+    <div style="display: inline-flex;" class="col-sm-12">
+      <p>是否可编辑：</p>
+      <small id="can_edit"><%= @user.can_edit %></small>
+    </div>
+    <hr/>
+
+    <div style="display: inline-flex;" class="col-sm-12">
+      <p>是否可删除：</p>
+      <small id="can_delete"><%= @user.can_delete %></small>
+    </div>
 
     <hr style="border: 1px solid #000"/>
     <% if current_user.can_edit %>
@@ -54,5 +70,23 @@
     <%= link_to '返回', users_path, :class => 'btn btn-primary',
                 :style => 'margin-top:10px;color:#fff;' %>
   </fieldset>
-
 </div>
+
+<script type="text/javascript">
+    var value_edit = document.getElementById("can_edit").textContent;
+    var content_edit = document.getElementById("can_edit");
+    if (value_edit == "true") {
+        content_edit.innerHTML = "是";
+    } else {
+        content_edit.innerHTML = "否";
+    }
+
+    var value_delete = document.getElementById("can_delete").textContent;
+    var content_delete = document.getElementById("can_delete");
+    if (value_delete == "true") {
+        content_delete.innerHTML = "是";
+    } else {
+        content_delete.innerHTML = "否";
+    }
+</script>
+

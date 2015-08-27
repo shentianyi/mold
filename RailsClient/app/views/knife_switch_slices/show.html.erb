@@ -76,7 +76,7 @@
 
   <div class="col-sm-6">
     <p>剖面：</p>
-    <%= @knife_switch_slice.image_after %>
+    <input onclick="select()" style="width: 100%;border: 0;" readonly="readonly" value="<%= @knife_switch_slice.image_after %>">
   </div>
 
   <div class="col-sm-6">
@@ -87,7 +87,7 @@
 
   <div class="col-sm-12">
     <p>剖面（换刀前）：</p>
-    <%= @knife_switch_slice.image_before %>
+    <input onclick="select()" style="width: 100%;border: 0;margin-left: -10px;" readonly="readonly" value="<%= @knife_switch_slice.image_before %>">
   </div>
 
   <!--<div class="col-sm-12">-->
