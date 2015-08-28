@@ -211,7 +211,7 @@
 
   <div class="col-sm-4" style="display: inline-flex;">
     <p>放行报告： </p>
-    <input style="width: 100%;border: 0;" onclick="select()" readonly="readonly" value=" <%= @mould_detail.release_report %>">
+    <a href="mold:open?file=<%= @mould_detail.release_report %>" ><%= @mould_detail.release_report %></a>
   </div>
 </div>
 <hr/>
