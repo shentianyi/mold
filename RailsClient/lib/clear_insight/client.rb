@@ -1,7 +1,7 @@
 module ClearInsight
   class Client<Base
     ENTRY_CREATE_UPDATE_API='/api/v1/kpi_entry/entry'
-    HOST='http://localhost/'
+    HOST='http://localhost:8000/'
     TOKEN=''
 
     attr_accessor :host, :token, :retries, :time_out, :open_time_out, :client, :retry_count
