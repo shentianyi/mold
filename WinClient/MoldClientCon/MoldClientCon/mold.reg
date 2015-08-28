@@ -1,0 +1,12 @@
+Windows Registry Editor Version 5.00  
+  
+[HKEY_CLASSES_ROOT\mold]  
+@="URL:mold Protocol Handler"  
+"URL Protocol"=""  
+  
+[HKEY_CLASSES_ROOT\mold\shell]  
+  
+[HKEY_CLASSES_ROOT\mold\shell\open]  
+  
+[HKEY_CLASSES_ROOT\mold\shell\open\command]  
+@="\"C:\\Brilliantech\\Mold\\MoldClientCon.exe\" %1"   

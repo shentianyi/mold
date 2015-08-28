@@ -1,0 +1,2 @@
+﻿1. 执行publish.bat
+2. 执行mold.reg
