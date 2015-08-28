@@ -76,7 +76,7 @@
 
   <div class="col-sm-6">
     <p>剖面：</p>
-    <input onclick="select()" style="width: 100%;border: 0;" readonly="readonly" value="<%= @knife_switch_slice.image_after %>">
+    <a href="mold:open?file=<%= @knife_switch_slice.image_after %>"><%= @knife_switch_slice.image_after %></a>
   </div>
 
   <div class="col-sm-6">
@@ -87,7 +87,7 @@
 
   <div class="col-sm-12">
     <p>剖面（换刀前）：</p>
-    <input onclick="select()" style="width: 100%;border: 0;margin-left: -10px;" readonly="readonly" value="<%= @knife_switch_slice.image_before %>">
+    <a href="mold:open?file=<%= @knife_switch_slice.image_before %>"><%= @knife_switch_slice.image_before %></a>
   </div>
 
   <!--<div class="col-sm-12">-->
