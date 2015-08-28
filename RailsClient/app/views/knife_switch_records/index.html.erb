@@ -150,6 +150,7 @@
       <th>分类</th>
       <th>出库单号</th>
       <th>日期</th>
+      <th>切片图链接</th>
       <th>操作</th>
     </tr>
     </thead>
@@ -170,6 +171,7 @@
           <td><%= knife_switch_record.sort %></td>
           <td><%= knife_switch_record.outbound_id %></td>
           <td><%= knife_switch_record.switch_date_day_str %></td>
+          <td><a href="mold:open?file=<%= knife_switch_record.image_id %>"><%= knife_switch_record.image_id %></a></td>
           <td><%= link_to '[详情]', knife_switch_record %>
             <% if current_user.can_edit %>
                 <%= link_to '[编辑]', edit_knife_switch_record_path(knife_switch_record) %>
