@@ -12,3 +12,7 @@
 !/log/.keep
 /tmp
 /.idea/*
+
+/uploadfiles/**/*
+!/uploadfiles/**/*.ignore
+!/uploadfiles/template/*
