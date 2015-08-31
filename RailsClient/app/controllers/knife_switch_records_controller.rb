@@ -37,35 +37,76 @@ class KnifeSwitchRecordsController < ApplicationController
     end
   end
 
-  def reset_knife_life_before_update
+  def get_update_params
     args = {}
-    args[:mould_id] = knife_switch_record_params[:mould_id]
-    args[:project_id] = knife_switch_record_params[:project_id]
-    args[:terminal_leoni_id] = knife_switch_record_params[:terminal_leoni_id]
-    args[:switch_date] = knife_switch_record_params[:switch_date]
-    args[:knife_type] = knife_switch_record_params[:knife_type]
+    if params[:action] == 'update' && params[:mould_id].nil?
+      record = KnifeSwitchRecord.find(params[:id])
+      unless record.nil?
+        args[:mould_id] = record.mould_id
+        args[:project_id] = record.project_id
+        args[:terminal_leoni_id] = record.terminal_leoni_id
+        args[:switch_date] = record.switch_date
+        args[:knife_type] = record.knife_type
 
-    args[:knife_kind] = knife_switch_record_params[:knife_kind]
-    args[:knife_supplier] = knife_switch_record_params[:knife_supplier]
-    args[:state] = knife_switch_record_params[:state]
-    args[:problem] = knife_switch_record_params[:problem]
-    args[:damage_define] = knife_switch_record_params[:damage_define]
+        args[:knife_kind] = record.knife_kind
+        args[:knife_supplier] = record.knife_supplier
+        args[:state] = record.state
+        args[:problem] = record.problem
+        args[:damage_define] = record.damage_define
 
-    args[:maintainman] = knife_switch_record_params[:maintainman]
-    args[:qty] = knife_switch_record_params[:qty]
-    args[:m_qty] = knife_switch_record_params[:m_qty]
-    args[:machine_id] = knife_switch_record_params[:machine_id]
-    args[:press_num] = knife_switch_record_params[:press_num]
+        args[:maintainman] = record.maintainman
+        args[:qty] = record.qty
+        args[:m_qty] = record.m_qty
+        args[:machine_id] = record.machine_id
+        args[:press_num] = params[:knife_switch_record][:press_num].nil? ? record.press_num : params[:knife_switch_record][:press_num]
 
-    args[:damage_life] = knife_switch_record_params[:damage_life]
-    args[:broken_life] = knife_switch_record_params[:broken_life]
-    args[:total_life] = knife_switch_record_params[:total_life]
-    args[:operater] = knife_switch_record_params[:operater]
-    args[:is_ok] = knife_switch_record_params[:is_ok]
+        args[:damage_life] = record.damage_life
+        args[:broken_life] = record.broken_life
+        args[:total_life] = record.total_life
+        args[:operater] = record.operater
+        args[:is_ok] = record.is_ok
 
-    args[:outbound_id] = knife_switch_record_params[:outbound_id]
-    args[:sort] = knife_switch_record_params[:sort]
-    args[:image_id] = knife_switch_record_params[:image_id]
+        args[:outbound_id] = record.outbound_id
+        args[:sort] = record.sort
+        args[:image_id] = record.image_id
+      end
+    else
+      args[:mould_id] = knife_switch_record_params[:mould_id]
+      args[:project_id] = knife_switch_record_params[:project_id]
+      args[:terminal_leoni_id] = knife_switch_record_params[:terminal_leoni_id]
+      args[:switch_date] = knife_switch_record_params[:switch_date]
+      args[:knife_type] = knife_switch_record_params[:knife_type]
+
+      args[:knife_kind] = knife_switch_record_params[:knife_kind]
+      args[:knife_supplier] = knife_switch_record_params[:knife_supplier]
+      args[:state] = knife_switch_record_params[:state]
+      args[:problem] = knife_switch_record_params[:problem]
+      args[:damage_define] = knife_switch_record_params[:damage_define]
+
+      args[:maintainman] = knife_switch_record_params[:maintainman]
+      args[:qty] = knife_switch_record_params[:qty]
+      args[:m_qty] = knife_switch_record_params[:m_qty]
+      args[:machine_id] = knife_switch_record_params[:machine_id]
+      args[:press_num] = knife_switch_record_params[:press_num]
+
+      args[:damage_life] = knife_switch_record_params[:damage_life]
+      args[:broken_life] = knife_switch_record_params[:broken_life]
+      args[:total_life] = knife_switch_record_params[:total_life]
+      args[:operater] = knife_switch_record_params[:operater]
+      args[:is_ok] = knife_switch_record_params[:is_ok]
+
+      args[:outbound_id] = knife_switch_record_params[:outbound_id]
+      args[:sort] = knife_switch_record_params[:sort]
+      args[:image_id] = knife_switch_record_params[:image_id]
+    end
+    args
+  end
+
+  def reset_knife_life_before_update
+    args = get_update_params
+    if args.empty?
+      raise "参数错误"
+    end
 
     records = KnifeSwitchRecord.where(mould_id: args[:mould_id], project_id: args[:project_id], knife_type: args[:knife_type], knife_kind: args[:knife_kind]).where("m_qty >= #{args[:m_qty]}").order(m_qty: :asc)
 
@@ -120,6 +161,7 @@ class KnifeSwitchRecordsController < ApplicationController
   def update
     respond_to do |format|
       if @knife_switch_record.update(reset_knife_life_before_update)
+        puts '---------succ--------------'
         format.html { redirect_to @knife_switch_record, notice: 'Knife switch record was successfully updated.' }
         format.json { render :show, status: :ok, location: @knife_switch_record }
       else
