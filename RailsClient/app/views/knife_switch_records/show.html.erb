@@ -145,6 +145,10 @@
     <p>日期： </p>
     <%= @knife_switch_record.switch_date_day_str %>
   </div>
+  <div class="col-sm-4">
+    <p>切片图链接： </p>
+    <a href="mold:open?file=<%= @knife_switch_record.image_id %>"><%= @knife_switch_record.image_id %></a>
+  </div>
 
 </div>
 <hr style="border: 1px solid #000">
