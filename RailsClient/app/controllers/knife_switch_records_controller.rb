@@ -37,9 +37,18 @@ class KnifeSwitchRecordsController < ApplicationController
     end
   end
 
+  def search
+    super { |query|
+      state = params[:knife_switch_record][:state]
+      query = query.where("state like ?", "%#{state}%").unscope(where: :state)
+    }
+  end
+
   def get_update_params
     args = {}
-    if params[:action] == 'update' && params[:mould_id].nil?
+    puts '-------------get_update_params-----------------'
+    puts params
+    if params[:action] == 'update' && params[:knife_switch_record][:mould_id].nil?
       record = KnifeSwitchRecord.find(params[:id])
       unless record.nil?
         args[:mould_id] = record.mould_id
@@ -114,42 +123,44 @@ class KnifeSwitchRecordsController < ApplicationController
     total_life = 0
     damage_life = 0
     broken_life = 0
-    records.each do |record|
-      puts "press=#{record.press_num}----before= #{press_num_before} --------m_qty=#{record.m_qty}"
-      if record.m_qty == 1
-        press_num_before = args[:press_num]
-        args[:damage_life] = 0
-        args[:broken_life] = 0
-        args[:total_life] = args[:damage_life] | args[:broken_life]
-      else
-        if record.m_qty.to_i == args[:m_qty].to_i
-          pre_record = KnifeSwitchRecord.where(mould_id: args[:mould_id], project_id: args[:project_id], knife_type: args[:knife_type], knife_kind: args[:knife_kind], m_qty: (args[:m_qty].to_i - 1)).first
-          if pre_record.nil?
-            args[:damage_life] = 0
-            args[:broken_life] = 0
-          else
-            if args[:state].include? "磨损"
-              args[:damage_life] = args[:press_num].to_i - pre_record.press_num.to_i
-              args[:broken_life] = 0
-            elsif args[:state].include? "断裂"
-              args[:damage_life] = 0
-              args[:broken_life] = args[:press_num].to_i - pre_record.press_num.to_i
-            end
-          end
-          args[:total_life] = args[:damage_life] | args[:broken_life]
+    if records.first.press_num.to_i != args[:press_num].to_i
+      records.each do |record|
+        puts "press=#{record.press_num}----before= #{press_num_before} --------m_qty=#{record.m_qty}"
+        if record.m_qty == 1
           press_num_before = args[:press_num]
-        elsif record.m_qty.to_i == (args[:m_qty].to_i + 1)
-          puts "################press_num_before=#{press_num_before}##############record.press_num=#{record.press_num}########################################"
-          if record.state.include? "磨损"
-            damage_life = record.press_num.to_i - press_num_before.to_i
-            broken_life = 0
-          elsif record.state.include? "断裂"
-            damage_life = 0
-            broken_life = record.press_num.to_i - press_num_before.to_i
+          args[:damage_life] = 0
+          args[:broken_life] = 0
+          args[:total_life] = args[:damage_life] | args[:broken_life]
+        else
+          if record.m_qty.to_i == args[:m_qty].to_i
+            pre_record = KnifeSwitchRecord.where(mould_id: args[:mould_id], project_id: args[:project_id], knife_type: args[:knife_type], knife_kind: args[:knife_kind], m_qty: (args[:m_qty].to_i - 1)).first
+            if pre_record.nil?
+              args[:damage_life] = 0
+              args[:broken_life] = 0
+            else
+              if args[:state].include? "磨损"
+                args[:damage_life] = args[:press_num].to_i - pre_record.press_num.to_i
+                args[:broken_life] = 0
+              elsif args[:state].include? "断裂"
+                args[:damage_life] = 0
+                args[:broken_life] = args[:press_num].to_i - pre_record.press_num.to_i
+              end
+            end
+            args[:total_life] = args[:damage_life] | args[:broken_life]
+            press_num_before = args[:press_num]
+          elsif record.m_qty.to_i == (args[:m_qty].to_i + 1)
+            puts "################press_num_before=#{press_num_before}##############record.press_num=#{record.press_num}########################################"
+            if record.state.include? "磨损"
+              damage_life = record.press_num.to_i - press_num_before.to_i
+              broken_life = 0
+            elsif record.state.include? "断裂"
+              damage_life = 0
+              broken_life = record.press_num.to_i - press_num_before.to_i
+            end
+            total_life = damage_life | broken_life
+            record.update(damage_life: damage_life, broken_life: broken_life, total_life: total_life)
+            press_num_before = record.press_num
           end
-          total_life = damage_life | broken_life
-          record.update(damage_life: damage_life, broken_life: broken_life, total_life: total_life)
-          press_num_before = record.press_num
         end
       end
     end
@@ -159,8 +170,11 @@ class KnifeSwitchRecordsController < ApplicationController
   # PATCH/PUT /knife_switch_records/1
   # PATCH/PUT /knife_switch_records/1.json
   def update
+    args = reset_knife_life_before_update
+    puts '---------------------------9'
+    puts args
     respond_to do |format|
-      if @knife_switch_record.update(reset_knife_life_before_update)
+      if @knife_switch_record.update(args)
         puts '---------succ--------------'
         format.html { redirect_to @knife_switch_record, notice: 'Knife switch record was successfully updated.' }
         format.json { render :show, status: :ok, location: @knife_switch_record }
@@ -199,14 +213,14 @@ class KnifeSwitchRecordsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_knife_switch_record
-      @knife_switch_record = KnifeSwitchRecord.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_knife_switch_record
+    @knife_switch_record = KnifeSwitchRecord.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def knife_switch_record_params
-      params.require(:knife_switch_record).permit(:mould_id, :project_id, :terminal_leoni_id, :switch_date, :knife_type, :knife_kind, :knife_supplier, :state, :problem, :damage_define, :maintainman, :qty, :m_qty,
-                                                  :machine_id, :press_num, :damage_life, :broken_life, :total_life, :operater, :is_ok, :outbound_id, :sort, :image_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def knife_switch_record_params
+    params.require(:knife_switch_record).permit(:mould_id, :project_id, :terminal_leoni_id, :switch_date, :knife_type, :knife_kind, :knife_supplier, :state, :problem, :damage_define, :maintainman, :qty, :m_qty,
+                                                :machine_id, :press_num, :damage_life, :broken_life, :total_life, :operater, :is_ok, :outbound_id, :sort, :image_id)
+  end
 end

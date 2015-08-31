@@ -165,7 +165,11 @@
           <td><%= knife_switch_record.knife_supplier %></td>
           <td><%= knife_switch_record.state %></td>
           <td><%= knife_switch_record.damage_define %></td>
-          <td><%= best_in_place knife_switch_record, :press_num, as: :input %></td>
+          <% if current_user.can_edit %>
+              <td><%= best_in_place knife_switch_record, :press_num, as: :input %></td>
+          <% else %>
+              <td><%= knife_switch_record.press_num %></td>
+          <% end %>
           <td><%= knife_switch_record.damage_life %></td>
           <td><%= knife_switch_record.broken_life %></td>
           <td><%= knife_switch_record.sort %></td>
