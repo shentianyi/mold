@@ -96,8 +96,8 @@ class KnifeSwitchRecord < ActiveRecord::Base
   end
 
   def create_knife_type
-    mould_detail = MouldDetail.where(mould_id: self['mould_id'], terminal_leoni_no: self['terminal_leoni_id']).first
-    mould_detail.blank? ? self.errors.add(:knife_type, '未查找到对应刀片型号,请检查!') : (self['knife_type'] = MouldDetail.new().get_knife(mould_detail, self['knife_kind']))
+    mould_detail = MouldDetail.where(mould_id: self.mould_id, terminal_leoni_no: self.terminal_leoni_id).first
+    mould_detail.blank? ? self.errors.add(:knife_type, "模具号:#{self.mould_id},端子号:#{self.terminal_leoni_id}未查找到对应刀片型号!") : (self.knife_type = MouldDetail.new().get_knife(mould_detail, self.knife_kind))
   end
 
   def self.to_xlsx knife_switch_records
