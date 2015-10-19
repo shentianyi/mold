@@ -2,12 +2,12 @@ class MouldDetail < ActiveRecord::Base
  # validates :position, uniqueness: {message: '该模具明细信息已录入,请检查!'}
 
   validates_presence_of :mould_id, :message => "模具号不能为空!"
-  validates_presence_of :mould_type, :message => "模具型号不能为空!"
-  validates_presence_of :mould_supplier, :message => "模具供应商不能为空!"
-  validates_presence_of :wire_type, :message => "电线型号不能为空!"
-  validates_presence_of :wire_cross, :message => "电线截面不能为空!"
-  validates_presence_of :terminal_leoni_no, :message => "端子莱尼号不能为空!"
-  validates_presence_of :next_time, :message => "下次批准日期不能为空!"
+#  validates_presence_of :mould_type, :message => "模具型号不能为空!"
+#   validates_presence_of :mould_supplier, :message => "模具供应商不能为空!"
+#   validates_presence_of :wire_type, :message => "电线型号不能为空!"
+#   validates_presence_of :wire_cross, :message => "电线截面不能为空!"
+#   validates_presence_of :terminal_leoni_no, :message => "端子莱尼号不能为空!"
+#   validates_presence_of :next_time, :message => "下次批准日期不能为空!"
 
   before_validation :create_uuid
   #before_save :create_uuid
@@ -32,9 +32,8 @@ class MouldDetail < ActiveRecord::Base
   # ]
 
   def create_uuid
-    position = self['mould_id'] + self['terminal_leoni_no'] + self['wire_type'] + self['wire_cross']
-    self['position'] = position.sub(/\.0/, '')
-    self.errors.add(:position,'该模具明细信息已录入,请检查!') if (self.new_record? ? MouldDetail.where('position=?',position).first : MouldDetail.where('position=? and id <>?',position, id).first)
+    self.position = self.mould_id + self.terminal_leoni_no + self.wire_type + self.wire_cross.sub(/\.0/, '')
+    self.errors.add(:position,"##{self.mould_id}##{self.terminal_leoni_no}##{self.wire_type}##{self.wire_cross}该模具明细信息重复!") if (self.new_record? ? MouldDetail.where('position=?',position).first : MouldDetail.where('position=? and id <>?',position, id).first)
   end
 
   def self.to_xlsx mould_details
